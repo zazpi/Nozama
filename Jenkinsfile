@@ -7,11 +7,15 @@ pipeline {
     }
     stages {
         stage('Build') {
-            sh 'mvn -B -DskipTests clean install'
+            steps {
+                sh 'mvn -B -DskipTests clean install'
+            }
         }
         stage('Deliver') {
-            sh 'mvn dockerfile:build'
-            sh 'mvn dockerfile:push'
+            steps {
+                sh 'mvn dockerfile:build'
+                sh 'mvn dockerfile:push'
+            }
         }
     }
 }
