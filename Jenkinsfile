@@ -14,7 +14,6 @@ pipeline {
         stage('Deliver') {
             steps {
                 sh 'mvn dockerfile:build'
-                sh 'mvn dockerfile:push'
             }
         }
     }
