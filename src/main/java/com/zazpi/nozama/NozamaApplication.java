@@ -1,4 +1,4 @@
-package hello;
+package com.zazpi.nozama;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class Application {
+public class NozamaApplication {
 
     @RequestMapping("/")
     public String home() {
@@ -15,7 +15,7 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(NozamaApplication.class, args);
     }
 
 }
