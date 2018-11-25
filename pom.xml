@@ -71,7 +71,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.3.6</version>
+                <version>1.4.9</version>
                 <configuration>
                     <username>${env.REGISTRY_USERNAME}</username>
                     <password>${env.REGISTRY_PASSWORD}</password>
