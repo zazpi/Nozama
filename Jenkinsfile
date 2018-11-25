@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Push image to registry') {
             steps {
-                sh 'mvn dockerfile:push -Ddockerfile.username=${REGISTRY_USERNAME} -Ddockerfile.password=${REGISTRY_PASSWORD}'
+                sh 'mvn dockerfile:push'
             }
         }
     }
