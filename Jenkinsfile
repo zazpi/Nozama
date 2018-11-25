@@ -2,9 +2,9 @@ pipeline {
     agent {
         docker {
             image 'maven:3-alpine'
-            registryUrl 'https://index.docker.io/v1/'
-            registryCredentialsId 'dockerhub_account'
             args '-v /root.m2:/root/.m2'
+            args '-e REGISTRY_PASSWORD=${REGISTRY_PASSWORD}'
+            args '-e REGISTRY_USERNAME=${REGISTRY_USERNAME}'
         }
     }
     stages {
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Push image to registry') {
             steps {
-                sh 'mvn dockerfile:push'
+                sh 'mvn dockerfile:push -Ddockerfile.username=${REGISTRY_USERNAME} -Ddockerfile.password=${REGISTRY_PASSWORD}'
             }
         }
     }
