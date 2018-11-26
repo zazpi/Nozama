@@ -77,8 +77,6 @@
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>1.4.9</version>
                 <configuration>
-                    <username>${env.REGISTRY_USERNAME}</username>
-                    <password>${env.REGISTRY_PASSWORD}</password>
                     <repository>${docker.image.prefix}/${project.artifactId}</repository>
                     <buildArgs>
                         <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
