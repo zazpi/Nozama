@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3-alpine'
+            image 'maven:3.6-jdk-8'
             args '-v /home/.m2:/root/.m2'
             args '-e REGISTRY_PASSWORD=${REGISTRY_PASSWORD}'
             args '-e REGISTRY_USERNAME=${REGISTRY_USERNAME}'
@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Push image to registry') {
             steps {
-                sh 'mvn dockerfile:push -Ddockerfile.username=${REGISTRY_USERNAME} -Ddockerfile.password=${REGISTRY_PASSWORD}'
+                sh 'mvn dockerfile:push -Ddockerfile.username="$REGISTRY_USERNAME" -Ddockerfile.password="$REGISTRY_PASSWORD"' 
             }
         }
     }
