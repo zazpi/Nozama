@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3.6-jdk-8'
+            image 'maven:3-alpine'
             args '-v /home/.m2:/root/.m2'
             args '-e REGISTRY_PASSWORD=${REGISTRY_PASSWORD}'
             args '-e REGISTRY_USERNAME=${REGISTRY_USERNAME}'
