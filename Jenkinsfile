@@ -28,11 +28,10 @@ pipeline {
                 sh 'mvn dockerfile:build'
             }
         }
-        stage('Push image to registry') {
+        /*stage('Push image to registry') {
             steps {
-                sh 'docker login'
                 sh 'mvn dockerfile:push' 
             }
-        }
+        }*/
     }
 }
