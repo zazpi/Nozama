@@ -1,0 +1,7 @@
+\subsection*{Development}
+
+In the project\textquotesingle{}s root directory do {\ttfamily docker-\/compose up -\/d} and go to \href{http://localhost:8080}{\tt localhost\+:8080}. Happy coding!
+
+\subsection*{Building image}
+
+The {\ttfamily Dockerfile} is made to be used by any one that has docker installed (you don\textquotesingle{}t need to have maven installed). That\textquotesingle{}s because it uses a multi-\/stage build and in the image build process it already does all the maven machinery to produce the jar and then extract the dependencies needed for the final step of the build process. 
