@@ -23,6 +23,11 @@ pipeline {
                 }
             }
         }
+        stage('Generate documentation') {
+            steps {
+                sh 'mvn doxygen:generate'
+            }
+        }
         stage('Build image and Deliver') {
             steps {
                 sh 'mvn dockerfile:build'
