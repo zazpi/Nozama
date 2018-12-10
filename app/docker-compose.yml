@@ -32,17 +32,3 @@ services:
     environment:
       - POSTGRES_DB
       - POSTGRES_PASSWORD
-  sonarqube-server:
-    image: sonarqube:7.4-community
-    ports:
-      - 9000:9000
-    volumes:
-      - type: bind
-        source: "./sonarqube/conf"
-        target: "/opt/sonarqube/conf"
-      - type: bind
-        souce: "./sonarqube/data"
-        target: "/opt/sonarqube/data"
-      - type: bind
-        source: "./sonarqube/logs"
-        target: "/opt/sonarqube/logs"
