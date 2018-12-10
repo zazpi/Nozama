@@ -46,14 +46,3 @@ services:
       - type: bind
         source: "./sonarqube/logs"
         target: "/opt/sonarqube/logs"
-  datomic-free:
-    image: akiel/datomic-free:0.9.5656
-    ports:
-      - 4334-4336:4334-4336
-    volumes:
-      - type: bind
-        source: "./datomic/data"
-        target: "/data"
-      - type: bind
-        source: "./datomic/logs"
-        target: "/logs"
