@@ -1,0 +1,61 @@
+version: "3.2"
+
+services:
+  jenkins:
+    image: jenkinsci/blueocean:1.9.0
+    restart: unless-stopped
+    ports:
+      - 80:8080
+    volumes:
+      - type: volume
+        source: jenkins-dev
+        target: "/var/jenkins_home"
+      - type: bind
+        source: "/var/run/docker.sock"
+        target: "/var/run/docker.sock"
+  sonar:
+    image: sonarqube:7.4-community
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    environment:
+      - sonar.jdbc.url=jdbc:postgresql://postgres:5432/sonar
+      - sonar.jdbc.username=root
+      - sonar.jdbc.password=root
+    volumes:
+      - type: volume
+        source: sonarqube_conf
+        target: "/opt/sonarqube/conf"
+      - type: volume
+        source: sonarqube_data
+        target: "/opt/sonarqube/data"
+      - type: volume
+        source: sonarqube_extensions
+        target: "/opt/sonarqube/extensions"
+      - type: volume
+        source: sonarqube_logs
+        target: "/opt/sonarqube/logs"
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:9.6
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=sonar
+    volumes:
+      - type: volume
+        source: postgresql
+        target: "/var/lib/postgresql"
+      - type: volume
+        source: postgresql_data
+        target: "/var/lib/postgresql/data"
+volumes:
+  jenkins-dev:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:
+  postgresql:
+  postgresql_data:
