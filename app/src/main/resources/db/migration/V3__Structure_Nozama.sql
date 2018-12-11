@@ -1,0 +1,30 @@
+CREATE TABLE clients (
+ clientID     INT ,
+ name         VARCHAR(20) NOT NULL,
+ db     VARCHAR(20)
+);
+
+CREATE TABLE users (
+ userID       INT ,
+ nameUser     VARCHAR(20) NOT NULL,
+ username     VARCHAR(20) NOT NULL,
+ password     VARCHAR(30) NOT NULL,
+ clientID     INT ,
+ rolID        INT 
+);
+
+CREATE TABLE rols (
+ rolID        INT ,
+ nameRol      VARCHAR(20) NOT NULL
+);
+
+ALTER TABLE clients
+ADD CONSTRAINT CLIENT_PK PRIMARY KEY (clientID);
+
+ALTER TABLE rols
+ADD CONSTRAINT ROL_PK PRIMARY KEY (rolID);
+
+ALTER TABLE users
+ADD CONSTRAINT USER_PK PRIMARY KEY (userID),
+ADD CONSTRAINT USER_CLIENT_FK FOREIGN KEY (clientID) REFERENCES clients (clientID),
+ADD CONSTRAINT USER_ROL_FK FOREIGN KEY (rolID) REFERENCES rols (rolID);
