@@ -13,7 +13,7 @@ CREATE TABLE ordersProducts (
 
 CREATE TABLE productModel (
  productModelID  INT,
- nameModel       VARCHAR(20),
+ name       VARCHAR(20),
  description     VARCHAR(250),
  x		 DECIMAL(5,2),
  y               DECIMAL(5,2), 
