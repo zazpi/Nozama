@@ -24,6 +24,7 @@
         <docker.image.prefix>devallday</docker.image.prefix>
         <dockerfile.tag>${project.version}</dockerfile.tag>
         <spring.jmx.enabled>false</spring.jmx.enabled>
+        <sonar.language>java</sonar.language>
     </properties>
 
     <dependencies>

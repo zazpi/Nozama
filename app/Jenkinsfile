@@ -21,20 +21,28 @@ pipeline {
                 }
             }
         }*/
-        stage('Generate documentation') {
+        /*
+        stage('Static analysis'){
             steps {
-                sh 'cd app/ && mvn doxygen:generate'
+                sh 'mvn mvn clean verify sonar:sonar'
             }
-        }
-        stage('Build image and Deliver') {
-            steps {
-                sh 'cd app/ && mvn dockerfile:build'
-            }
-        }
-        stage('Push image to registry') {
-            steps {
-                sh 'cd app/ && mvn dockerfile:push'
-            }
+        }*/
+        stage('Deliver') {
+            agent any
+                stages {
+                    stage('Build image & Push'){
+                        steps {
+                            sh 'echo starting image build...'
+                            sh 'cd app/'
+
+                            scripts {
+                                def image = docker.build("devallday/nozama:latest")
+                                image.push()
+                            }
+                        }
+                    }
+                }
         }
     }
+
 }
