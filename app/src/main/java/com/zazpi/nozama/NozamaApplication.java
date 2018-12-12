@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EntityScan(basePackages="com.zazpi.nozama")
 
+
 public class NozamaApplication {
 	
 
