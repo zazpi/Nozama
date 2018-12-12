@@ -39,7 +39,7 @@ pipeline {
             steps {
                 sh 'docker push devallday/nozama:latest'
             }
-        }
+	}
     }
 
 }
