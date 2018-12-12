@@ -24,7 +24,7 @@ pipeline {
         }*/
         stage('Docker build') {
             steps {
-                sh 'cd app/ && docker build -t devallday/nozama:latest'
+                sh 'cd app/ && docker build -t devallday/nozama:latest .'
             }
         }
         stage('Docker login') {
