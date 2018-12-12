@@ -5,9 +5,9 @@ services:
     image: postgres:9.6
     restart: unless-stopped
     environment:
-      - POSTGRES_USER=nozama
-      - POSTGRES_PASSWORD=pasahitzososegurua
-      - POSTGRES_DB=sonar
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
     volumes:
       - type: volume
         source: postgresql

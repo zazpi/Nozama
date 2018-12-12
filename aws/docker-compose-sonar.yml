@@ -7,9 +7,9 @@ services:
     ports:
       - 9000:9000
     environment:
-      - sonar.jdbc.url=jdbc:postgresql://ec2-54-91-186-251.compute-1.amazonaws.com:5432/sonar
-      - sonar.jdbc.username=nozama
-      - sonar.jdbc.password=pasahitzososegurua
+      - sonar.jdbc.url
+      - sonar.jdbc.username
+      - sonar.jdbc.password
     volumes:
       - type: volume
         source: sonarqube_conf
