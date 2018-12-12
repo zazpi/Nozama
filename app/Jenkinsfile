@@ -18,7 +18,7 @@ pipeline {
         }*/
         stage('Static analysis'){
             steps {
-                sh 'cd app/ && ./mvnw clean verify sonar:sonar'
+                sh 'cd app/ && ./mvnw clean sonar:sonar'
             }
         }
         stage('Docker build') {
