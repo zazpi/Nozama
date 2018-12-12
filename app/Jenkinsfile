@@ -35,7 +35,7 @@ pipeline {
                             sh 'echo starting image build...'
                             sh 'cd app/'
 
-                            scripts {
+                            script {
                                 def image = docker.build("devallday/nozama:latest")
                                 image.push()
                             }
