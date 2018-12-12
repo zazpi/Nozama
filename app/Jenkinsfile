@@ -1,19 +1,14 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
+    agent any
     stages {
         stage('Build') {
             steps {
-                sh 'cd app/ && mvn -B -DskipTests clean install'
+                sh 'cd app/ && ./mvnw -B -DskipTests clean install'
             }
         }
         /*stage('Test') {
             steps {
-                sh 'cd app/ && mvn test'
+                sh 'cd app/ && ./mvnw test'
             }
             post {
                 always {
@@ -24,24 +19,26 @@ pipeline {
         /*
         stage('Static analysis'){
             steps {
-                sh 'mvn mvn clean verify sonar:sonar'
+                sh 'cd app/ && ./mvnw clean verify sonar:sonar'
             }
         }*/
-        stage('Deliver') {
-            agent any
-                stages {
-                    stage('Build image & Push'){
-                        steps {
-                            sh 'echo starting image build...'
-                            sh 'cd app/'
-
-                            script {
-                                def image = docker.build("devallday/nozama:latest")
-                                image.push()
-                            }
-                        }
-                    }
-                }
+        stage('Docker build') {
+            steps {
+                sh 'cd app/ && docker build -t devallday/nozama:latest'
+            }
+        }
+        stage('Docker login') {
+            steps {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub_account',
+                                 usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                                 sh "docker login --username $USERNAME --password $PASSWORD"
+                 }
+            }
+        }
+        stage('Docker push') {
+            steps {
+                sh 'docker push devallday/nozama:latest'
+            }
         }
     }
 
