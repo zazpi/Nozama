@@ -28,7 +28,7 @@ pipeline {
             }
         }*/
         stage('Deliver') {
-            agent { label 'docker' }
+            agent { label 'nozama_docker' }
                 stages {
                     stage('Build') {
                         steps {
