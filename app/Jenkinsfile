@@ -11,7 +11,7 @@ pipeline {
                 sh 'cd app/ && mvn -B -DskipTests clean install'
             }
         }
-        stage('Test') {
+        /*stage('Test') {
             steps {
                 sh 'cd app/ && mvn test'
             }
@@ -20,7 +20,7 @@ pipeline {
                     junit 'app/target/surefire-reports/*.xml'
                 }
             }
-        }
+        }*/
         stage('Generate documentation') {
             steps {
                 sh 'cd app/ && mvn doxygen:generate'
