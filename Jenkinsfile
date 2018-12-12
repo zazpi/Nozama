@@ -3,13 +3,12 @@ pipeline {
         docker {
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
-            registryUrl 'http://index.docker.io/v1/'
-            registryCredentialsId 'dockerhub_account'
         }
     }
     stages {
         stage('Build') {
             steps {
+                sh 'cd app'
                 sh 'mvn -B -DskipTests clean install'
             }
         }
@@ -33,10 +32,5 @@ pipeline {
                 sh 'mvn dockerfile:build'
             }
         }
-        /*stage('Push image to registry') {
-            steps {
-                sh 'mvn dockerfile:push' 
-            }
-        }*/
     }
 }
