@@ -16,12 +16,11 @@ pipeline {
                 }
             }
         }*/
-        /*
         stage('Static analysis'){
             steps {
                 sh 'cd app/ && ./mvnw clean verify sonar:sonar'
             }
-        }*/
+        }
         stage('Docker build') {
             steps {
                 sh 'cd app/ && docker build -t devallday/nozama:latest .'
