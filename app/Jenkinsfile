@@ -28,20 +28,22 @@ pipeline {
             }
         }*/
         stage('Deliver') {
-            agent any
+            agent { label 'docker' }
                 stages {
-                    stage('Build image & Push'){
+                    stage('Build') {
                         steps {
                             sh 'echo starting image build...'
-                            sh 'cd app/'
-
-                            script {
-                                def image = docker.build("devallday/nozama:latest")
-                                image.push()
+                            sh 'cd app/ && docker build -t devallday/nozama:latest'
+                        }
+                    }
+                    stage('Publish') {
+                        steps {
+                            withDockerRegistry([credentialsId: 'dockerhub_account', url: 'https://index.docker.io/v1/']) {
+                                sh 'docker push devallday/nozama:latest'
                             }
                         }
                     }
-                }
+              }
         }
     }
 
