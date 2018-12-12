@@ -1,0 +1,22 @@
+version: "3.2"
+
+services:
+  postgres:
+    image: postgres:9.6
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=nozama
+      - POSTGRES_PASSWORD=pasahitzososegurua
+      - POSTGRES_DB=sonar
+    volumes:
+      - type: volume
+        source: postgresql
+        target: "/var/lib/postgresql"
+      - type: volume
+        source: postgresql_data
+        target: "/var/lib/postgresql/data"
+    ports:
+      - 5432:5432
+volumes:
+  postgresql:
+  postgresql_data:

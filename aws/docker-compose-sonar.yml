@@ -1,0 +1,30 @@
+version: "3.2"
+
+services:
+  sonar:
+    image: sonarqube:7.4-community
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    environment:
+      - sonar.jdbc.url=jdbc:postgresql://ec2-54-91-186-251.compute-1.amazonaws.com:5432/sonar
+      - sonar.jdbc.username=nozama
+      - sonar.jdbc.password=pasahitzososegurua
+    volumes:
+      - type: volume
+        source: sonarqube_conf
+        target: "/opt/sonarqube/conf"
+      - type: volume
+        source: sonarqube_data
+        target: "/opt/sonarqube/data"
+      - type: volume
+        source: sonarqube_extensions
+        target: "/opt/sonarqube/extensions"
+      - type: volume
+        source: sonarqube_logs
+        target: "/opt/sonarqube/logs"
+volumes:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:
