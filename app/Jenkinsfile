@@ -18,7 +18,13 @@ pipeline {
         }*/
         stage('Static analysis'){
             steps {
-                sh 'cd app/ && ./mvnw clean sonar:sonar'
+                sh 'cd app/'
+		    script {
+			def scannerHome = tool 'SonarQubeScanner3'
+                	withSonarQubeEnv('sonar_server') {
+                    		sh "${scannerHome}/bin/sonar-scanner"
+                	}
+		}
             }
         }
         stage('Docker build') {
