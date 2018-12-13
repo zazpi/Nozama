@@ -19,4 +19,8 @@
 	    <put-attribute name="body" value="/WEB-INF/tiles/view/home/welcome.jsp" />
 	</definition>
 	
+	<definition name="site.crud" extends="layout.basic">
+	    <put-attribute name="body" value="/WEB-INF/tiles/view/home/crud.jsp" />
+	</definition>
+	
 </tiles-definitions>

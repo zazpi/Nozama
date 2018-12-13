@@ -35,7 +35,7 @@ center {
 	grid-area: center;
 }
 
-content {
+.content {
 	padding: 1em;
 	text-align: center;
 	font-size: 1.5em;
@@ -50,4 +50,34 @@ aside {
 aside a {
 	padding: .5em;
 	border: 1px solid black;
+}
+
+#crud{
+	display: grid;
+	grid-template-areas: "form table";
+	grid-template-columns: 1fr 1fr;
+}
+
+#table {
+	grid-area: table;
+
+}
+
+#productform{
+	grid-area: form;
+}
+
+table{
+	border-collapse: collapse;
+	width:100%;
+}
+
+#table td, #table th{
+	text-align:center;
+	border:1px solid black;
+	padding: 8px;
+}
+
+td > a{
+	border:1px;
 }

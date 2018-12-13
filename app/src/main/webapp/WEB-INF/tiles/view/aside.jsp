@@ -1,4 +1,4 @@
 <aside>
-  <a href="#">Welcome </a>
-  <a href="#">CRUD demo </a>
+  <a href="/">Welcome </a>
+  <a href="/crud">CRUD demo </a>
 </aside>
