@@ -6,7 +6,7 @@ pipeline {
                 sh 'cd app/ && ./mvnw -B -DskipTests clean install'
             }
         }
-        /*stage('Test') {
+        stage('Test') {
             steps {
                 sh 'cd app/ && ./mvnw test'
             }
@@ -15,13 +15,13 @@ pipeline {
                     junit 'app/target/surefire-reports/*.xml'
                 }
             }
-        }*/
+        }
         stage('Static analysis'){
             steps {
 		    script {
 			def scannerHome = tool 'SonarQubeScanner3'
                 	withSonarQubeEnv('sonar_server') {
-                    		sh "cd app/ && ./mvnw sonar:sonar"
+                    		sh "cd app/ && ./mvnw clean verify sonar:sonar"
                 	}
 		}
             }
