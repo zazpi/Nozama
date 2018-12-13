@@ -21,7 +21,7 @@ pipeline {
 		    script {
 			def scannerHome = tool 'SonarQubeScanner3'
                 	withSonarQubeEnv('sonar_server') {
-                    		sh "cd app/ && ./mvnw clean package sonar:sonar"
+                    		sh "cd app/ && ./mvnw sonar:sonar"
                 	}
 		}
             }
