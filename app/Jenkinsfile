@@ -18,11 +18,10 @@ pipeline {
         }*/
         stage('Static analysis'){
             steps {
-                sh 'cd app/'
 		    script {
 			def scannerHome = tool 'SonarQubeScanner3'
                 	withSonarQubeEnv('sonar_server') {
-                    		sh "${scannerHome}/bin/sonar-scanner"
+                    		sh "cd app/ && ./mvnw clean sonar:sonar"
                 	}
 		}
             }
