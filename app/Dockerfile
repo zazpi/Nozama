@@ -1,12 +1,5 @@
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-ARG DEPENDENCY=target/dependency
-COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY ${DEPENDENCY}/META-INF /app/META-INF
-COPY ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java", \
- "-noverify", \
-  "-XX:+UnlockExperimentalVMOptions", \ 
-  "-XX:+UseCGroupMemoryLimitForHeap", \
-  "-cp","app:app/lib/*", \
-   "com.zazpi.nozama.NozamaApplication"]
+FROM maven:3.6-jdk-8
+COPY . /usr/src/app
+VOLUME /root/.m2
+WORKDIR /usr/src/app
+ENTRYPOINT ["mvn", "spring-boot:run"]
