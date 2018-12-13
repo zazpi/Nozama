@@ -23,4 +23,12 @@
 	    <put-attribute name="body" value="/WEB-INF/tiles/view/home/crud.jsp" />
 	</definition>
 	
+	<definition name="site.admin" extends="layout.basic">
+	    <put-attribute name="body" value="/WEB-INF/tiles/view/home/admin.jsp" />
+	</definition>
+	
+	<definition name="site.forbidden" extends="layout.basic">
+	    <put-attribute name="body" value="/WEB-INF/tiles/view/home/forbidden.jsp" />
+	</definition>	
+	
 </tiles-definitions>

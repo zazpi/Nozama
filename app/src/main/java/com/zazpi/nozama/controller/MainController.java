@@ -39,4 +39,14 @@ public class MainController {
         productDao.save(productmodel);
         return new ModelAndView("redirect:/crud", model);
     }
+    
+    @RequestMapping(value="/admin")
+    public String admin() {
+    	return "site.admin";
+    }
+    
+    @RequestMapping(value="/forbidden")
+    public String forbidden() {
+    	return "site.forbidden";
+    }
 }
