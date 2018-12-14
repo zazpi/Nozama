@@ -1,79 +1,119 @@
 package demo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import demo.car.Car;
+import demo.car.Cars;
+import demo.car.ThreadCar;
+import demo.order.Order;
+import demo.order.Product;
+import demo.order.ThreadOrder;
+import demo.position.Parking;
+import demo.position.Workstation;
+
 public class MainDemo {
 	public static final int N_WORKSTATIONS = 6;
+	public static final int N_PARKING = 4;
 	public static final int N_PRODUCTS = 30;
 	public static final int N_ORDERS = 15;
+	public static final int N_CARS = 5;
 	public static final int N_SEGMENTS = 16;
 	
 	List<Workstation> workstations;
-	List<Produktua> produktuak;
-	List<Eskaera> eskaerak;
-	List<Segment> segments;
+	List<Parking> parkings;
+	
+	List<Product> products;
+	List<Order> orders;
+	
+	Car [] car;
+	Cars cars;
 	
 	ThreadCar [] threadCar;
+	ThreadWorker [] threadWorker;
+	ThreadOrder threadOrder;
 	Thread [] threads;
 	
 	public MainDemo () {
+		threadCar = new ThreadCar[N_CARS];
+		threadWorker = new ThreadWorker[N_WORKSTATIONS];
+		threads = new Thread[N_CARS+N_WORKSTATIONS+1];
+		
 		workstations = new ArrayList<>();
-		produktuak = new ArrayList<>();
-		eskaerak = new ArrayList<>();
-		segments = new ArrayList<>();
+		parkings = new ArrayList<>();
+		products = new ArrayList<>();
+		orders = new ArrayList<>();
 		Random random = new Random();
-		
-		for (int j=0;j<N_PRODUCTS;j++) {
-			produktuak.add(new Produktua(j, workstations.get(random.nextInt(N_WORKSTATIONS))));
-		}
-		
-		for (int k=0;k<N_ORDERS;k++) {
-			List<Produktua> orderProducts = new ArrayList<>();
-			for (int l=0;l<random.nextInt(4);l++) {
-				orderProducts.add(produktuak.get(random.nextInt(N_PRODUCTS)));
-			}
-			eskaerak.add(new Eskaera(k, orderProducts, workstations.get(random.nextInt(N_WORKSTATIONS))));
-		}
-		
-		for (int l=0;l<N_SEGMENTS;l++) {
-			segments.add(new Segment(l));
-		}
-		segments.get(0).setNextSegments(segments.get(5));
-		segments.get(1).setNextSegments(segments.get(0));
-		segments.get(2).setNextSegments(segments.get(1)); //7
-		segments.get(3).setNextSegments(segments.get(2));
-		segments.get(4).setNextSegments(segments.get(3)); //9
-		
-		segments.get(5).setNextSegments(segments.get(11));
-		segments.get(6).setNextSegments(segments.get(0));
-		segments.get(7).setNextSegments(segments.get(13));
-		segments.get(8).setNextSegments(segments.get(2));
-		segments.get(9).setNextSegments(segments.get(15));
-		segments.get(10).setNextSegments(segments.get(4));
-		
-		segments.get(11).setNextSegments(segments.get(12)); //6
-		segments.get(12).setNextSegments(segments.get(13));
-		segments.get(13).setNextSegments(segments.get(14)); //8
-		segments.get(14).setNextSegments(segments.get(15));
-		segments.get(15).setNextSegments(segments.get(10));
 		
 		for (int i=0;i<N_WORKSTATIONS;i++) {
 			workstations.add(new Workstation(i));
 		}
-		workstations.get(0).setSegment(segments.get(4));
-		workstations.get(1).setSegment(segments.get(2));
-		workstations.get(2).setSegment(segments.get(0));
-		workstations.get(3).setSegment(segments.get(11));
-		workstations.get(4).setSegment(segments.get(13));
-		workstations.get(5).setSegment(segments.get(15));
+		for (int i=0;i<N_PARKING;i++) {
+			parkings.add(new Parking(i));
+		}
 		
-		System.out.println(segments.get(13).calculateNextSegment(segments.get(2)));
+		car = new Car[N_CARS];
+		for (int i=0;i < N_CARS;i++) car[i] = new Car(i, workstations.get(i));		
+		cars = new Cars(N_CARS, Arrays.asList(car));
 		
+		for (int j=0;j<N_PRODUCTS;j++) {
+			products.add(new Product(j));
+		}
+		
+		for (int k=0;k<N_ORDERS;k++) {
+			List<Product> orderProducts = new ArrayList<>();
+			for (int l=0;l<(random.nextInt(4)+1);l++) {
+				orderProducts.add(products.get(random.nextInt(N_PRODUCTS)));
+			}
+			Workstation origin = workstations.get(random.nextInt(N_WORKSTATIONS));
+			Workstation destination;
+			do {
+				destination = workstations.get(random.nextInt(N_WORKSTATIONS));
+			} while (origin.getId() == destination.getId());
+			orders.add(new Order(k, orderProducts, origin, destination));
+		}
+	}
+	
+	public void createThreads () {
+		for (int i=0;i<N_CARS;i++) {
+			threadCar[i] = new ThreadCar(i, workstations, parkings, car[i], cars);
+			threads[i] = new Thread(threadCar[i], String.valueOf(i));
+		}
+		for (int i=0;i<N_WORKSTATIONS;i++) {
+			threadWorker[i] = new ThreadWorker(i, workstations.get(i));
+			threads[N_CARS+i] = new Thread(threadWorker[i], String.valueOf(i));
+		}
+		
+		int last = N_CARS+N_WORKSTATIONS;
+		threadOrder = new ThreadOrder(orders);
+		threads[last] = new Thread(threadOrder, String.valueOf(last));
+	}
+	
+	public void startThreads () {
+		for (int i=0;i<(N_CARS+N_WORKSTATIONS+1);i++) {
+			threads[i].start();
+		}
+	}
+	
+	public void killThreads () {
+		for (int i=0;i<(N_CARS+N_WORKSTATIONS+1);i++) {
+			try {
+				threads[i].join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public static void main (String [] args) {
 		MainDemo mainDemo = new MainDemo();
+		
+		mainDemo.createThreads();
+		mainDemo.startThreads();
+		mainDemo.killThreads();
+		
+		System.out.println("Everything was better than expected");
 	}
 }
