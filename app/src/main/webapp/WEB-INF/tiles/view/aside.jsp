@@ -1,6 +1,13 @@
-<aside>
-  <a href="/">Welcome </a>
-  <a href="/crud">CRUD demo </a>
-  <a href="/logout">Logout</a>
-  <a href="/admin">Admin</a>
-</aside>
+ <div id="menu">
+     <div class="pure-menu">
+            <a class="pure-menu-heading" href="#">Nozama</a>
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="/" class="pure-menu-link">General</a></li>
+                <li class="pure-menu-item"><a href="/crud" class="pure-menu-link">Crud</a></li>
+                <li class="pure-menu-item"><a href="/logout" class="pure-menu-link">Logout</a></li>
+            </ul>
+        </div>
+ </div>
+
+
+ 
