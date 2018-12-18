@@ -47,8 +47,7 @@ pipeline {
     }
     post {
         always {
-            telegramSend 'STATUS FOR PROJECT: ${currentBuild.fullDisplayName}
-                          RESULT: ${currentBuild.result}'
+            telegramSend 'STATUS FOR PROJECT: ${currentBuild.fullDisplayName} RESULT: ${currentBuild.result}'
         }
     }
 
