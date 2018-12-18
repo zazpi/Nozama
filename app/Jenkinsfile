@@ -43,10 +43,13 @@ pipeline {
             steps {
                 sh 'docker push devallday/nozama:latest'
             }
-            post {
-                always {
-                    telegramSend 'STATUS FOR PROJECT: ${currentBuild.fullDisplayName} RESULT: ${currentBuild.result}'
-                }
+        }
+    }
+    post {
+        always {
+            script {
+                currentBuild.result = currentBuild.result?:'SUCCESS'
+                telegramSend "STATUS FOR PROJECT: ${currentBuild.fullDisplayName} RESULT: ${currentBuild.result}"
             }
         }
     }
