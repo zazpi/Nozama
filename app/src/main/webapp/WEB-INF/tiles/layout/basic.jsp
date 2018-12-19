@@ -12,7 +12,7 @@
 		        <!-- Hamburger icon -->
 		        <span></span>
     		</a>
-			<!-- Header -->
+    		<!-- Header -->
 			<!-- <tiles:insertAttribute name="header" /> -->
 			<!-- Aside -->
 			<tiles:insertAttribute name="aside" />
