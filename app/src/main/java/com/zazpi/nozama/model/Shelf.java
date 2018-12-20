@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Shelf {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="shelvesID")
+	@Column(name="shevlesid")
 	int id;
 	@Column
 	int capacity;
@@ -23,6 +23,33 @@ public class Shelf {
 	int position;
 	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			 CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinColumn(name="warehouseID")
+	@JoinColumn(name="warehouseid")
 	Warehouse warehouse;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getCapacity() {
+		return capacity;
+	}
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+	public int getPosition() {
+		return position;
+	}
+	public void setPosition(int position) {
+		this.position = position;
+	}
+	public Warehouse getWarehouse() {
+		return warehouse;
+	}
+	public void setWarehouse(Warehouse warehouse) {
+		this.warehouse = warehouse;
+	}
+	
+	
 }

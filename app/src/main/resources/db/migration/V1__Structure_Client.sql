@@ -1,27 +1,28 @@
 CREATE TABLE orders (
- orderID         INT,
- origin          VARCHAR(30),
- destination     VARCHAR(30),
+ orderID         SERIAL,
+ origin          SMALLINT,
+ destination     SMALLINT,
  entryDate       DATE,
- departureDate   DATE           
+ departureDate   DATE
 );
 
 CREATE TABLE ordersProducts (
- orderID         INT,
- productModelID  INT
+ orderID         SERIAL,
+ productModelID  SERIAL
 );
 
 CREATE TABLE productModel (
- productModelID  INT,
- name       VARCHAR(20),
+ productModelID  SERIAL,
+ name            VARCHAR(20),
  description     VARCHAR(250),
- x		 DECIMAL(5,2),
- y               DECIMAL(5,2), 
- z               DECIMAL(5,2)
+ weight          INT,
+ x		 INT,
+ y               INT,
+ z               INT
 );
 
 CREATE TABLE productStack (
- productID       INT,
+ productID       SERIAL,
  stock           INT,
  startDate       DATE,
  endDate         DATE,
@@ -30,16 +31,16 @@ CREATE TABLE productStack (
 );
 
 CREATE TABLE shelves (
- shelvesID       INT,
+ shelvesID       SERIAL,
  capacity        INT,
  position        INT,
  warehouseID    INT
 );
 
 CREATE TABLE warehouse (
- warehouseID     INT,
+ warehouseID     SERIAL,
  nameWarehouse   VARCHAR(20),
- location        VARCHAR(30),
+ location        INT,
  warehouseSize   INT
 );
 
@@ -64,4 +65,3 @@ ALTER TABLE productStack
 ADD CONSTRAINT PRODUCTSTACK_PK PRIMARY KEY (productID, startDate, endDate),
 ADD CONSTRAINT PRODUCTSTACK_PRODUCTMODEL_FK FOREIGN KEY (productModelID) REFERENCES productModel (productModelID),
 ADD CONSTRAINT PRODUCTSTACK_SHELVES_FK FOREIGN KEY (shelvesID) REFERENCES shelves (shelvesID);
-
