@@ -8,7 +8,7 @@ CONTAINER=appwebservice
 export POSTGRES_DB=nozama
 export POSTGRES_USER=postgres
 export POSTGRES_PASSWORD=test
-export POSTGRES_HOST=postgres
+export POSTGRES_HOST=localhost
 export POSTGRES_PORT=5432
 
 if [ "$(docker ps -q -f name=${CONTAINER})" ]
