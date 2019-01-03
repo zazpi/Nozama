@@ -41,12 +41,6 @@ public class ProductModel {
 		this.description = description;
 	}
 
-	@Override
-	public String toString() {
-		
-		return "ProductModel: id=" + id + " name=" + name + " description= " + description;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -103,6 +97,11 @@ public class ProductModel {
 		this.z = z;
 	}
 
+	@Override
+	public String toString() {
+		
+		return "ProductModel: id=" + id + " name=" + name + " description= " + description;
+	}
 	
 	
 }

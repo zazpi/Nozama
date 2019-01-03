@@ -28,13 +28,13 @@ public class ProductStack {
 	@Column
 	int stock;
 	
-	@Temporal(TemporalType.DATE)
+	/*@Temporal(TemporalType.DATE)
 	@Column(name="startdate")
 	Date startDate;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="enddate")
-	Date endDate;
+	Date endDate;*/
 	
 	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			 CascadeType.DETACH, CascadeType.REFRESH})
@@ -62,7 +62,7 @@ public class ProductStack {
 		this.stock = stock;
 	}
 
-	public Date getStartDate() {
+	/*public Date getStartDate() {
 		return startDate;
 	}
 
@@ -76,7 +76,7 @@ public class ProductStack {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
-	}
+	}*/
 
 	public ProductModel getModel() {
 		return model;

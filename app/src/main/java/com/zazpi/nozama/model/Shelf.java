@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,8 +21,8 @@ public class Shelf {
 	int capacity;
 	@Column
 	int position;
-	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-			 CascadeType.DETACH, CascadeType.REFRESH})
+
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="warehouseid")
 	Warehouse warehouse;
 	
