@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zazpi.nozama.dao.ProductModelDAO;
+import com.zazpi.nozama.dao.ProductStackDao;
 import com.zazpi.nozama.model.ProductModel;
 
 @Controller
@@ -20,6 +21,9 @@ public class MainController {
 	
 	@Autowired
 	ProductModelDAO productDao;
+	
+	@Autowired
+	ProductStackDao stackDao;
 	
     @RequestMapping(value = "/", method=RequestMethod.GET)
     public String home() {
