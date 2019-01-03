@@ -1,1 +1,1 @@
-<h1>Nozama</h1>
+<h2>Nozama</h2>
