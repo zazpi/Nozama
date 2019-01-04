@@ -8,10 +8,10 @@ CREATE TABLE orders (
 
 CREATE TABLE productModel (
  productModelID  SERIAL,
- name            VARCHAR(20),
+ name            VARCHAR(100),
  description     VARCHAR(250),
  weight          INT,
- x		 INT,
+ x		           INT,
  y               INT,
  z               INT
 );
@@ -22,7 +22,7 @@ CREATE TABLE ordersProducts (
 );
 
 CREATE TABLE shelf (
- shelfID         SERIAL,
+ shelfID         INT,
  capacity        INT,
  position        INT,
  warehouseID     INT

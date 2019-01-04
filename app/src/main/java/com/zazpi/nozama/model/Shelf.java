@@ -14,17 +14,16 @@ import javax.persistence.Table;
 @Table(name="shelf")
 public class Shelf {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="shelfid")
 	int id;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="warehouseid")
+	Warehouse warehouse;
+	
 	@Column
 	int capacity;
 	@Column
 	int position;
-
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="warehouseid")
-	Warehouse warehouse;
 	
 	public Shelf() {}
 	
