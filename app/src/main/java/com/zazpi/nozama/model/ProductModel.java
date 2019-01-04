@@ -40,6 +40,15 @@ public class ProductModel {
 		this.name = name;
 		this.description = description;
 	}
+	
+	public ProductModel(String name, String description, int weight,int x, int y, int z) {
+		this.name = name;
+		this.description = description;
+		this.weight = weight;
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
 
 	public int getId() {
 		return id;
@@ -102,6 +111,21 @@ public class ProductModel {
 		
 		return "ProductModel: id=" + id + " name=" + name + " description= " + description;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null) return false;
+		if(!(obj instanceof ProductModel)) return false;
+		ProductModel pr = (ProductModel) obj;
+		return (id == pr.getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return id;
+	}
+	
+	
 	
 	
 }
