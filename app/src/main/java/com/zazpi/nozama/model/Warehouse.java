@@ -30,6 +30,13 @@ public class Warehouse {
 		return "Warehouse: "+ id + ",name= " + name + ",location= " + location;
 	}
 	
+	public Warehouse() {}
+	
+	public Warehouse(String name, int location) {
+		this.name = name;
+		this.location = location;
+	}
+	
 	public int getId() {
 		return id;
 	}

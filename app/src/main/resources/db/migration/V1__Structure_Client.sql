@@ -11,7 +11,7 @@ CREATE TABLE productModel (
  name            VARCHAR(20),
  description     VARCHAR(250),
  weight          INT,
- x		           INT,
+ x		 INT,
  y               INT,
  z               INT
 );
@@ -36,11 +36,21 @@ CREATE TABLE productsLocation (
 );
 
 CREATE TABLE productStack (
- productID       SERIAL,
+ productID       INT,
  stock           INT,
  productModelID  INT,
  shelfID         INT,
  warehouseID     INT
+);
+
+CREATE TABLE productStackHistory (
+ productID       INT,
+ stock           INT,
+ productModelID  INT,
+ shelfID         INT,
+ warehouseID     INT,
+ startDate       DATE,
+ endDate         DATE
 );
 
 CREATE TABLE warehouse (
@@ -48,6 +58,8 @@ CREATE TABLE warehouse (
  name            VARCHAR(20),
  location        INT
 );
+
+CREATE SEQUENCE product_seq START 1;
 
 ALTER TABLE orders
   ADD CONSTRAINT ORDER_PK PRIMARY KEY (orderID);
@@ -77,3 +89,8 @@ ALTER TABLE productStack
   ADD CONSTRAINT PRODUCTSTACK_PK PRIMARY KEY (productID),
   ADD CONSTRAINT PRODUCTSTACK_PRODUCTMODEL_FK FOREIGN KEY (productModelID) REFERENCES productModel (productModelID),
   ADD CONSTRAINT PRODUCTSTACK_SHELF_FK FOREIGN KEY (shelfID, warehouseID) REFERENCES shelf (shelfID, warehouseID);
+
+ALTER TABLE productStackHistory
+  ADD CONSTRAINT PRODUCTSTACKHISTORY_PK PRIMARY KEY (productID),
+  ADD CONSTRAINT PRODUCTSTACKHISTORY_PRODUCTMODEL_FK FOREIGN KEY (productModelID) REFERENCES productModel (productModelID),
+  ADD CONSTRAINT PRODUCTSTACKHISTORY_SHELF_FK FOREIGN KEY (shelfID, warehouseID) REFERENCES shelf (shelfID, warehouseID);

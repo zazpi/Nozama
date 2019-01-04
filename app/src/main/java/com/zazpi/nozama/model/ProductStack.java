@@ -2,39 +2,32 @@ package com.zazpi.nozama.model;
 
 
 
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="productstack")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class ProductStack {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="productid")
+	@Id 
+	@SequenceGenerator(name="pk_sequence",sequenceName="product_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="pk_sequence")
+	@Column(name="productid", unique=true, nullable=false)
 	int id;
 	
 	@Column
 	int stock;
-	
-	/*@Temporal(TemporalType.DATE)
-	@Column(name="startdate")
-	Date startDate;
-	
-	@Temporal(TemporalType.DATE)
-	@Column(name="enddate")
-	Date endDate;*/
 	
 	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			 CascadeType.DETACH, CascadeType.REFRESH})
@@ -43,8 +36,16 @@ public class ProductStack {
 	
 	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			 CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinColumn(name="shelvesid")	
+	@JoinColumn(name="shelfid")	
 	Shelf shelf;
+	
+	public ProductStack () {}
+	
+	public ProductStack(int stock, ProductModel model, Shelf shelf) {
+		this.stock = stock;
+		this.model = model;
+		this.shelf = shelf;
+	}
 
 	public int getId() {
 		return id;
@@ -61,22 +62,6 @@ public class ProductStack {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-
-	/*public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}*/
 
 	public ProductModel getModel() {
 		return model;

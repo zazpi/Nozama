@@ -11,11 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="shelves")
+@Table(name="shelf")
 public class Shelf {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="shevlesid")
+	@Column(name="shelfid")
 	int id;
 	@Column
 	int capacity;
@@ -26,6 +26,13 @@ public class Shelf {
 	@JoinColumn(name="warehouseid")
 	Warehouse warehouse;
 	
+	public Shelf() {}
+	
+	public Shelf(int capacity, int position, Warehouse warehouse) {
+		this.capacity = capacity;
+		this.position = position;
+		this.warehouse = warehouse;
+	}
 	public int getId() {
 		return id;
 	}
