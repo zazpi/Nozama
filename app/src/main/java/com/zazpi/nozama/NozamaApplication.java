@@ -10,13 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(basePackages = "com.zazpi.nozama.dao")
 @EnableTransactionManagement
 @EntityScan(basePackages="com.zazpi.nozama")
-
-
 public class NozamaApplication {
-	
-
-    public NozamaApplication() {
-    }
     
     public static void main(String[] args) {
         SpringApplication.run(NozamaApplication.class, args);

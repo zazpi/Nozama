@@ -43,7 +43,7 @@ public class Order {
 	@JoinTable(name="ordersproducts", 
 				joinColumns={@JoinColumn(name="orderid")}, 
 				inverseJoinColumns={@JoinColumn(name="productmodelid")})
-	private Set<ProductModel> products = new HashSet<ProductModel>();
+	private Set<ProductModel> products = new HashSet<>();
 
 	public int getId() {
 		return id;
