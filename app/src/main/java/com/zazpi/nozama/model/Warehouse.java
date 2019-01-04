@@ -22,8 +22,8 @@ public class Warehouse {
 	@Column(name="location")
 	int location;
 	
-	@OneToMany(mappedBy="warehouse")
-	Set<Shelf> shelves;
+	/*@OneToMany(mappedBy="warehouse")
+	Set<Shelf> shelves;*/
 	
 	@Override
 	public String toString() {
@@ -56,12 +56,12 @@ public class Warehouse {
 		this.location = location;
 	}
 
-	public Set<Shelf> getShelves() {
+	/*public Set<Shelf> getShelves() {
 		return shelves;
 	}
 
 	public void setShelves(Set<Shelf> shelves) {
 		this.shelves = shelves;
-	}
+	}*/
 	
 }
