@@ -8,7 +8,7 @@
     <br />
     <div class="dashboards-section">
         <header>
-            <h2>Warehouses state TEST 2</h2>
+            <h2>Warehouses state TEST 2 2</h2>
         </header>
         <div class="dashboards">
             <div id="vis"></div>
