@@ -80,6 +80,3 @@ const vlSpec2 = {
 
 vegaEmbed("#vis", vlSpec);
 vegaEmbed("#vis2", vlSpec2);
-
-
-
