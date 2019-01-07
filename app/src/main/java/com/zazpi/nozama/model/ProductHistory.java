@@ -1,5 +1,6 @@
 package com.zazpi.nozama.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,7 +11,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="productstackhistory")
-public class ProductHistory extends ProductStack{
+public class ProductHistory extends ProductStack  implements Serializable{
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="startdate")

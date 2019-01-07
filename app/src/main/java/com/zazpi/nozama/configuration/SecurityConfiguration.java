@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableAutoConfiguration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
@@ -31,6 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.authorizeRequests()
 			.antMatchers("/admin/**").hasRole("ADMIN")
 			.antMatchers("/login*").permitAll()
+			.antMatchers("/api*").permitAll() //FIXME: Remove line
 	        .anyRequest().authenticated()
 	        .and()
 	        .formLogin()

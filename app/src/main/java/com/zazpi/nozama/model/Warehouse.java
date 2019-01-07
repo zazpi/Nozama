@@ -22,9 +22,6 @@ public class Warehouse {
 	@Column(name="location")
 	int location;
 	
-	/*@OneToMany(mappedBy="warehouse")
-	Set<Shelf> shelves;*/
-	
 	@Override
 	public String toString() {
 		return "Warehouse: "+ id + ",name= " + name + ",location= " + location;
@@ -56,12 +53,19 @@ public class Warehouse {
 		this.location = location;
 	}
 
-	/*public Set<Shelf> getShelves() {
-		return shelves;
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null) return false;
+		if(obj instanceof Warehouse) return false;
+		Warehouse w = (Warehouse) obj;
+		return (id == w.getId());
 	}
 
-	public void setShelves(Set<Shelf> shelves) {
-		this.shelves = shelves;
-	}*/
+	@Override
+	public int hashCode() {
+		return id;
+	}
+	
+	
 	
 }

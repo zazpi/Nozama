@@ -7,5 +7,5 @@ import com.zazpi.nozama.model.Order;
 
 @Transactional
 public interface OrdersDao extends CrudRepository<Order,Long>{
-
+	
 }
