@@ -1,4 +1,4 @@
-async function getWarehouseData() {
+const getWarehouseData = async () => {
     try {
         const result = await fetch("/api/warehouse");
         const data = await result.json();
@@ -7,9 +7,9 @@ async function getWarehouseData() {
     }catch(error){
         return "Unable to load warehouse data.";
     }
-}
+};
 
-async function getProductsData() {
+const getProductsData = async () => {
     try {
         const result = await fetch("/api/products");
         const data = await result.json();
@@ -17,4 +17,8 @@ async function getProductsData() {
     }catch (error) {
         return "Unable to load products.";
     }
-}
+};
+
+
+
+

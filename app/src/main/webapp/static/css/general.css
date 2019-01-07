@@ -9,18 +9,21 @@
     flex-direction: column;
     justify-content: center;
     padding: .5rem;
+    border: 1px solid #ccc;
 }
 .map-container {
-    position: relative;
     width: 100%;
-    height: 50%;
+    height: 100%;
+    margin-top: .5rem;
 }
 
 #map {
+    width: 100%;
     height: 500px;
 }
 
 .dashboards-section {
+    border: 1px solid #ccc;
     padding: .5rem;
 }
 .dashboards {
@@ -30,8 +33,9 @@
     font-size: 60%;
 }
 
-h2 {
+.header-content,
+.dashboards-section h2 {
+    margin-bottom: .5rem;
     padding: .5rem;
-    color: #fff;
-    background-color: #191818;
+    color: #34495e;
 }
