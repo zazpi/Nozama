@@ -1,6 +1,6 @@
 <section class="general">
     <div class="header-content">
-        <h2>Warehouses location</h2>
+        <h2>Warehouses location THIS IS A TEST</h2>
         <div class="map-container">
             <div id="map"></div>
         </div>
