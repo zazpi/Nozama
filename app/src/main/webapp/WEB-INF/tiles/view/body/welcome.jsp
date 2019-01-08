@@ -12,7 +12,6 @@
         </header>
         <div class="dashboards">
             <div id="vis"></div>
-            <div id="vis2"></div>
         </div>
     </div>
 </section>
