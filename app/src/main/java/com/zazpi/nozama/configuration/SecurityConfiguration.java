@@ -32,7 +32,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.authorizeRequests()
 			.antMatchers("/admin/**").hasRole("ADMIN")
 			.antMatchers("/login*").permitAll()
-			.antMatchers("/api*").permitAll() //FIXME: Remove line
+			.antMatchers("/static/map/*").permitAll()
+			.antMatchers("/api/**").permitAll() //FIXME: Just for fast delivering purposes, remove for production
 	        .anyRequest().authenticated()
 	        .and()
 	        .formLogin()
