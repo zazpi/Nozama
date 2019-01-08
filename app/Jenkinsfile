@@ -3,11 +3,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'cd app/ && ./mvnw -B -DskipTests clean install'
+                sh "echo 'starting nozama application build...'"
+                sh 'cd app/ && ./mvnw -B -DskipTests clean package'
             }
         }
-        stage('Test') {
+        stage('Tests') {
             steps {
+                sh "echo 'executing nozama apllication unit tests...'"
                 sh 'cd app/ && ./mvnw test'
             }
             post {
@@ -18,6 +20,7 @@ pipeline {
         }
         stage('Static analysis'){
             steps {
+                sh "echo 'starting static analysis in sonar server...'"
 		    script {
 			def scannerHome = tool 'SonarQubeScanner3'
                 	withSonarQubeEnv('sonar_server') {
@@ -26,22 +29,26 @@ pipeline {
 		}
             }
         }
-        stage('Docker build') {
+        stage('Build image') {
             steps {
+                sh "echo 'Building docker image...'"
                 sh 'cd app/ && docker build -t devallday/nozama:latest .'
             }
         }
-        stage('Docker login') {
+        stage('DockerHub authentication') {
             steps {
+                sh "echo 'Authenticating with DockerHub registry...'"
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub_account',
                                  usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                                  sh "docker login --username $USERNAME --password $PASSWORD"
                  }
             }
         }
-        stage('Docker push') {
+        stage('Push & Deploy') {
             steps {
+                sh "echo 'Pushing docker image to registry...'"
                 sh 'docker push devallday/nozama:latest'
+                sh "echo 'Deployment triggering through webhook'"
             }
         }
     }
