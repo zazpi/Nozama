@@ -9,7 +9,7 @@ body{
 	grid-template-areas: "header"
 						 "main";
     font-family: 'Lato', 'Arial', sans-serif;
-    font-size: 20px;
+    font-size: 14pt;
     text-rendering: optimizeLegibility;
 }
 
@@ -40,17 +40,13 @@ body{
 }
 
 #layout.active #menu {
-    left: 150px;
-    width: 150px;
-}
-
-#layout.active .menu-link {
-    left: 150px;
+    left: 10em;
+    width: 10em;
 }
 
 #menu {
-    margin-left: -150px;
-    width: 150px;
+    margin-left: -10em;
+    width: 10em;
     height: 100vh;
     position: fixed;
     left: 0;
@@ -91,7 +87,6 @@ body{
 }
 
 #menu .pure-menu-heading {
-    font-size: 110%;
     color: #fff;
     margin: 0;
 }
@@ -100,14 +95,13 @@ body{
     position: fixed;
     display: block;
     top: 1em;
-    left: 2em;
     background: #000;
     background: #191818;
     font-size: 10px;
     z-index: 10;
     width: 5.5em;
     height: auto;
-    padding: 2.1em 1.6em;
+    padding: 2.1em 1.8em;
 }
 
 .menu-link:hover,
@@ -146,27 +140,16 @@ body{
 @media (min-width: 48em) {
 
     #layout {
-        padding-left: 150px;
+        padding-left: 10em;
         left: 0;
     }
     #menu {
-        left: 150px;
+        left: 10em;
     }
 
     .menu-link {
         position: fixed;
-        left: 150px;
+        left: 10em;
         display: none;
-    }
-
-    #layout.active .menu-link {
-        left: 150px;
-    }
-}
-
-@media (max-width: 48em) {
-    #layout.active {
-        position: relative;
-        left: 150px;
     }
 }
