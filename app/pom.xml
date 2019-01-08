@@ -24,7 +24,6 @@
         <docker.image.prefix>devallday</docker.image.prefix>
         <dockerfile.tag>${project.version}</dockerfile.tag>
         <spring.jmx.enabled>false</spring.jmx.enabled>
-        <sonar.language>java</sonar.language>
     </properties>
 
     <dependencies>
@@ -77,12 +76,6 @@
             <version>0.8.2</version>
         </dependency>
         <dependency>
-            <groupId>org.sonarsource.sonarqube</groupId>
-            <artifactId>sonar-xoo-plugin</artifactId>
-            <version>7.4</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
     		<groupId>org.flywaydb</groupId>
     		<artifactId>flyway-core</artifactId>
     		<version>5.2.4</version>
@@ -101,6 +94,17 @@
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>jstl</artifactId>
 		    <version>1.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <scope>test</scope>
+		    <version>1.4.194</version>
+		</dependency>
+		<dependency>
+		   <groupId>org.geonames</groupId>
+		   <artifactId>geonames-ws-client</artifactId>
+		   <version>1.1.9</version>
 		</dependency>
     </dependencies>
 
