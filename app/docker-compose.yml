@@ -2,7 +2,7 @@ version: "3.2"
 
 services:
   appwebservice:
-    image: maven:3.6-jdk-8
+    image: maven:3.6-jdk-8-alpine
     ports:
       - 8080:8080
     environment:
