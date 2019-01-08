@@ -27,14 +27,20 @@ public class MainController {
         return "site.welcome";
     }
     
+    @RequestMapping(value = "/orderList")
+    public String orderList() {
+    	return "site.orderList";
+    }
+    
     @RequestMapping(value = "/productList")
     public String productList() {
     	return "site.productList";
     }
     
     @RequestMapping(value = "/productList/addProduct")
-    public String addProduct() {
-    	return "site.addProduct";
+    public String addProduct(Model model) {
+    	model.addAttribute("productmodel", new ProductModel());
+		return "site.addProduct";
     }
     
     @RequestMapping(value = "/crud", method={ RequestMethod.GET, RequestMethod.POST })

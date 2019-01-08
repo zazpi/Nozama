@@ -1,10 +1,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class=content id="productList">
-	<div id="table">
-		<table id="productTable" class="display" style="width:100%">
+	<div id="products">
+		<table id="productTable" class="display">
 			<thead>
 				<tr>
+					<th></th>
 					<th>ID</th>
 					<th>Name</th>
 					<th>Description</th>
@@ -17,7 +18,7 @@
 		<button>Add stock</button>
 		<button>-</button>
 		<button>Edit</button>
-		<a href="/productList/addProduct">+</button>
+		<a href="/productList/addProduct">+</a>
 	</div>
 	
 </div>

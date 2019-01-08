@@ -1,10 +1,13 @@
-$(document).ready( function () {
+$(document).ready( function () {	
     $('#productTable').DataTable({
     	ajax: {
-    		url: "api/product/list",
+    		url: "/api/product/list",
     		dataSrc: ""
     	}, 
     	columns: [
+    		{
+    			"defaultContent": "<input type='radio' value=''/>"
+    		},
     		{
     			data:"id"
     		},
@@ -14,6 +17,7 @@ $(document).ready( function () {
     		{
     			data:"description"
     		}
-    	]
+    	],
+    	scrollY: 335
     });
 } );

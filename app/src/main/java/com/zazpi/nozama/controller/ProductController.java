@@ -40,7 +40,7 @@ public class ProductController {
     public String newProduct(@Valid @ModelAttribute("productmodel")ProductModel productmodel, 
     	      BindingResult result, ModelMap model) {
     	productModelDao.save(productmodel);
-    	return "site.productList";
+    	return "redirect:/productList";
     }
     
 }
