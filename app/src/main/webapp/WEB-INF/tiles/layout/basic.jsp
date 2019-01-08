@@ -10,6 +10,11 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400" rel="stylesheet">
 	    <link rel="stylesheet" href="/static/css/layout.css">
 	    <link rel="stylesheet" href="/static/css/general.css">
+	    
+	    <!-- Datatables -->
+	    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>	
 	</head>
 	<body>
 		<!-- Header -->
@@ -39,5 +44,7 @@
 		<script src="/static/js/menu.js"></script>
 		<script src="/static/js/general.js"></script>
 		<script src="/static/js/client-api.js"></script>
+		
+		<script src="/static/js/productList.js"></script>
 	</body>
 </html>

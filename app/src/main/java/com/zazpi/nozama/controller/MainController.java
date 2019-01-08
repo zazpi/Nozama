@@ -27,6 +27,16 @@ public class MainController {
         return "site.welcome";
     }
     
+    @RequestMapping(value = "/productList")
+    public String productList() {
+    	return "site.productList";
+    }
+    
+    @RequestMapping(value = "/productList/addProduct")
+    public String addProduct() {
+    	return "site.addProduct";
+    }
+    
     @RequestMapping(value = "/crud", method={ RequestMethod.GET, RequestMethod.POST })
     public String crud(Model model) {
     	model.addAttribute("productmodel", new ProductModel());
