@@ -24,9 +24,16 @@
         <docker.image.prefix>devallday</docker.image.prefix>
         <dockerfile.tag>${project.version}</dockerfile.tag>
         <spring.jmx.enabled>false</spring.jmx.enabled>
+        <sonar.language>java</sonar.language>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.sonarsource.sonarqube</groupId>
+            <artifactId>sonar-xoo-plugin</artifactId>
+            <version>7.4</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
