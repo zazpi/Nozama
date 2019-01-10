@@ -21,7 +21,10 @@ public class Position {
 
 	public synchronized void take() {
 		try {
-			while(!available) wait();
+			while(!available) {
+				System.out.println("WAITING");
+				wait();
+			}
 			available = false;
 		} catch (InterruptedException e) {
 			e.printStackTrace();

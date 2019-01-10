@@ -29,7 +29,9 @@ public class Task extends Thread {
 			if(nextPos == null) {
 				nextPos = controller.askNextPos(currentPos,finalPos);
 			}else {
-				//System.out.println("Car " + car.getId() + " Current: " + currentPos.getId() +" Next: " + nextPos.getId());
+				System.out.println("Car " + car.getId() +
+						" Current: " + currentPos.getRow() + currentPos.getNum() +
+						" Next: " + nextPos.getRow() + nextPos.getNum());
 				nextPos.take();
 				currentPos.free();
 				car.setCurrentPos(nextPos);
