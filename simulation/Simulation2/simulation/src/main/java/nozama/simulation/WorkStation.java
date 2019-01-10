@@ -1,14 +1,19 @@
 package nozama.simulation;
 
 public class WorkStation extends Position {
-
-	public WorkStation(String row, int num, boolean available) {
+	Position path;
+	
+	public WorkStation(String row, int num, boolean available, Position path) {
 		super(row, num, available);
-		// TODO Auto-generated constructor stub
+		this.path = path;
 	}
 
-
-
-
-
+	public Position getPath() {
+		return path;
+	}
+	
+	public void leave (Car car) {
+		path.take();
+		car.setCurrentPos(path);
+	}
 }
