@@ -18,5 +18,5 @@ public interface ProductModelDAO extends CrudRepository<ProductModel,Long> {
 			+ "group by pm.productmodelid "
 			+ "order by pm.productmodelid"
 			,nativeQuery=true)
-	List<ProductModel> getModelsAndStock();
+	List<Object[]> getModelsAndStock();
 }

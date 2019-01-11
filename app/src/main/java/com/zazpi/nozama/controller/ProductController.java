@@ -31,14 +31,8 @@ public class ProductController {
 	ProductStackDao productStackDao;
 	
 	@GetMapping("list")
-	public @ResponseBody List<ProductModel> getProductModels () {
-		/*List<ProductModel> list = (List<ProductModel>) productModelDao.findAll();
-		for(ProductModel pm : list) {
-			Integer stock = productStackDao.getSumStock(pm.getId());
-			if(stock != null)
-				pm.setTotalStock(stock);
-		}*/
-		List<ProductModel> list =  productModelDao.getModelsAndStock();
+	public @ResponseBody List<Object[]> getProductModels () {
+		List<Object[]> list =  productModelDao.getModelsAndStock();
 			
 		return list;
 	}
