@@ -9,16 +9,16 @@ $(document).ready( function () {
     			"defaultContent": "<input type='radio' value=''/>"
     		},
     		{
-    			data:"id"
+    			data:"0"
     		},
     		{
-    			data:"name"
+    			data:"1"
     		},
     		{
-    			data:"description"
+    			data:"2"
     		},
     		{
-    			data:"totalStock"
+    			data:"7"
     		}
     	],
     	scrollY: 335
