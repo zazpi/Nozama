@@ -12,6 +12,7 @@
 					<th>ID</th>
 					<th>Name</th>
 					<th>Description</th>
+					<th>Stock</th>
 				</tr>
 			</thead>
 		</table>

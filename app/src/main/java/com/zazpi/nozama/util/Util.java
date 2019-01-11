@@ -1,12 +1,14 @@
 package com.zazpi.nozama.util;
 
 import java.util.List;
+import java.util.Set;
 
 import org.geonames.PostalCode;
 import org.geonames.WebService;
 import org.geonames.utils.Distance;
 
 import com.zazpi.nozama.model.Coordinates;
+import com.zazpi.nozama.model.ProductStack;
 
 public class Util {
 
@@ -32,6 +34,14 @@ public class Util {
 	
 	public static double getDistance(int pcA, int pcB) {
 		return getDistance(getCoordinates(pcA),getCoordinates(pcB));
+	}
+	
+	public static int calculateTotalStock(Set<ProductStack> list) {
+		int stock = 0;
+		for(ProductStack ps : list) {
+			stock += ps.getStock();
+		}
+		return stock;
 	}
 	
 }

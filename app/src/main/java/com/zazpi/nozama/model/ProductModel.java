@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="productmodel")
@@ -35,12 +36,16 @@ public class ProductModel implements Serializable{
 	@Column(name="z")
 	int z;
 	
+	@Column(name="totalstock")
+	int totalStock;
+	
 	public ProductModel() {}
 	
 	public ProductModel(int id, String name, String description) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		totalStock = 0;
 	}
 	
 	public ProductModel(String name, String description, int weight,int x, int y, int z) {
@@ -106,6 +111,14 @@ public class ProductModel implements Serializable{
 
 	public void setZ(int z) {
 		this.z = z;
+	}
+	
+	public int getTotalStock() {
+		return totalStock;
+	}
+	
+	public void setTotalStock(int totalStock) {
+		this.totalStock = totalStock;
 	}
 
 	@Override

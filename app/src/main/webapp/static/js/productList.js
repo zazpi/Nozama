@@ -16,6 +16,9 @@ $(document).ready( function () {
     		},
     		{
     			data:"description"
+    		},
+    		{
+    			data:"totalStock"
     		}
     	],
     	scrollY: 335

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zazpi.nozama.dao.ProductModelDAO;
+import com.zazpi.nozama.dao.ProductStackDao;
 import com.zazpi.nozama.model.ProductModel;
 
 @Controller
@@ -26,9 +27,20 @@ public class ProductController {
 	@Autowired
 	ProductModelDAO productModelDao;
 	
+	@Autowired
+	ProductStackDao productStackDao;
+	
 	@GetMapping("list")
 	public @ResponseBody List<ProductModel> getProductModels () {
-		return (List<ProductModel>) productModelDao.findAll();
+		/*List<ProductModel> list = (List<ProductModel>) productModelDao.findAll();
+		for(ProductModel pm : list) {
+			Integer stock = productStackDao.getSumStock(pm.getId());
+			if(stock != null)
+				pm.setTotalStock(stock);
+		}*/
+		List<ProductModel> list =  productModelDao.getModelsAndStock();
+			
+		return list;
 	}
 	
 	@GetMapping("get")
