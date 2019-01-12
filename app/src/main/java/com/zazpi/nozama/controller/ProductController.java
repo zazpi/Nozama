@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zazpi.nozama.dao.ProductModelDAO;
 import com.zazpi.nozama.dao.ProductStackDao;
 import com.zazpi.nozama.model.ProductModel;
-import com.zazpi.nozama.model.rest.copy.ProductRest;
+import com.zazpi.nozama.model.rest.ProductRest;
 
 @Controller
 @RequestMapping("/api/product")

@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zazpi.nozama.model.ProductModel;
-import com.zazpi.nozama.model.rest.copy.ProductRest;
+import com.zazpi.nozama.model.rest.ProductRest;
 
 @Transactional
 public interface ProductModelDAO extends CrudRepository<ProductModel,Long> {
