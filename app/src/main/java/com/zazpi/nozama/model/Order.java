@@ -1,7 +1,7 @@
 package com.zazpi.nozama.model;
 
 import java.util.Date;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,9 +16,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-
-import com.zazpi.nozama.util.Util;
 
 @Entity
 @Table(name="orders")
@@ -27,10 +24,7 @@ public class Order {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="orderID")
 	int id;
-	
-	@Column(name="origin")
-	int origin;
-	
+
 	@Column(name="destination")
 	int destination;
 	
@@ -38,15 +32,11 @@ public class Order {
 	@Column(name="entrydate")
 	Date entryDate;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name="departuredate")
-	Date departureDate;
-	
 	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name="ordersproducts", 
+	@JoinTable(name="orderssubs", 
 				joinColumns={@JoinColumn(name="orderid")}, 
-				inverseJoinColumns={@JoinColumn(name="productmodelid")})
-	private Set<ProductModel> products = new HashSet<>();
+				inverseJoinColumns={@JoinColumn(name="suborderid")})
+	Set<SubOrder> suborders;
 
 	public int getId() {
 		return id;
@@ -54,14 +44,6 @@ public class Order {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getOrigin() {
-		return origin;
-	}
-
-	public void setOrigin(int origin) {
-		this.origin = origin;
 	}
 
 	public int getDestination() {
@@ -80,26 +62,20 @@ public class Order {
 		this.entryDate = entryDate;
 	}
 
-	public Date getDepartureDate() {
-		return departureDate;
+	public Set<SubOrder> getSuborders() {
+		return suborders;
 	}
 
-	public void setDepartureDate(Date departureDate) {
-		this.departureDate = departureDate;
-	}
-	
-	public Set<ProductModel> getProducts() {
-		return products;
+	public void setSuborders(Set<SubOrder> suborders) {
+		this.suborders = suborders;
 	}
 
-	public void setProducts(Set<ProductModel> products) {
-		this.products = products;
-	}
 
-	@Override
+
+	/*@Override
 	public String toString() {
-		return "Order id=" + id + " ,origin: " + origin + ",destination:" + destination
+		return "Order id=" + id + " ,origin: " + origin.getName()+ ",destination:" + destination
 				+ ",entry:" + entryDate + ",departure:" + departureDate + ",products:" + products.size(); 
-	}
+	}*/
 	
 }
