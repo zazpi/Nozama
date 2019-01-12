@@ -1,9 +1,19 @@
 CREATE TABLE orders (
  orderID         SERIAL,
- origin          INT,
  destination     INT,
  entryDate       DATE,
+ subOrder        INT
+);
+
+CREATE TABLE subOrders (
+ suborderID      SERIAL,
+ origin          INT,
  departureDate   DATE
+);
+
+CREATE TABLE ordersSubs (
+ subOrderID      INT,
+ orderID         INT
 );
 
 CREATE TABLE productModel (
@@ -17,7 +27,7 @@ CREATE TABLE productModel (
 );
 
 CREATE TABLE ordersProducts (
- orderID         INT,
+ subOrderID         INT,
  productModelID  INT
 );
 
@@ -64,13 +74,21 @@ CREATE SEQUENCE product_seq START 1;
 ALTER TABLE orders
   ADD CONSTRAINT ORDER_PK PRIMARY KEY (orderID);
 
+ALTER TABLE subOrders
+  ADD CONSTRAINT SUB_ORDER_PK PRIMARY KEY (subOrderID);
+
 ALTER TABLE productModel
   ADD CONSTRAINT PRODUCTMODEL_PK PRIMARY KEY (productModelID);
 
 ALTER TABLE ordersProducts
-  ADD CONSTRAINT ORDERSPRODUCTS_ORDER_FK FOREIGN KEY (orderID) REFERENCES orders (orderID),
+  ADD CONSTRAINT ORDERSPRODUCTS_ORDER_FK FOREIGN KEY (subOrderID) REFERENCES subOrders (subOrderID),
   ADD CONSTRAINT ORDERSPRODUCTS_PRODUCTMODEL_FK FOREIGN KEY (productModelID) REFERENCES productModel (productModelID),
-  ADD CONSTRAINT ORDERSPRODUCTS_PK PRIMARY KEY (orderID, productModelID);
+  ADD CONSTRAINT ORDERSPRODUCTS_PK PRIMARY KEY (subOrderID, productModelID);
+
+ALTER TABLE ordersSubs
+  ADD CONSTRAINT ORDERSSUBS_SUBORDER_FK FOREIGN KEY (subOrderID) REFERENCES subOrders (subOrderID),
+  ADD CONSTRAINT ORDERSSUBS_ORDER_FK FOREIGN KEY (orderID) REFERENCES orders (orderID),
+  ADD CONSTRAINT ORDERSSUBS_PK PRIMARY KEY (subOrderID, orderID);
 
 ALTER TABLE warehouse
   ADD CONSTRAINT WAREHOUSE_PK PRIMARY KEY (warehouseID);
@@ -94,3 +112,6 @@ ALTER TABLE productStackHistory
   ADD CONSTRAINT PRODUCTSTACKHISTORY_PK PRIMARY KEY (productID),
   ADD CONSTRAINT PRODUCTSTACKHISTORY_PRODUCTMODEL_FK FOREIGN KEY (productModelID) REFERENCES productModel (productModelID),
   ADD CONSTRAINT PRODUCTSTACKHISTORY_SHELF_FK FOREIGN KEY (shelfID, warehouseID) REFERENCES shelf (shelfID, warehouseID);
+
+ALTER TABLE subOrders
+  ADD CONSTRAINT ORDERS_WAREHOUSE_FK FOREIGN KEY (origin) REFERENCES warehouse (warehouseID);

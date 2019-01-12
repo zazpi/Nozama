@@ -1000,12 +1000,9 @@ insert into productModel (name, description, weight, x, y, z) values ('Whmis Spr
 insert into productModel (name, description, weight, x, y, z) values ('Veal - Shank, Pieces', 'Carduelis pinus', 52, 448, 564, 958);
 
 
-insert into orders (origin,destination,entryDate,departureDate) values (31810, 31810,current_timestamp,current_timestamp);
-insert into orders (origin,destination,entryDate,departureDate) values (31810, 31800,current_timestamp,current_timestamp);
-insert into orders (origin,destination,entryDate,departureDate) values (31810, 31810,current_timestamp,current_timestamp);
-insert into orders (origin,destination,entryDate,departureDate) values (31810, 20500,current_timestamp,current_timestamp);
-insert into orders (origin,destination,entryDate,departureDate) values (31810, 20500,current_timestamp,current_timestamp);
-insert into orders (origin,destination,entryDate,departureDate) values (31810, 20870,current_timestamp,current_timestamp);
+insert into orders (destination,entryDate) values (31810,current_timestamp);
+insert into orders (destination,entryDate) values (31800,current_timestamp);
+insert into orders (destination,entryDate) values (31810,current_timestamp);
 insert into orders (destination, entryDate) values (24560, current_timestamp);
 insert into orders (destination, entryDate) values (31132, current_timestamp);
 insert into orders (destination, entryDate) values (5204, current_timestamp);
@@ -1056,10 +1053,6 @@ insert into orders (destination, entryDate) values (15295, current_timestamp);
 insert into orders (destination, entryDate) values (10892, current_timestamp);
 insert into orders (destination, entryDate) values (12136, current_timestamp);
 insert into orders (destination, entryDate) values (12596, current_timestamp);
-
-insert into ordersProducts values(1,1);
-insert into ordersProducts values(1,2);
-insert into ordersProducts values(1,4);
 
 insert into warehouse (name, location) values('arrasate', 20500);
 insert into warehouse (name, location) values('elgoibar', 20870);
@@ -1124,5 +1117,5 @@ insert into productStack (productID, stock, productModelID, shelfID, warehouseID
 insert into productStack (productID, stock, productModelID, shelfID, warehouseID) values (48, 3402, 48, 1, 1);
 insert into productStack (productID, stock, productModelID, shelfID, warehouseID) values (49, 3912, 49, 1, 1);
 insert into productStack (productID, stock, productModelID, shelfID, warehouseID) values (50, 5338, 50, 2, 1);
-
+insert into productStack (productID, stock, productModelID, shelfID, warehouseID) values (51, 400, 2, 2, 2);
 
