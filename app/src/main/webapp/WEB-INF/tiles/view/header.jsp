@@ -1,1 +1,3 @@
-<h2>Nozama</h2>
+<header class="section-header">
+    <h1>Nozama</h1>
+</header>

@@ -1,4 +1,5 @@
 <section class="general">
+    <div class="row">
     <div class="header-content">
         <h2>Warehouses location</h2>
         <div class="map-container">
@@ -18,4 +19,5 @@
     <script src="https://code.highcharts.com/modules/data.js"></script>
 	<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/mapdata/countries/es/es-all.js"></script>
+    </div>
 </section>

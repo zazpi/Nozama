@@ -3,24 +3,14 @@
 <div class=product-list id="productList">
 	<header class="product-list-header">
 		<h2>Product List</h2>
+			<nav>
+				<a href="#" id="add-product">Add</a>
+				<a href="#" id="delete-btn">Delete</a>
+				<a href="#" id="edit">Edit</a>
+				<a href="#" id="add-stock">Add stock</a>
+			</nav>
 	</header>
-	<div id="products" class="product-list-content">
-		<table id="productTable" class="display">
-			<thead>
-				<tr>
-					<th></th>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Stock</th>
-				</tr>
-			</thead>
-		</table>
-	</div>
-	<div id="buttons" class="product-list-btns">
-		<div id="add-stock">Add stock</div>
-		<div id="remove-product">Remove product</div>
-		<div id="edit">Edit</div>
-		<a href="/productList/addProduct">Add new product</a>
+	<div class="table-container">
+	<div id="product-list-table"></div>
 	</div>
 </div>

@@ -11,9 +11,9 @@ const getWarehouseData = async () => {
 
 const getProductsData = async () => {
     try {
-        const result = await fetch("/api/products");
+        const result = await fetch("/api/order/list");
         const data = await result.json();
-        return data;
+        console.log(data);
     }catch (error) {
         return "Unable to load products.";
     }
