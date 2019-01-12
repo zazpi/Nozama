@@ -11,21 +11,38 @@ import com.zazpi.nozama.model.Coordinates;
 import com.zazpi.nozama.model.ProductStack;
 
 public class Util {
-
-	public static Coordinates getCoordinates(int cp) {
+	
+	public static PostalCode getFirstPostalCode(int cp) {
 		WebService.setUserName("bingengalartza");
-		Coordinates coords = new Coordinates();
-		try {	  
-			  List<PostalCode> list = WebService.postalCodeSearch(String.valueOf(cp), "", "ES");
-			  PostalCode first = list.get(0);
-			  if(first != null) {
-				  coords.setLat(first.getLatitude());
-				  coords.setLng(first.getLongitude());
-			  }
-		}catch (Exception e) {
-			coords = null;
+		List<PostalCode> list = null;
+		try {
+			list = WebService.postalCodeSearch(String.valueOf(cp), "", "ES");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
+		return list.get(0);		  
+	}
+	
+	public static Coordinates getCoordinates(int cp) {
+		Coordinates coords = new Coordinates();
+		PostalCode first = getFirstPostalCode(cp);
+		if(first != null) {
+		    coords.setLat(first.getLatitude());
+			coords.setLng(first.getLongitude());
+		  }
 		return coords;
+	}
+	
+	public static String getAdminCode(int cp) {
+		PostalCode first = getFirstPostalCode(cp);
+		String code = "undefined";
+		if(first != null) {
+			code = first.getCountryCode() + "-" + first.getAdminCode2();
+			code = code.toLowerCase();
+		}
+			
+		return code;	
 	}
 	
 	public static double getDistance(Coordinates a, Coordinates b) {
