@@ -16,6 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import com.zazpi.nozama.util.Util;
 
 @Entity
 @Table(name="orders")

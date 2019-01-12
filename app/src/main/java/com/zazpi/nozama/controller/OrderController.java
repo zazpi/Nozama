@@ -17,6 +17,7 @@ import com.zazpi.nozama.dao.OrdersDao;
 import com.zazpi.nozama.dao.ProductModelDAO;
 import com.zazpi.nozama.model.Order;
 import com.zazpi.nozama.model.ProductModel;
+import com.zazpi.nozama.util.Util;
 
 @Controller
 @RequestMapping("/api/order")
@@ -44,6 +45,17 @@ public class OrderController {
 	@GetMapping("list")
 	public @ResponseBody List<Order> getOrderList(){
 		return (List<Order>) ordersDao.findAll();
+	}
+	
+	@GetMapping("list-location")
+	public @ResponseBody List<Object[]> getOrdersByPlace(){
+		List<Object[]> list = ordersDao.getOrdersByPlace();
+		for(Object[] o : list) {
+			int cp = (int) o[0];
+			String code = "es-" + Util.CODES[cp - 1];
+			o[0] = code;
+		}
+		return list;
 	}
 	
 	//FIXME: Function should be in a util class

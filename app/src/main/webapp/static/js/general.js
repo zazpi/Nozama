@@ -34,27 +34,45 @@ const polygon = L.polygon([
 	[42.8585985, -2.6842939]
 ]).addTo(map);
 
-// -- CHARTS --
-const vlSpec = {
-	"$schema": "https://vega.github.io/schema/vega-lite/v3.json",
-	"width": 500,
-	"height": 200,
-	"data": {
-		"values": [
-			{"a": "C", "b": 2}, {"a": "C", "b": 7}, {"a": "C", "b": 4},
-			{"a": "D", "b": 1}, {"a": "D", "b": 2}, {"a": "D", "b": 6},
-			{"a": "E", "b": 8}, {"a": "E", "b": 4}, {"a": "E", "b": 7}
-		]
-	},
-	"mark": "bar",
-	"encoding": {
-		"y": {"field": "a", "type": "nominal"},
-		"x": {
-			"aggregate": "average", "field": "b", "type": "quantitative",
-			"axis": {
-				"title": "Average of b"
-			}
-		}
+$(document).ready(function() {
+	$.ajax({
+	url: '/api/order/list-location',
+	type: 'GET',
+	async: true,
+	dataType: "json",
+	success: function (data) {
+		loadMap(data);
 	}
-};
-vegaEmbed("#vis", vlSpec);
+	  });
+
+	 });
+
+
+function loadMap(data){
+	Highcharts.mapChart('heatmap', {
+		 chart: {
+		     map: 'countries/es/es-all'
+		 },
+		 title: {
+		     text: 'Orders by destination'
+		 },
+		 mapNavigation: {
+		     enabled: true,
+		     buttonOptions: {
+		         verticalAlign: 'bottom'
+		     }
+		 },
+		 colorAxis: {
+		     min: 0
+		 },
+		 series: [{
+		     data: data,
+		     name: 'Random data',
+		     states: {
+		         hover: {
+		             color: '#BADA55'
+		         }
+		     }
+		 }]
+		});
+}

@@ -1,7 +1,7 @@
 CREATE TABLE orders (
  orderID         SERIAL,
- origin          SMALLINT,
- destination     SMALLINT,
+ origin          INT,
+ destination     INT,
  entryDate       DATE,
  departureDate   DATE
 );

@@ -11,16 +11,21 @@ import com.zazpi.nozama.model.Coordinates;
 import com.zazpi.nozama.model.ProductStack;
 
 public class Util {
+	public final static String[] CODES = {"vi","ab","a","al","av","ba","pm","b","bu","cc","ca",
+			"cs","cr","co","c","cu","ge","gr","gu","ss","h","hu","j","le","l","lo","lu",
+			"m","ma","mu","na","or","o","p","gc","po","sa","tf","s","sg","se","so","t",
+			"te","to","v","va","bi","za","z","ce","ml"};	
 	
 	public static PostalCode getFirstPostalCode(int cp) {
 		WebService.setUserName("bingengalartza");
 		List<PostalCode> list = null;
 		try {
-			list = WebService.postalCodeSearch(String.valueOf(cp), "", "ES");
+			String cpAsString = String.format ("%05d", cp);
+			list = WebService.postalCodeSearch(cpAsString, "", "ES");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println(cp);
 		return list.get(0);		  
 	}
 	

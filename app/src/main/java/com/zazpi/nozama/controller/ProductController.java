@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zazpi.nozama.dao.ProductModelDAO;
 import com.zazpi.nozama.dao.ProductStackDao;
 import com.zazpi.nozama.model.ProductModel;
+import com.zazpi.nozama.model.rest.copy.ProductRest;
 
 @Controller
 @RequestMapping("/api/product")
@@ -31,8 +32,8 @@ public class ProductController {
 	ProductStackDao productStackDao;
 	
 	@GetMapping("list")
-	public @ResponseBody List<Object[]> getProductModels () {
-		List<Object[]> list =  productModelDao.getModelsAndStock();
+	public @ResponseBody List<ProductRest> getProductModels () {
+		List<ProductRest> list =  productModelDao.getModelsAndStock();
 			
 		return list;
 	}
