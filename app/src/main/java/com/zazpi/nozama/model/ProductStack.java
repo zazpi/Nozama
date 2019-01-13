@@ -1,7 +1,5 @@
 package com.zazpi.nozama.model;
 
-
-
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -22,6 +20,7 @@ import javax.persistence.Table;
 public class ProductStack implements Serializable{
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="productid")
 	int id;
 	
 	@Column

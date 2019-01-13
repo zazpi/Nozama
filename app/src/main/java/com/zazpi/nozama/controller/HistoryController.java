@@ -2,15 +2,18 @@ package com.zazpi.nozama.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zazpi.nozama.dao.ProductHistoryDao;
 import com.zazpi.nozama.dao.ProductStackDao;
+import com.zazpi.nozama.model.ProductHistory;
 import com.zazpi.nozama.model.rest.WarehouseStockRest;
 
 @Controller
@@ -30,4 +33,10 @@ public class HistoryController {
 		}
 		return true;
 	}
+	
+	@GetMapping("get")
+	public @ResponseBody Set<ProductHistory> getProductByProduct(@RequestParam("productId") int product){	
+		return historyDao.findByModelId(product);
+	}
+	
 }

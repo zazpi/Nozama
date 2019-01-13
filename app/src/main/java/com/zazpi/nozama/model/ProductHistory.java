@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 public class ProductHistory {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="productid")
 	int id;
 	
 	@Column
