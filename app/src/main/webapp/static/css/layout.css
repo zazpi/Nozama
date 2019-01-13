@@ -16,7 +16,9 @@ body {
 .section-layout {
     display: grid;
     grid-template-columns: 175px auto;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: "header header" "menu main-content" "footer footer";
+
 }
 
 .section-header {
@@ -37,6 +39,7 @@ h1 {
 #menu {
     grid-area: menu;
     background-color: #2f3542;
+
 }
 
 #menu a:link,
@@ -60,6 +63,7 @@ h1 {
 }
 .main {
     grid-area: main-content;
+    height: 100%;
 }
 footer {
     grid-area: footer;
@@ -78,8 +82,8 @@ footer p {
 @media (max-width: 425px) {
     #menu a {
         display: inline-block !important;
-        width: 15%;
-        font-size: 60%;
+        width: 10%;
+        font-size: 80%;
         margin: 0;
         padding: 0;
     }
@@ -87,6 +91,19 @@ footer p {
         grid-template-columns: auto;
         grid-template-areas: "header" "menu" "main-content" "footer";
     }
+}
+
+h2 {
+    padding: .5rem;
+    margin-bottom: 1rem;
+    background-color: #ccc;
+    color: #2f3542;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-weight: 400;
+    /*width: 15%;*/
+    text-align: center;
 }
 /*.footer-nav {
     list-style: none;

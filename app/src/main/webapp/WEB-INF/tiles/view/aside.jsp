@@ -3,7 +3,6 @@
         <a href="/">General</a>
         <a href="/orderList">Order List</a>
         <a href="/productList">Product List</a>
-        <a href="/crud">Crud</a></li>
         <a href="/logout">Logout</a>
     </nav>
 </div>
