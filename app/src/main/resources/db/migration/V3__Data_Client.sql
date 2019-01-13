@@ -1118,4 +1118,5 @@ insert into productStack (productID, stock, productModelID, shelfID, warehouseID
 insert into productStack (productID, stock, productModelID, shelfID, warehouseID) values (49, 3912, 49, 1, 1);
 insert into productStack (productID, stock, productModelID, shelfID, warehouseID) values (50, 5338, 50, 2, 1);
 insert into productStack (productID, stock, productModelID, shelfID, warehouseID) values (51, 400, 2, 2, 2);
+SELECT setval('product_seq', 52, true);
 

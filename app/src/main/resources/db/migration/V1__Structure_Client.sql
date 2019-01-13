@@ -46,7 +46,7 @@ CREATE TABLE productsLocation (
 );
 
 CREATE TABLE productStack (
- productID       INT,
+ productID       SERIAL,
  stock           INT,
  productModelID  INT,
  shelfID         INT,
@@ -54,13 +54,11 @@ CREATE TABLE productStack (
 );
 
 CREATE TABLE productStackHistory (
- productID       INT,
+ productID       SERIAL,
  stock           INT,
  productModelID  INT,
- shelfID         INT,
  warehouseID     INT,
- startDate       DATE,
- endDate         DATE
+ startDate       DATE
 );
 
 CREATE TABLE warehouse (
@@ -111,7 +109,7 @@ ALTER TABLE productStack
 ALTER TABLE productStackHistory
   ADD CONSTRAINT PRODUCTSTACKHISTORY_PK PRIMARY KEY (productID),
   ADD CONSTRAINT PRODUCTSTACKHISTORY_PRODUCTMODEL_FK FOREIGN KEY (productModelID) REFERENCES productModel (productModelID),
-  ADD CONSTRAINT PRODUCTSTACKHISTORY_SHELF_FK FOREIGN KEY (shelfID, warehouseID) REFERENCES shelf (shelfID, warehouseID);
+  ADD CONSTRAINT PRODUCTSTACKHISTORY_WAREHOUSE_FK FOREIGN KEY (warehouseID) REFERENCES warehouse (warehouseID);
 
 ALTER TABLE subOrders
   ADD CONSTRAINT ORDERS_WAREHOUSE_FK FOREIGN KEY (origin) REFERENCES warehouse (warehouseID);

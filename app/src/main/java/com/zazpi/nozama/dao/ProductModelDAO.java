@@ -13,6 +13,7 @@ import com.zazpi.nozama.model.rest.ProductRest;
 @Transactional
 public interface ProductModelDAO extends CrudRepository<ProductModel,Long> {
 	List<ProductModel> findByName(String name);
+	List<ProductModel> findAll();
 	Optional<ProductModel> findById(int id);
 	@Query(value="select pm.*, coalesce(sum(stock),0) as stock "
 			+ "from (productstack ps right join productmodel pm on ps.productmodelid=pm.productmodelid)"
