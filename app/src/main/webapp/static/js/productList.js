@@ -1,7 +1,7 @@
 
 
 //create Tabulator on DOM element with id "example-table"
-const productsTable = new Tabulator( {
+const productsTable = new Tabulator("#product-list-table",{
 	height:400, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
 	ajaxURL: "/api/product/list", //assign data to table
 	layout:"fitColumns", //fit columns to width of table (optional)
