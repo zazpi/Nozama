@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
         crossorigin="" />
 		<link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400" rel="stylesheet">
 	    <link rel="stylesheet" href="/static/css/layout.css">
 	    <link rel="stylesheet" href="/static/css/general.css">
 	    <link rel="stylesheet" href="/static/css/productList.css">
@@ -17,9 +17,6 @@
 	    <!-- Datatables -->
 	</head>
 	<body>
-		<!-- Header -->
-	<section class="section-header">
-	</section>
 	<section class="section-layout">
 
                 <tiles:insertAttribute name="header" />

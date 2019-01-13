@@ -1,0 +1,22 @@
+.order-list {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+.order-list-header {
+    border-bottom: 1px solid #2f3542;
+    padding: 1rem;
+}
+
+.order-list-header h2 {
+    padding: .5rem;
+    margin-bottom: 1rem;
+    background-color: #ccc;
+    color: #2f3542;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-weight: 400;
+    width: 15%;
+    text-align: center;
+}
+

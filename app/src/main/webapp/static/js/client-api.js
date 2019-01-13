@@ -1,6 +1,6 @@
 const getWarehouseData = async () => {
     try {
-        const result = await fetch("/api/warehouse");
+        const result = await fetch("/api/product/list");
         const data = await result.json();
         console.log(data);
         return data;
