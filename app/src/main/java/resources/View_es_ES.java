@@ -45,9 +45,9 @@ public class View_es_ES extends ListResourceBundle{
 			{"productList.description", "Descripción"},
 			{"productList.stock", "Stock"},
 			{"productList.addStock", "Añadir stock"},
-			{"productList.removeProduct", "Eliminar producto"},
+			{"productList.removeProduct", "Eliminar"},
 			{"productList.edit", "Editar"},
-			{"productList.addNewProduct", "Añadir nuevo producto"},
+			{"productList.addNewProduct", "Añadir"},
 			
 			//Add product
 			{"addProduct.pageName", "Añadir producto"},

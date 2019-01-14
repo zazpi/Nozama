@@ -34,9 +34,9 @@ public class View_eu extends ListResourceBundle{
 			{"orderList.assignedWarehouse", "Egokitutako biltegia"},
 			{"orderList.entryDate", "Sarrera data"},
 			{"orderList.departureDate", "Irteera data"},
-			{"orderList.remove", "-"},
+			{"orderList.remove", "Delete"},
 			{"orderList.edit", "Editatu"},
-			{"orderList.add", "+"},
+			{"orderList.add", "Add"},
 			
 			//Product list
 			{"productList.pageName", "Produktuen zerrenda"},
