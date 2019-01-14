@@ -39,4 +39,8 @@ public class HistoryController {
 		return historyDao.findByModelId(product);
 	}
 	
+	@GetMapping("gethistory")
+	public @ResponseBody List<Object[]> getProductHistory(@RequestParam("productId") int product){	
+		return historyDao.findByModelIdRaw(product);
+	}
 }

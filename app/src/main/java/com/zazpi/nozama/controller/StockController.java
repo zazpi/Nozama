@@ -1,6 +1,7 @@
 package com.zazpi.nozama.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zazpi.nozama.dao.ProductStackDao;
 import com.zazpi.nozama.dao.ShelfDao;
 import com.zazpi.nozama.model.ProductStack;
+import com.zazpi.nozama.model.rest.WarehouseProductStockRest;
+import com.zazpi.nozama.model.rest.WarehouseStockRest;
 
 @Controller
 @RequestMapping("/api/stock")
@@ -35,6 +38,11 @@ public class StockController {
 		for(ProductStack ps : stackDao.findByModelId(id))
 			map.put(ps.getShelf().getWarehouse().getName(), ps.getStock());
 		return map;		
+	}
+	
+	@GetMapping("getproductwarehousestock")
+	public @ResponseBody List<WarehouseProductStockRest> getWarehouseStock1 (@RequestParam("productId") int id) {	
+		return stackDao.getProductWarehouseStock(id);		
 	}
 	
 }

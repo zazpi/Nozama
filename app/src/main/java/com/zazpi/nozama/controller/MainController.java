@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zazpi.nozama.dao.ProductModelDAO;
@@ -35,6 +36,12 @@ public class MainController {
     @RequestMapping(value = "/productList")
     public String productList() {
     	return "site.productList";
+    }
+    
+    @GetMapping(value = "/product")
+    public String product(Model model, @RequestParam ("productId") int productId) {
+    	model.addAttribute("productId", productId);
+    	return "site.product";
     }
     
     @RequestMapping(value = "/productList/addProduct")

@@ -1,6 +1,7 @@
 package com.zazpi.nozama.dao;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -19,4 +20,11 @@ public interface ProductHistoryDao extends CrudRepository<ProductHistory,Long>{
 	void nativeSave(int warehouseid, int productmodelid,int stock, Date date);
 	
 	Set<ProductHistory> findByModelId(int id);
+	
+	@Query (value="select extract (epoch from startdate at time zone 'utc')*1000 as startdate, stock "
+			+ "from productstackhistory "
+			+ "where productmodelid = ?1 "
+			+ "order by startdate"
+			,nativeQuery=true)
+	List<Object[]> findByModelIdRaw(int id);
 }
