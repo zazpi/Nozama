@@ -1,8 +1,7 @@
 CREATE TABLE orders (
  orderID         SERIAL,
  destination     INT,
- entryDate       DATE,
- subOrder        INT
+ entryDate       DATE
 );
 
 CREATE TABLE subOrders (

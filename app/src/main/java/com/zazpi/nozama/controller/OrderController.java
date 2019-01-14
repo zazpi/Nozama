@@ -22,6 +22,7 @@ import com.zazpi.nozama.model.Order;
 import com.zazpi.nozama.model.ProductModel;
 import com.zazpi.nozama.model.SubOrder;
 import com.zazpi.nozama.model.Warehouse;
+import com.zazpi.nozama.model.rest.OrderRest;
 import com.zazpi.nozama.util.Util;
 import com.zazpi.nozama.util.WarehouseComparator;
 
@@ -52,6 +53,7 @@ public class OrderController {
 			SubOrder suborder = new SubOrder();
 			suborder.setProducts(selectedWarehouses.get(wh));
 			suborder.setOrigin(wh);
+			suborder.setOrder(order);
 			suborders.add(suborder);
 		}
 		order.setSuborders(suborders);
@@ -81,8 +83,8 @@ public class OrderController {
 	}
 	
 	@GetMapping("list")
-	public @ResponseBody List<Order> getOrderList(){
-		return (List<Order>) ordersDao.findAll();
+	public @ResponseBody List<OrderRest> getOrderList(){
+		return (List<OrderRest>) ordersDao.findAllRest();
 	}
 	
 	@GetMapping("list-location")

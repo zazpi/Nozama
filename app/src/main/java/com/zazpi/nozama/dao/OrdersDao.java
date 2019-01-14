@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zazpi.nozama.model.Order;
+import com.zazpi.nozama.model.rest.OrderRest;
 
 @Transactional
 public interface OrdersDao extends CrudRepository<Order,Long>{
@@ -25,4 +26,8 @@ public interface OrdersDao extends CrudRepository<Order,Long>{
 			+ "group by cp "
 			,nativeQuery=true)
 	List<Object[]> getOrdersByPlaceAndProduct(int productid);
+	
+	@Query(value="select orderid, destination, entrydate from orders "
+			,nativeQuery=true)
+	List<OrderRest> findAllRest();
 }
