@@ -14,7 +14,7 @@ import com.zazpi.nozama.dao.ProductStackDao;
 import com.zazpi.nozama.dao.ShelfDao;
 import com.zazpi.nozama.model.ProductStack;
 import com.zazpi.nozama.model.rest.WarehouseProductStockRest;
-import com.zazpi.nozama.model.rest.WarehouseStockRest;
+import com.zazpi.nozama.model.rest.WordCloudRest;
 
 @Controller
 @RequestMapping("/api/stock")
@@ -43,6 +43,11 @@ public class StockController {
 	@GetMapping("getproductwarehousestock")
 	public @ResponseBody List<WarehouseProductStockRest> getWarehouseStock1 (@RequestParam("productId") int id) {	
 		return stackDao.getProductWarehouseStock(id);		
+	}
+	
+	@GetMapping("getwordcloud")
+	public @ResponseBody List<WordCloudRest> getWordCloud (){
+		return stackDao.getWordCloud();
 	}
 	
 }

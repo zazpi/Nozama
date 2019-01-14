@@ -23,7 +23,7 @@ public interface ProductHistoryDao extends CrudRepository<ProductHistory,Long>{
 	
 	@Query (value="select extract (epoch from startdate at time zone 'utc')*1000 as startdate, stock "
 			+ "from productstackhistory "
-			+ "where productmodelid = ?1 "
+			+ "where productmodelid=?1 "
 			+ "order by startdate"
 			,nativeQuery=true)
 	List<Object[]> findByModelIdRaw(int id);

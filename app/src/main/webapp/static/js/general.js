@@ -1,4 +1,4 @@
-const greenLineCoords = [
+/*const greenLineCoords = [
 	[42.8585981, -2.6842947],
 	[42.8605487, -2.6772625],
 	[42.8650418, -2.6606937],
@@ -32,47 +32,23 @@ const polygon = L.polygon([
 	[42.8585981, -2.6842947],
 	[42.8585992, -2.6842941],
 	[42.8585985, -2.6842939]
-]).addTo(map);
-
-$(document).ready(function() {
-	$.ajax({
-	url: '/api/order/list-location',
-	type: 'GET',
-	async: true,
-	dataType: "json",
-	success: function (data) {
-		loadMap(data);
-	}
-	  });
-
-	 });
+]).addTo(map);*/
 
 
-function loadMap(data){
-	Highcharts.mapChart('heatmap', {
-		 chart: {
-		     map: 'countries/es/es-all'
-		 },
-		 title: {
-		     text: 'Orders by destination'
-		 },
-		 mapNavigation: {
-		     enabled: true,
-		     buttonOptions: {
-		         verticalAlign: 'bottom'
-		     }
-		 },
-		 colorAxis: {
-		     min: 0
-		 },
-		 series: [{
-		     data: data,
-		     name: 'Random data',
-		     states: {
-		         hover: {
-		             color: '#BADA55'
-		         }
-		     }
-		 }]
+$.getJSON('/api/stock/getwordcloud',    function (data) {
+	createWordCloud(data);
+});
+	
+function createWordCloud(data){
+	Highcharts.chart('map', {
+		  series: [{
+		    type: 'wordcloud',
+		    data: data,
+		    name: 'Stock'
+		  }],
+		  title: {
+		    text: 'Wordcloud of stock'
+		  }
 		});
 }
+

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zazpi.nozama.model.ProductStack;
 import com.zazpi.nozama.model.rest.WarehouseProductStockRest;
 import com.zazpi.nozama.model.rest.WarehouseStockRest;
+import com.zazpi.nozama.model.rest.WordCloudRest;
 
 @Transactional
 public interface ProductStackDao extends CrudRepository<ProductStack,Long> {
@@ -31,4 +32,10 @@ public interface ProductStackDao extends CrudRepository<ProductStack,Long> {
 			+ "group by wh.warehouseid"
 			,nativeQuery=true)
 	List<WarehouseProductStockRest> getProductWarehouseStock(int id);
+	
+	@Query(value= "select pm.name, sum(ps.stock) as stock"
+			+ " from productstack as ps join productmodel pm on ps.productmodelid = pm.productmodelid "
+			+ "group by pm.productmodelid"
+			,nativeQuery=true)
+	List<WordCloudRest> getWordCloud();
 }

@@ -50,6 +50,15 @@ public class Util {
 		return code;	
 	}
 	
+	public static List<Object[]> prepareCodes(List<Object[]> list){
+		for(Object[] o : list) {
+			int cp = (int) o[0];
+			String code = "es-" + Util.CODES[cp - 1];
+			o[0] = code;
+		}
+		return list;
+	}
+	
 	public static double getDistance(Coordinates a, Coordinates b) {
 		return Distance.distanceKM(a.getLat(), a.getLng(), b.getLat(), b.getLng());
 	}

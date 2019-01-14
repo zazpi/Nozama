@@ -30,6 +30,10 @@ public class SubOrder {
 	@JoinColumn(name="origin")
 	Warehouse origin;
 	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="orderid")
+	Order order;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name="departuredate")
 	Date departureDate;
@@ -71,4 +75,14 @@ public class SubOrder {
 	public void setProducts(Set<ProductModel> products) {
 		this.products = products;
 	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+	
+	
 }

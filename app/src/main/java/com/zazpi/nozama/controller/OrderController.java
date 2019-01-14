@@ -88,12 +88,13 @@ public class OrderController {
 	@GetMapping("list-location")
 	public @ResponseBody List<Object[]> getOrdersByPlace(){
 		List<Object[]> list = ordersDao.getOrdersByPlace();
-		for(Object[] o : list) {
-			int cp = (int) o[0];
-			String code = "es-" + Util.CODES[cp - 1];
-			o[0] = code;
-		}
-		return list;
+		return Util.prepareCodes(list);
+	}
+	
+	@GetMapping("list-location-product")
+	public @ResponseBody List<Object[]> getOrdersByPlaceAndProduct(@RequestParam("productId") int id){
+		List<Object[]> list = ordersDao.getOrdersByPlaceAndProduct(id);
+		return Util.prepareCodes(list);
 	}
 	
 	//FIXME: Function should be in a util class
