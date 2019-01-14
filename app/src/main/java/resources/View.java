@@ -34,9 +34,9 @@ public class View extends ListResourceBundle{
 			{"orderList.assignedWarehouse", "Assigned warehouse"},
 			{"orderList.entryDate", "Entry date"},
 			{"orderList.departureDate", "Departure date"},
-			{"orderList.remove", "-"},
+			{"orderList.remove", "Delete"},
 			{"orderList.edit", "Edit"},
-			{"orderList.add", "+"},
+			{"orderList.add", "Add"},
 			
 			//Product list
 			{"productList.pageName", "Product list"},
@@ -45,9 +45,9 @@ public class View extends ListResourceBundle{
 			{"productList.description", "Description"},
 			{"productList.stock", "Stock"},
 			{"productList.addStock", "Add stock"},
-			{"productList.removeProduct", "Remove product"},
+			{"productList.removeProduct", "Delete"},
 			{"productList.edit", "Edit"},
-			{"productList.addNewProduct", "Add new product"},
+			{"productList.addNewProduct", "Add"},
 			
 			//Add product
 			{"addProduct.pageName", "Add product"},
@@ -70,7 +70,7 @@ public class View extends ListResourceBundle{
 			{"addStock.addStock","Add stock"},
 			
 			//Footer resources
-			{"footer.authors", "Developed by Zazpi"},
+			{"footer.authors", "Copyright &copy; 2019 by Zazpi. All rights reserved."},
 			
 			// Languages
 			{"language.en", "English"},

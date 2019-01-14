@@ -34,9 +34,9 @@ public class View_es_ES extends ListResourceBundle{
 			{"orderList.assignedWarehouse", "Almacén asignado"},
 			{"orderList.entryDate", "Fecha de entrada"},
 			{"orderList.departureDate", "Fecha de salida"},
-			{"orderList.remove", "-"},
+			{"orderList.remove", "Eliminar"},
 			{"orderList.edit", "Editar"},
-			{"orderList.add", "+"},
+			{"orderList.add", "Añadir"},
 			
 			//Product list
 			{"productList.pageName", "Lista de productos"},
@@ -45,9 +45,9 @@ public class View_es_ES extends ListResourceBundle{
 			{"productList.description", "Descripción"},
 			{"productList.stock", "Stock"},
 			{"productList.addStock", "Añadir stock"},
-			{"productList.removeProduct", "Eliminar producto"},
+			{"productList.removeProduct", "Eliminar"},
 			{"productList.edit", "Editar"},
-			{"productList.addNewProduct", "Añadir nuevo producto"},
+			{"productList.addNewProduct", "Añadir"},
 			
 			//Add product
 			{"addProduct.pageName", "Añadir producto"},
@@ -70,7 +70,7 @@ public class View_es_ES extends ListResourceBundle{
 			{"addStock.addStock","Fecha de salida:"},
 			
 			//Footer resources
-			{"footer.authors", "Desarrollado por Zazpi"},
+			{"footer.authors", "Copyright &copy; desarrollado por Zazpi. Todos los derechos reservados"},
 			
 			// Languages
 			{"language.en", "Inglés"},
