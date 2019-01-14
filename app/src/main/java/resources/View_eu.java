@@ -34,9 +34,9 @@ public class View_eu extends ListResourceBundle{
 			{"orderList.assignedWarehouse", "Egokitutako biltegia"},
 			{"orderList.entryDate", "Sarrera data"},
 			{"orderList.departureDate", "Irteera data"},
-			{"orderList.remove", "Delete"},
+			{"orderList.remove", "Ezabatu"},
 			{"orderList.edit", "Editatu"},
-			{"orderList.add", "Add"},
+			{"orderList.add", "Gehitu"},
 			
 			//Product list
 			{"productList.pageName", "Produktuen zerrenda"},
@@ -45,9 +45,9 @@ public class View_eu extends ListResourceBundle{
 			{"productList.description", "Deskribapena"},
 			{"productList.stock", "Stock"},
 			{"productList.addStock", "Gehitu stocka"},
-			{"productList.removeProduct", "Ezabatu produktua"},
+			{"productList.removeProduct", "Ezabatu"},
 			{"productList.edit", "Editatu"},
-			{"productList.addNewProduct", "Gehitu produktu berria"},
+			{"productList.addNewProduct", "Gehitu"},
 			
 			//Add product
 			{"addProduct.pageName", "Gehitu produktua"},
@@ -70,7 +70,7 @@ public class View_eu extends ListResourceBundle{
 			{"addStock.addStock","Gheitu stocka"},
 			
 			//Footer resources
-			{"footer.authors", "Zazpik garatua"},
+			{"footer.authors", "Copyright &copy; 2019 Zazpik garatua."},
 			
 			// Languages
 			{"language.en", "Ingelera"},

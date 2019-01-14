@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:bundle basename="resources.View">
 <footer>
     <!--<div class="row">
         <div class="col span-1-of-2">
@@ -24,3 +26,4 @@
         </p>
     </div>
 </footer>
+</fmt:bundle>
