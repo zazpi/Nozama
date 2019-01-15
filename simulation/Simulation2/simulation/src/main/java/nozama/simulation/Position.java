@@ -22,7 +22,8 @@ public class Position {
 	public synchronized void take() {
 		try {
 			while(!available) {
-				System.out.println("WAITING");
+				System.out.println("Car waiting path " +
+						row+num + " to be emptied");
 				wait();
 			}
 			available = false;

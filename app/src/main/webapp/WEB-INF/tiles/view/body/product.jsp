@@ -9,9 +9,7 @@
         </div>
     </div>
 </section>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="http://code.highcharts.com/maps/modules/map.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
