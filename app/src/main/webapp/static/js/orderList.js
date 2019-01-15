@@ -8,7 +8,6 @@
         return "Unable to load products.";
     }
 };*/
-
 const ordersTable = new Tabulator("#order-list-table", {
     height: 400,
     ajaxURL: "/api/order/list",
@@ -32,4 +31,5 @@ const ordersTable = new Tabulator("#order-list-table", {
         alert("Row " + row.getData().id + " Clicked!!!!");
     },*/
 });
+
 

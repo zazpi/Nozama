@@ -16,7 +16,7 @@ body {
 .section-layout {
     display: grid;
     grid-template-columns: 175px auto;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto;
     grid-template-areas: "header header" "menu main-content" "footer footer";
 
 }
@@ -81,11 +81,9 @@ footer p {
 
 @media (max-width: 425px) {
     #menu a {
-        display: inline-block !important;
-        width: 10%;
-        font-size: 80%;
-        margin: 0;
-        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
     }
     .section-layout {
         grid-template-columns: auto;
