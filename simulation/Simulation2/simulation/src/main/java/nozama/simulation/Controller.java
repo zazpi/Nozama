@@ -1,22 +1,102 @@
 package nozama.simulation;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Controller {
-	public static int NUM_CARS = 4;
-	public static int NUM_POSITIONS = 5;
-	public static int NUM_WORKSTATIONS = 6;
-	List<Position> positions;
-	List<WorkStation> workstations;
-	List<Car> cars;
+	Threads threads;
+	Objects objects;
+	Lock monitor;
+	Condition condNotBusy;
 	
-	public Position getPosition (String row, int num) {
-		for (Position p : positions) {
-			if (row.equals(p.getRow()) && num == p.getNum())
-				return p;
+	public Controller (Objects objects) {
+		this.objects = objects;
+		monitor = new ReentrantLock();
+		condNotBusy = monitor.newCondition();
+	}
+	
+	public void setThreads (Threads threads) {
+		this.threads = threads;
+	}
+	
+	public void takeCar (Car car) {
+		monitor.lock();		
+		while (car.isBusy()) {
+			try {
+				condNotBusy.await();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return null;
+		car.setBusy(true);
+		monitor.unlock();
+	}
+	
+	public void freeCar (Car car) {
+		monitor.lock();
+		car.setBusy(false);
+		condNotBusy.signalAll();
+		monitor.unlock();
+	}
+	
+	public void goToWorkstation (WorkStation origin, WorkStation destination, Car car) {
+		takeCar(car);		
+		Position finalPos = origin.getPath();
+		goTo(finalPos, car, origin);
+		finalPos = destination.getPath();
+		goTo(finalPos, car, destination);
+		freeCar(car);
+	}
+	
+	public void park (Parking parking, Car car) {
+		takeCar(car);
+		Position finalPos = parking.getPath();
+		goTo(finalPos, car, parking);
+		freeCar(car);
+	}
+	
+	public void goTo(Position finalPos, Car car, Position position) {
+		Position currentPos, nextPos = null;
+		
+		ensureItsInPath(car);
+		
+		while(car.getCurrentPos() != finalPos){
+			currentPos = car.getCurrentPos();
+			if(nextPos == null) {
+				nextPos = askNextPos(currentPos,finalPos);
+				System.out.println("Car " + car.getId() +
+						" Current: " + currentPos.getRow() + currentPos.getNum() +
+						" Next: " + nextPos.getRow() + nextPos.getNum());
+				if (nextPos == finalPos) {
+					if (position instanceof WorkStation)
+						((WorkStation) position).take(Controller.this, car);
+				}
+			}else {
+				nextPos.take();
+				changePosition(nextPos, car);
+				nextPos = null;
+			}
+		}
+		System.out.println("Car " + car.getId() +
+				" Current: " + car.getCurrentPos().getRow() + car.getCurrentPos().getNum());
+		changePosition(position, car);
+		
+		System.out.println("Car " + car.getId() + " in " +
+				car.getCurrentPos().getRow() + car.getCurrentPos().getNum());
+	}
+	
+	public void changePosition (Position newPos, Car car) {
+		car.getCurrentPos().free();
+		car.setCurrentPos(newPos);
+	}
+	
+	public void ensureItsInPath (Car car) {
+		if (car.getCurrentPos() instanceof WorkStation)
+			((WorkStation) car.getCurrentPos()).leave();
+		else if (car.getCurrentPos() instanceof Parking)
+			((Parking) car.getCurrentPos()).leave();
 	}
 	
 	public Position askNextPos(Position currentPos, Position finalPos) {
@@ -43,7 +123,7 @@ public class Controller {
 			if ((currentNum > finalNum) && (currentNum % 2 == 0)) row = "AB";
 		}
 		
-		return getPosition(row, num);
+		return objects.getPosition(row, num);
 	}
 	
 	public Position differentRow (String row, int currentNum, int finalNum) {
@@ -63,48 +143,103 @@ public class Controller {
 			if ((currentNum >= finalNum) && (currentNum % 2 == 0)) row = "AB";
 		}
 		
-		return getPosition(row, num);
+		return objects.getPosition(row, num);
 	}
 	
-	public void getOrder() {
+	public synchronized Parking chooseBestParking (Car car, String row, int num) {
+		String parkingRow = "";
+		int parkingNum = num;
+		Parking parking;
 		
+		if (row.equals("AW")) {
+			parking = carInRowA(num, parkingRow, parkingNum);
+		}else {
+			parking = carInRowB(num, parkingRow, parkingNum);
+		}
+		parking.setCar(car);
+			
+		return parking;
 	}
 	
-	public void createCars() {
-		cars = new ArrayList<>();
-		cars.add(new Car(0,positions.get(0)));
-		cars.add(new Car(1,positions.get(10)));
-		positions.get(0).available = false;
-		Thread th = new Task(0,cars.get(0),this,workstations.get(3),workstations.get(3));
-		th.start();		
+	public Parking carInRowA (int num, String parkingRow, int parkingNum) {
+		boolean available;
+		boolean bool = (num == 0)?true:false;
 		
-		Util.safeSleep(2000);
+		if (num == 0) {
+			parkingRow = "BP";
+			parkingNum = 0;
+		}else {
+			parkingRow = "AP";
+			parkingNum--;
+		}
+			
+		do {
+			available = seeParkingAvailability(parkingRow, parkingNum);
+			if (!available) {
+				if (num > 0) {
+					if (num == 2) parkingNum--;
+					else {
+						parkingRow = "BP";
+						parkingNum = 1;
+					}
+					num--;
+				}else {
+					if (parkingNum == 1) {
+						if (bool) parkingRow = "AP";
+						parkingNum = 0;
+					}else {
+						if (!bool) parkingRow = "AP";
+						parkingNum++;
+					}
+				}
+			}
+		}while (!available);		
 		
-		Thread th2 = new Task(1,cars.get(1),this,workstations.get(4),workstations.get(3));
-		th2.start();
+		return objects.getParking(parkingRow, parkingNum);
 	}
 	
-	public void createPositions() {
-		//paths
-		positions = new ArrayList<>();
-		for(int i = 0; i < NUM_POSITIONS; i++)
-			positions.add(new Position("A", i,true));
-		for(int i = 0; i < NUM_POSITIONS; i++)
-			positions.add(new Position("B", i,true));
-		for(int i = 0; i < NUM_POSITIONS+1; i++)
-			positions.add(new Position("AB", i,true));
+	public Parking carInRowB (int num, String parkingRow, int parkingNum) {
+		boolean available;
+		boolean bool = (num == 2)?true:false;
 		
-		//workstations
-		workstations = new ArrayList<>();
-		workstations.add(new WorkStation("AW", 0, true, positions.get(0)));
-		workstations.add(new WorkStation("AW", 1, true, positions.get(2)));
-		workstations.add(new WorkStation("AW", 2, true, positions.get(4)));
-		workstations.add(new WorkStation("BW", 0, true, positions.get(5)));
-		workstations.add(new WorkStation("BW", 1, true, positions.get(7)));
-		workstations.add(new WorkStation("BW", 2, true, positions.get(9)));
+		if (num == 2) {
+			parkingRow = "AP";
+			parkingNum = 1;
+		}else parkingRow = "BP";
 		
-		//parkings
+		do {
+			available = seeParkingAvailability(parkingRow, parkingNum);
+			if (!available) {
+				if (num < 2) {
+					if (num == 0) parkingNum++;
+					else {
+						parkingRow = "AP";
+						parkingNum = 0;
+					}
+					num++;
+				} else {
+					if (parkingNum == 0) {
+						if (bool) parkingRow = "BP";
+						parkingNum++;
+					}else {
+						if (!bool) parkingRow = "BP";
+						parkingNum = 0;
+					}
+				}
+			}
+			
+		}while (!available);
+		
+		return objects.getParking(parkingRow, parkingNum);
 	}
 	
-	
+	public boolean seeParkingAvailability (String row, int num) {
+		Parking parking = objects.getParking(row, num);
+		
+		return parking.available();		
+	}
+
+	public void createTaskToPark(Car car, WorkStation workstation) {
+		threads.createTaskToPark(car, workstation);		
+	}	
 }
