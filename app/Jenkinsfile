@@ -29,11 +29,6 @@ pipeline {
                 sh "echo 'executing simulator unit tests...'"
                 sh 'cd simulation/simulator/ && ./mvnw test'
             }
-            post {
-                always {
-                    junit 'simulation/simulator/surefire-reports/*.xml'
-                }
-            }
         }
         stage('Static analysis'){
             steps {
