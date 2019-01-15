@@ -39,7 +39,7 @@ pipeline {
                                 sh "echo 'app static analysis...'"
                     		sh 'cd app/ && ./mvnw sonar:sonar'
                                 sh "echo 'simulator static analysis...'"
-                                sh 'cd ../simulation/simulator/ && ./mvnw sonar:sonar'
+                                sh 'cd simulation/simulator/ && ./mvnw sonar:sonar'
                 	}
 		}
             }
