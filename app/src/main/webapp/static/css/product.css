@@ -1,0 +1,21 @@
+*{
+	box-sizing: border-box;
+}
+
+.product {
+	display: grid;
+	grid-template-areas: "up up" "center center" "down-l down-r";
+	
+}
+
+#timeseries {
+	grid-area: center;
+}
+
+#piechart {
+	grid-area: down-l;
+}
+
+#map {
+	grid-area: down-r
+}

@@ -35,7 +35,7 @@ function createTimeSeries(data) {
             selected: 1
         },
         title: {
-            text: 'Product history'
+            text: 'History'
         },
         yAxis: {
         	max: 1500,
@@ -79,7 +79,7 @@ function createPiechart(data){
 	        type: 'pie'
 	    },
 	    title: {
-	        text: 'Product per warehouse'
+	        text: 'Stock per warehouse'
 	    },
 	    tooltip: {
 	        pointFormat: '{series.name}: <b>{point.y:.1f} ({point.percentage:.1f}%)</b>'
@@ -111,7 +111,7 @@ function createMap(data){
 		     map: 'countries/es/es-all'
 		 },
 		 title: {
-		     text: 'Destination'
+		     text: 'Order destination'
 		 },
 		 mapNavigation: {
 		     enabled: true,

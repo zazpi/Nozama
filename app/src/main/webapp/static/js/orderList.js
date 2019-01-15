@@ -17,11 +17,9 @@ const ordersTable = new Tabulator("#order-list-table", {
     history: true,
     pagination: "local",
     paginationSize: 15,
-    layoutColumnsOnNewData: true,
-    // FIXME: this options above is to use with suborders but it seems we don't have that data filled yet
-    dataTree:true,
-    dataTreeStartExpanded:true,
-    //-----------------------------------------
+	initialSort:[             //set the initial sort order of the data
+		{column:"id", dir:"asc"},
+	],
     columns: [
         {title: "ID", field: "id", align: "center", width: 100},
         {title: "Destination", field: "destination"},

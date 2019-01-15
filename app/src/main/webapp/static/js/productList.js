@@ -3,20 +3,23 @@ $(document).ready(() => {
         height: 400,
         ajaxURL: "/api/product/list",
         layout: "fitColumns",
-        selectable: true,
         tooltips: true,
         addRowPos: "top",
         history: true,
         pagination: "local",
         paginationSize: 15,
-        layoutColumnsOnNewData: true,
+        rowClick:productClick,
         columns: [
-            {title: "ID", field: "id", align: "center", width: 100},
-            {title: "Name", field: "name",},
+            {title: "ID", field: "id", align: "center", width: 100,rowClick:productClick},
+            {title: "Name", field: "name"},
             {title: "Description", field: "description"},
             {title: "Stock", field: "stock"}
         ]
     });
+   
+    function productClick(e,row){
+    	window.location = "/product?productId=" + row.getIndex(0);
+    }
 
     // FIXME: The below api requests can be used once backend functionality is correctly functional.
     /*$("#delete-btn").click(async () => {

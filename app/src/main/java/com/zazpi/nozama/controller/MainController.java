@@ -1,5 +1,7 @@
 package com.zazpi.nozama.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,8 @@ public class MainController {
     
     @GetMapping(value = "/product")
     public String product(Model model, @RequestParam ("productId") int productId) {
-    	model.addAttribute("productId", productId);
+    	Optional<ProductModel> pr = productDao.findById(productId);
+    	model.addAttribute("product", pr.get());
     	return "site.product";
     }
     

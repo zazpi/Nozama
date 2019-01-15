@@ -9,8 +9,6 @@
 		<h2><fmt:message key="productList.pageName"/></h2>
 			<nav class="opt-btns">
 				<a href="/productList/addProduct" id="add-product"><fmt:message key="productList.addNewProduct"/></a>
-				<a href="#" id="delete-btn"><fmt:message key="productList.removeProduct"/></a>
-				<a href="/productList/editProduct" id="edit"><fmt:message key="productList.edit"/></a>
 				<a href="#" id="add-stock"><fmt:message key="productList.addStock"/></a>
 			</nav>
 	</header>
