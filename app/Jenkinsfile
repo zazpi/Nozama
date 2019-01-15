@@ -8,6 +8,7 @@ pipeline {
             }
         }
         stage('Build simulator') {
+           steps {
                 sh "echo 'starting simulator build...'"
                 sh 'cd simulation/simulator/ && ./mvnw -B -DskipTests clean package'
             }
