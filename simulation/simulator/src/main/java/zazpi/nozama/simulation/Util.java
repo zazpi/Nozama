@@ -1,4 +1,4 @@
-package nozama.simulation;
+package zazpi.nozama.simulation;
 
 public class Util {
 	

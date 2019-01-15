@@ -1,13 +1,18 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Build app') {
             steps {
                 sh "echo 'starting nozama application build...'"
                 sh 'cd app/ && ./mvnw -B -DskipTests clean package'
             }
         }
-        stage('Tests') {
+        stage('Build simulator') {
+                sh "echo 'starting simulator build...'"
+                sh 'cd simulation/simulator/ && ./mvnw -B -DskipTests clean package'
+            }
+        }
+        stage('Tests app') {
             steps {
                 sh "echo 'executing nozama apllication unit tests...'"
                 sh 'cd app/ && ./mvnw test'
@@ -15,6 +20,17 @@ pipeline {
             post {
                 always {
                     junit 'app/target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage('Tests simulator') {
+            steps {
+                sh "echo 'executing simulator unit tests...'"
+                sh 'cd simulation/simulator/ && ./mvnw test'
+            }
+            post {
+                always {
+                    junit 'simulation/simulator/surefire-reports/*.xml'
                 }
             }
         }

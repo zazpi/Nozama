@@ -1,4 +1,4 @@
-package nozama.simulation;
+package zazpi.nozama.simulation;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;

@@ -1,4 +1,4 @@
-package nozama.simulation;
+package zazpi.nozama.simulation;
 
 import java.util.ArrayList;
 import java.util.List;
