@@ -12,4 +12,6 @@ public interface OrderRest {
 	
 	Date getEntryDate();
 	
+	boolean getSent();
+	
 }

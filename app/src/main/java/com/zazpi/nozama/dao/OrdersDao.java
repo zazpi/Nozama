@@ -27,7 +27,10 @@ public interface OrdersDao extends CrudRepository<Order,Long>{
 			,nativeQuery=true)
 	List<Object[]> getOrdersByPlaceAndProduct(int productid);
 	
-	@Query(value="select orderid, destination, entrydate from orders "
+	@Query(value="select o.orderid, o.destination, o.entrydate, bool_and(so.departuredate is not null) as sent "
+			+ "from orders as o join suborders as so on o.orderid = so.orderid "
+			+ "group by o.orderid "
+			+ "order by o.orderid"
 			,nativeQuery=true)
 	List<OrderRest> findAllRest();
 	
