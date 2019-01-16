@@ -34,6 +34,11 @@
 			value="/WEB-INF/tiles/view/body/productList.jsp" />
 	</definition>
 	
+	<definition name="site.addStock" extends="layout.basic">
+		<put-attribute name="body"
+			value="/WEB-INF/tiles/view/body/addStock.jsp" />
+	</definition>
+	
 	<definition name="site.addProduct" extends="layout.basic">
 		<put-attribute name="body"
 			value="/WEB-INF/tiles/view/body/addProduct.jsp" />

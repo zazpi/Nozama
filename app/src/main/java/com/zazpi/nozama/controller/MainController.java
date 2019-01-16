@@ -18,12 +18,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zazpi.nozama.dao.ProductModelDAO;
+import com.zazpi.nozama.dao.WarehouseDao;
 import com.zazpi.nozama.model.ProductModel;
+import com.zazpi.nozama.model.ProductStack;
 
 @Controller
 public class MainController {
     @Autowired
     ProductModelDAO productDao;
+    
+    @Autowired
+	WarehouseDao warehouseDao;
 
     @GetMapping(value = "/")
     public String home() {
@@ -38,6 +43,13 @@ public class MainController {
     @RequestMapping(value = "/productList")
     public String productList() {
         return "site.productList";
+    }
+    
+    @RequestMapping(value = "/productList/addStock")
+    public String addStock(Model model) {
+    	model.addAttribute("productstack", new ProductStack());
+    	model.addAttribute("warehouses", warehouseDao.findAll());	
+		return "site.addStock";
     }
 
     @GetMapping(value = "/product")

@@ -26,13 +26,11 @@ public class ProductStack implements Serializable{
 	@Column
 	int stock;
 	
-	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-			 CascadeType.DETACH, CascadeType.REFRESH},fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="productmodelid")
 	ProductModel model;
 	
-	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-			 CascadeType.DETACH, CascadeType.REFRESH},fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumns({@JoinColumn(name="shelfid"),
 	              @JoinColumn(name="warehouseid")})
 	Shelf shelf;
