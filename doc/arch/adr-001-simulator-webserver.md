@@ -12,5 +12,5 @@ As of now we decided to create a simple webserver to expose simulator to our mai
 
 ## Consequences
 
-- Now developers has a fully webserver for the simulator that can be highly configured and serves all the functionality we can provide(data polling...).
+- Now developers have a fully webserver for the simulator that can be highly configured and serves all the functionality we can provide(data polling...).
 - Can be `dockerized` easily and set to be used as another service in a `docker-compose.yml` file for development environment.
