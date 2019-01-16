@@ -70,11 +70,12 @@ public class Position {
 		return true;
 	}
 
-
-
-
-	
-	
-
-
+	@Override
+	public String toString() {
+		return "Position{" +
+				"row='" + row + '\'' +
+				", num=" + num +
+				", available=" + available +
+				'}';
+	}
 }

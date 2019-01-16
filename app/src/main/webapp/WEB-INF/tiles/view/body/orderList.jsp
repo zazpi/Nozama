@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/static/css/listSections.css">
+<link rel="stylesheet" href="/static/css/orderList.css">
 <fmt:bundle basename="resources.View">
 <div class="list">
     <header class="list-header">
@@ -14,7 +15,8 @@
         </nav>
     </header>
     <div class="table-container">
-    <div id="order-list-table"></div>
+	    <div id="order-list-table"></div>
+	    <div id="subOrder-list-table"></div>
     </div>
 </div>
 </fmt:bundle>

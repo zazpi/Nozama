@@ -1,0 +1,15 @@
+.table-container{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: "orderTable subOrderTable";
+}
+
+#order-list-table{
+	grid-area: orderTable;
+	margin: 1em;
+}
+
+#subOrder-list-table{
+	grid-area: subOrderTable;
+	margin: 1em;
+}

@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zazpi.nozama.dao.OrdersDao;
 import com.zazpi.nozama.dao.ProductModelDAO;
+import com.zazpi.nozama.dao.SubOrderDao;
 import com.zazpi.nozama.dao.WarehouseDao;
 import com.zazpi.nozama.model.Order;
 import com.zazpi.nozama.model.ProductModel;
 import com.zazpi.nozama.model.SubOrder;
 import com.zazpi.nozama.model.Warehouse;
 import com.zazpi.nozama.model.rest.OrderRest;
+import com.zazpi.nozama.model.rest.SubOrderProductRest;
 import com.zazpi.nozama.util.Util;
 import com.zazpi.nozama.util.WarehouseComparator;
 
@@ -37,6 +39,9 @@ public class OrderController {
 	
 	@Autowired
 	WarehouseDao warehouseDao;
+	
+	@Autowired
+	SubOrderDao subOrderDao;
 
 	@GetMapping("new")
 	public @ResponseBody Order newOrder (@RequestParam("destination") int destination,
@@ -102,6 +107,11 @@ public class OrderController {
 	@GetMapping("list-day-month")
 	public @ResponseBody List<Object[]> groupedByDayMonth(){
 		return ordersDao.groupedByDayMonth();
+	}
+	
+	@GetMapping("subOrderList")
+	public @ResponseBody List<SubOrderProductRest> getSubOrderProductList(@RequestParam("orderId") int id){
+		return (List<SubOrderProductRest>) subOrderDao.findByOrderId(id);
 	}
 	
 	//FIXME: Function should be in a util class
