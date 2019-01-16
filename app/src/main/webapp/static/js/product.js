@@ -1,7 +1,7 @@
 function loadData(id){ 
 	//Timeseries
 	$.each(names, function (i, name) {
-	    $.getJSON('/api/history/gethistory?productId='+ id,    function (data) {
+	    $.getJSON('/api/history/gethistory?productId='+ id + '&warehouseId=' + i,    function (data) {
 	        seriesOptions[i] = {
 	            name: name,
 	            data: data
@@ -26,13 +26,13 @@ function loadData(id){
 //Product stock and order history (Timeseries)
 var seriesOptions = [],
     seriesCounter = 0,
-    names = ['Total'];
+    names = ['Total','Warehouse 1','Warehouse 2'];
 
 function createTimeSeries(data) {
 	
     Highcharts.stockChart('timeseries', {
         rangeSelector: {
-            selected: 1
+            selected: 4
         },
         title: {
             text: 'History'

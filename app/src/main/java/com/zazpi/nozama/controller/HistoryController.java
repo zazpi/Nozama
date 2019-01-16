@@ -40,7 +40,11 @@ public class HistoryController {
 	}
 	
 	@GetMapping("gethistory")
-	public @ResponseBody List<Object[]> getProductHistory(@RequestParam("productId") int product){	
-		return historyDao.findByModelIdRaw(product);
+	public @ResponseBody List<Object[]> getProductHistory(@RequestParam("productId") int product,
+			                                              @RequestParam(value="warehouseId")int wId){	
+		if(wId == 0)
+			return historyDao.findByModelIdRaw(product);
+		else
+			return historyDao.findByModelIdRaw(product,wId);
 	}
 }

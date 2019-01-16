@@ -1,4 +1,4 @@
-$( document ).ready(function(){
+$(document).ready(function(){
 	//Heatmap
 	$.getJSON('/api/order/list-day-month',    function (data) {
 		drawHeatMap(data);
