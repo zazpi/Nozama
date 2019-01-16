@@ -18,7 +18,7 @@ const ordersTable = new Tabulator("#order-list-table", {
     paginationSize: 18,
     selectable:1,
     dataLoaded:function(){
-    	this.selectRow(1);
+        this.selectRow(1);
     },
     columns: [
         {title: "ID", field: "id", align: "center", width: 100},
@@ -27,7 +27,7 @@ const ordersTable = new Tabulator("#order-list-table", {
         {title: "Sent", field: "sent", formatter: "tickCross"}
     ],
     rowClick:function(e, row){
-    	ordersProductsTable.replaceData("/api/order/subOrderList?orderId="+row.getData().id);
+        ordersProductsTable.replaceData("/api/order/subOrderList?orderId="+row.getData().id);
     }
 });
 
@@ -41,17 +41,16 @@ const ordersProductsTable = new Tabulator("#subOrder-list-table", {
     paginationSize: 18,
     groupBy: "subOrderId",
     groupHeader: function(value, count, data, group){
-    	header = data[0].origin.toUpperCase();
-    	departure = data[0].departureDate;
-    	if(departure != null)
-    		header += " (Sent: " + departure + ")";
-    	return header;
+        header = data[0].origin.toUpperCase();
+        departure = data[0].departureDate;
+        if(departure != null)
+            header += " (Sent: " + departure + ")";
+        return header;
     },
     columns: [
-    	{title: "ID", field: "subOrderId", align: "center", width: 100},
+        {title: "ID", field: "subOrderId", align: "center", width: 100},
         {title: "Product model ID", field: "productModelId", align: "center"},
         {title: "Name", field: "name"},
         {title: "Ready", field: "ready", formatter: "tickCross"}
-        ]
+    ]
 });
-

@@ -22,63 +22,68 @@ import com.zazpi.nozama.model.ProductModel;
 
 @Controller
 public class MainController {
-	@Autowired
-	ProductModelDAO productDao;
-	
+    @Autowired
+    ProductModelDAO productDao;
+
     @GetMapping(value = "/")
     public String home() {
         return "site.welcome";
     }
-    
+
     @RequestMapping(value = "/orderList")
     public String orderList() {
-    	return "site.orderList";
+        return "site.orderList";
     }
-    
+
     @RequestMapping(value = "/productList")
     public String productList() {
-    	return "site.productList";
+        return "site.productList";
     }
-    
+
     @GetMapping(value = "/product")
-    public String product(Model model, @RequestParam ("productId") int productId) {
-    	Optional<ProductModel> pr = productDao.findById(productId);
-    	model.addAttribute("product", pr.get());
-    	return "site.product";
+    public String product(Model model, @RequestParam("productId") int productId) {
+        Optional<ProductModel> pr = productDao.findById(productId);
+        model.addAttribute("product", pr.get());
+        return "site.product";
     }
-    
+
     @RequestMapping(value = "/dashboard")
     public String dashboard() {
-    	return "site.dashboard";
+        return "site.dashboard";
     }
-    
+
     @RequestMapping(value = "/productList/addProduct")
     public String addProduct(Model model) {
-    	model.addAttribute("productmodel", new ProductModel());
-		return "site.addProduct";
+        model.addAttribute("productmodel", new ProductModel());
+        return "site.addProduct";
     }
-    
-    @RequestMapping(value = "/crud", method={ RequestMethod.GET, RequestMethod.POST })
+
+    @RequestMapping(value = "/crud", method = {RequestMethod.GET, RequestMethod.POST})
     public String crud(Model model) {
-    	model.addAttribute("productmodel", new ProductModel());
-    	model.addAttribute("products",productDao.findAll());
-    	return "site.crud";
+        model.addAttribute("productmodel", new ProductModel());
+        model.addAttribute("products", productDao.findAll());
+        return "site.crud";
     }
-    
+
     @PostMapping(value = "/processForm")
-    public ModelAndView submit(@Valid @ModelAttribute("productmodel")ProductModel productmodel, 
-    	      BindingResult result, ModelMap model) {
+    public ModelAndView submit(@Valid @ModelAttribute("productmodel") ProductModel productmodel,
+                               BindingResult result, ModelMap model) {
         productDao.save(productmodel);
         return new ModelAndView("redirect:/crud", model);
     }
-    
-    @RequestMapping(value="/admin")
+
+    @RequestMapping(value = "/admin")
     public String admin() {
-    	return "site.admin";
+        return "site.admin";
     }
-    
-    @RequestMapping(value="/forbidden")
+
+    @RequestMapping(value = "/forbidden")
     public String forbidden() {
-    	return "site.forbidden";
+        return "site.forbidden";
+    }
+
+    @RequestMapping(value = "/simulator")
+    public String simulator() {
+        return "site.simulator";
     }
 }

@@ -5,6 +5,7 @@
         <a href="/"><fmt:message key="aside.general"/></a>
         <a href="/orderList"><fmt:message key="aside.orderList"/></a>
         <a href="/productList"><fmt:message key="aside.productList"/></a>
+        <a href="/simulator"><fmt:message key="aside.simulator"/></a>
         <a href="/logout"><fmt:message key="aside.logout"/></a>
     </nav>
 </div>

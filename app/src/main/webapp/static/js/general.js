@@ -38,7 +38,7 @@ const polygon = L.polygon([
 $.getJSON('/api/stock/getwordcloud',    function (data) {
 	createWordCloud(data);
 });
-	
+
 function createWordCloud(data){
 	Highcharts.chart('map', {
 		  series: [{
@@ -51,4 +51,3 @@ function createWordCloud(data){
 		  }
 		});
 }
-

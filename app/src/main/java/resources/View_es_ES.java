@@ -19,6 +19,7 @@ public class View_es_ES extends ListResourceBundle{
 			{"aside.general", "General"},
 			{"aside.orderList", "Lista de pedidos"},
 			{"aside.productList", "Lista de productos"},
+			{"aside.simulator","Simulador"},
 			{"aside.logout", "Cerrar sesión"},
 			
 			//Body resources

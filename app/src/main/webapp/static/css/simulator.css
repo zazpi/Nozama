@@ -1,0 +1,33 @@
+.simulator {
+    padding: 1rem 1rem;
+}
+
+#robot-1 {
+    background-color: #00D000;
+}
+#robot-2 {
+    background-color: #2f3542;
+}
+
+#robot-3 {
+    background-color: #000;
+}
+
+#robot-4 {
+    background-color: #602020;
+}
+
+#robot-5 {
+    background-color: #121FFE;
+}
+
+.dot {
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid #FF0000;
+    transition: margin-left .1s;
+    display: inline-block;
+}

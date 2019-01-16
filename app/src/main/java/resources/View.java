@@ -19,6 +19,7 @@ public class View extends ListResourceBundle{
 			{"aside.general", "General"},
 			{"aside.orderList", "Order list"},
 			{"aside.productList", "Product list"},
+			{"aside.simulator","Simulator"},
 			{"aside.logout", "Logout"},
 			
 			//Body resources
