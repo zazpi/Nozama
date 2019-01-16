@@ -45,6 +45,7 @@ public class Controller {
 		takeCar(car);		
 		Position finalPos = origin.getPath();
 		goTo(finalPos, car, origin);
+		Util.safeSleep(5000);
 		finalPos = destination.getPath();
 		goTo(finalPos, car, destination);
 		freeCar(car);
@@ -73,12 +74,14 @@ public class Controller {
 					if (position instanceof WorkStation)
 						((WorkStation) position).take(Controller.this, car);
 				}
+				Util.safeSleep(5000);
 			}else {
 				nextPos.take();
 				changePosition(nextPos, car);
 				nextPos = null;
 			}
 		}
+		Util.safeSleep(5000);
 		System.out.println("Car " + car.getId() +
 				" Current: " + car.getCurrentPos().getRow() + car.getCurrentPos().getNum());
 		changePosition(position, car);

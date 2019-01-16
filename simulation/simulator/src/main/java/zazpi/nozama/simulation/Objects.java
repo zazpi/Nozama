@@ -66,4 +66,8 @@ public class Objects {
 			workstations.get(i).take();
 		}
 	}
+
+	public List<Car> getCars() {
+		return cars;
+	}
 }

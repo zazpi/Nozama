@@ -6,33 +6,43 @@ package zazpi.nozama.simulation;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public Objects obj;
+    public Controller controller;
+    public Threads threads;
+
+    public App(Objects obj, Controller controller, Threads threads) {
+        this.obj = obj;
+        this.controller = controller;
+        this.threads = threads;
+    }
+
+    public void createObjects()
     {
         System.out.println( "Hello World!" );
-        Objects obj = new Objects();
-        Controller cont = new Controller(obj);
-        Threads th = new Threads(cont, obj);
-        cont.setThreads(th);
+        controller.setThreads(threads);
         obj.createPositions();
         obj.createCars();
         
         //tareak eskaera bat dagoenean sortuko dira
-        th.createTasks(obj.cars.get(0), obj.workstations.get(3), obj.workstations.get(2));	
-		th.createTasks(obj.cars.get(1), obj.workstations.get(0), obj.workstations.get(5));
-		th.createTasks(obj.cars.get(2), obj.workstations.get(4), obj.workstations.get(0));
-		th.createTasks(obj.cars.get(3), obj.workstations.get(4), obj.workstations.get(3));
-		th.createTasks(obj.cars.get(4), obj.workstations.get(2), obj.workstations.get(5));
-		
-		
-        //remove threads (proba)		
-		for (int i=0;i<th.idTask;i++) {
-			th.removeTasks(i);
-		}
-		Util.safeSleep(1000);
-		for (int i=0;i<th.idTaskToPark;i++) {
-        	th.removeTasksToPark(i);
-        }
+        threads.createTasks(obj.cars.get(0), obj.workstations.get(3), obj.workstations.get(2));
+		threads.createTasks(obj.cars.get(1), obj.workstations.get(0), obj.workstations.get(5));
+		threads.createTasks(obj.cars.get(2), obj.workstations.get(4), obj.workstations.get(0));
+		threads.createTasks(obj.cars.get(3), obj.workstations.get(4), obj.workstations.get(3));
+		threads.createTasks(obj.cars.get(4), obj.workstations.get(2), obj.workstations.get(5));
         
         System.out.println("Everything was better than expected");
     }
+
+    public Objects getObj() {
+        return obj;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public Threads getThreads() {
+        return threads;
+    }
+
 }
