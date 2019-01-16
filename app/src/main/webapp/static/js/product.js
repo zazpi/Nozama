@@ -13,7 +13,7 @@ function loadData(id){
 	    });
 	});
 	//PieChart
-	$.getJSON('/api/stock/getproductwarehousestock?productId=5',    function (data) {
+	$.getJSON('/api/stock/getproductwarehousestock?productId=' + id,    function (data) {
 		createPiechart(data);
 	});
 	//Map
@@ -26,7 +26,7 @@ function loadData(id){
 //Product stock and order history (Timeseries)
 var seriesOptions = [],
     seriesCounter = 0,
-    names = ['Stock'];
+    names = ['Total'];
 
 function createTimeSeries(data) {
 	

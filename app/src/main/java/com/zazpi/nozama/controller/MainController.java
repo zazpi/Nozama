@@ -47,6 +47,11 @@ public class MainController {
     	return "site.product";
     }
     
+    @RequestMapping(value = "/dashboard")
+    public String dashboard() {
+    	return "site.dashboard";
+    }
+    
     @RequestMapping(value = "/productList/addProduct")
     public String addProduct(Model model) {
     	model.addAttribute("productmodel", new ProductModel());
