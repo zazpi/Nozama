@@ -99,6 +99,11 @@ public class OrderController {
 		return Util.prepareCodes(list);
 	}
 	
+	@GetMapping("list-day-month")
+	public @ResponseBody List<Object[]> groupedByDayMonth(){
+		return ordersDao.groupedByDayMonth();
+	}
+	
 	//FIXME: Function should be in a util class
 	public Set<ProductModel> constructProducts(List<Integer> products){
 		Set<ProductModel> set = new HashSet<>();
