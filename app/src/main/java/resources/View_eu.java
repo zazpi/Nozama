@@ -25,8 +25,8 @@ public class View_eu extends ListResourceBundle{
 			
 			//General
 			{"general.pageName", "Orokorra"},
-			{"general.warehouseLocation", "Biltegiaren kokapena"},
-			{"general.warehouseState", "Biltegiaren egoera"},
+			{"general.warehouseLocation", "Biltegien kokapena"},
+			{"general.warehouseState", "Biltegien egoera"},
 			
 			//Order list
 			{"orderList.pageName", "Eskaeren zerrenda"},
@@ -51,18 +51,31 @@ public class View_eu extends ListResourceBundle{
 			
 			//Add product
 			{"addProduct.pageName", "Gehitu produktua"},
-			{"addProduct.productModelId","Produktu ereduaren ID:"},
-			{"addProduct.productModelName","Produktu ereduaren izena:"},
-			{"addProduct.productModelDescription","Produktu ereduaren deskribapena:"},
+			{"addProduct.productModelId","Produktu ID:"},
+			{"addProduct.productModelName","Produktuaren izena:"},
+			{"addProduct.productModelDescription","Produktuaren deskribapena:"},
 			{"addProduct.size","Tamaina"},
 			{"addProduct.x","X:"},
 			{"addProduct.y","Y:"},
 			{"addProduct.z","Z:"},
 			{"addProduct.weight","Pisua:"},
+			{"addProduct.minStock", "Stock minimoa:"},
+			{"addProduct.maxStock", "Stock maximoa:"},
 			{"addProduct.addProduct", "Gehitu produktua"},
 			
+			//Product
+			{"product.id","ID"},
+			{"product.name","Izena"},
+			{"product.description","Deskribapena"},
+			{"product.size","Tamaina"},
+			{"product.weight","Pisua"},
+			{"product.desiredStock","Esperotako stocka"},
+			{"product.history","Historikoa"},
+			{"product.stockPerProduct","Produktuko stocka"},
+			{"product.orderDestination","Eskaeren norakoa"},
+			
 			//Add Stock
-			{"addStock.pageName","Gheitu stocka"},
+			{"addStock.pageName","Gehitu stocka"},
 			{"addStock.quantity","Kopurua:"},
 			{"addStock.warehouse","Biltegia"},
 			{"addStock.shelfPosition","Apalategiaren posizioa"},

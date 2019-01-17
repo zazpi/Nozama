@@ -52,15 +52,28 @@ public class View extends ListResourceBundle{
 			
 			//Add product
 			{"addProduct.pageName", "Add product"},
-			{"addProduct.productModelId","Product model ID:"},
-			{"addProduct.productModelName","Product model name:"},
-			{"addProduct.productModelDescription","Product model description:"},
+			{"addProduct.productModelId","Product ID:"},
+			{"addProduct.productModelName","Product name:"},
+			{"addProduct.productModelDescription","Product description:"},
 			{"addProduct.size","Size"},
 			{"addProduct.x","X:"},
 			{"addProduct.y","Y:"},
 			{"addProduct.z","Z:"},
 			{"addProduct.weight","Weight:"},
+			{"addProduct.minStock", "Maximum stock:"},
+			{"addProduct.maxStock", "Minimum stock:"},
 			{"addProduct.addProduct", "Add product"},
+			
+			//Product
+			{"product.id","ID"},
+			{"product.name","Name"},
+			{"product.description","Description"},
+			{"product.size","Size"},
+			{"product.weight","Weight"},
+			{"product.desiredStock","Desired stock"},
+			{"product.history","History"},
+			{"product.stockPerProduct","Stock per product"},
+			{"product.orderDestination","Order destination"},
 			
 			//Add Stock
 			{"addStock.pageName","Add stock"},
