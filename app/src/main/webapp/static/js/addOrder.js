@@ -8,24 +8,21 @@ $(document).ready(() => {
         history: true,
         pagination: "local",
         paginationSize: 10,
-        rowClick:productClick,
+        movableRows:true,
+        movableRowsReceiver: "insert",
+        movableRowsSender: "delete",
+        movableRowsConnectedTables: "#order-table",
         columns: [
-            {title: "ID", field: "id", align: "center", width: 100,rowClick:productClick},
+            {title: "ID", field: "id", align: "center", width: 100},
             {title: "Name", field: "name"},
-            {title: "Description", field: "description"}
+            {title: "Description", field: "description"},
+            {formatter:printIcon, width:40, align:"center"}
         ],
-        ajaxRequesting:function(url, params){
-        	setTimeout(function(){productsTable.replaceData();},5000);
-        }
+        rowClick:function(e, row){
+        	orderProducts.addRow(row.getData(),true);
+        	row.delete();}
     });
-   
-    function productClick(e,row){
-    	
-    }
-});
-
-$(document).ready(() => {
-    const productsTable = new Tabulator("#order-table", {
+    const orderProducts = new Tabulator("#order-table", {
         height: 301,
         ajaxURL: "",
         layout: "fitColumns",
@@ -34,18 +31,48 @@ $(document).ready(() => {
         history: true,
         pagination: "local",
         paginationSize: 10,
-        rowClick:productClick,
+        movableRows:true,
+        movableRowsReceiver: "insert",
+        movableRowsSender: "delete",
+        movableRowsConnectedTables: "#product-list-table",
         columns: [
             {title: "ID", field: "id", align: "center", width: 100},
             {title: "Name", field: "name"},
-            {title: "Description", field: "description"}
+            {title: "Description", field: "description"},
+            {formatter:printIcon, width:40, align:"center"}
         ],
-        ajaxRequesting:function(url, params){
-        	setTimeout(function(){productsTable.replaceData();},5000);
-        }
+        rowClick:function(e, row){
+        	productsTable.addRow(row.getData(),true);
+        	row.delete();}
     });
-   
-    function productClick(e,row){
-    	
+    var printIcon = function(cell, formatterParams, onRendered){ 
+        return "<i class='fa fa-print'></i>";
+    };
+    $("#searchInput").keyup(function(){
+    	var inp = $("#searchInput");
+    	//productsTable.setFilter("name","like",inp.val());
+    	var val = inp.val();
+    	productsTable.setFilter([[{field:"name", type:"like", value:val},
+    		                      {field:"description", type:"like", value:val},
+    		                      {field:"id", type:"like", value:val}]]);
+    });
+    
+    const redirect = async () => {
+    	window.location.replace("/orderList");
     }
+    $("#submit-btn").click(function(){
+    	destination =  $("#destinationInput").val();
+    	if(destination == "") return;
+    	products = "&products=";
+    	$.each(orderProducts.getData(), function( index, value ) {
+    		if(index != 0)
+    			products = products + ",";
+    		products = products + value.id;
+    	});
+    	url = "/api/order/new?destination=" + destination + products;
+    	console.log(url);
+    	$.get(url,redirect());
+    	
+    	
+    });
 });

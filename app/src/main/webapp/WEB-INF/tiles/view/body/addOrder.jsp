@@ -5,13 +5,12 @@
 <link rel="stylesheet" href="/static/css/addOrder.css">
 <fmt:bundle basename="resources.View">
 <div class=content id="addOrder">
-	<form:form method="POST"
-    	action="/api/product/add" modelAttribute="orders"
-    	id="addorder" cssClass="product-formfill">
 		<header>
 			<h2><fmt:message key="addOrder.pageName"/></h2>
 		</header>
 		<div class="form-container">
+			<label id="destinationLabel"><fmt:message key="addOrder.destination"/></label>
+			<input id="destinationInput" required="required"/>
 			<label id="searchLabel"><fmt:message key="addOrder.searchProduct"/></label>
 			<input id="searchInput"/>
 		</div>
@@ -20,7 +19,6 @@
 			<div id="order-table"></div>
 		</div>
 		<input type="submit" value="<fmt:message key='addOrder.addOrder'/>" id="submit-btn"/>
-	</form:form>
 	</div>
 </fmt:bundle>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

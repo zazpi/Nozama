@@ -42,8 +42,7 @@ public class MainController {
     }
     
     @RequestMapping(value = "/orderList/addOrder")
-    public String addOrder(Model model) {
-        model.addAttribute("orders", new Order());
+    public String addOrder() {
         return "site.addOrder";
     }
 
