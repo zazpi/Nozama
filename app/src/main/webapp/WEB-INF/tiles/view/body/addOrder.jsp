@@ -15,8 +15,14 @@
 			<input id="searchInput"/>
 		</div>
 		<div class="table-container">
-			<div id="product-list-table"></div>
-			<div id="order-table"></div>
+			<div id="productTable">
+				<p><fmt:message key="addOrder.productList"/></p>
+				<div id="product-list-table"></div>
+			</div>
+			<div id="orderTable">
+				<p><fmt:message key="addOrder.order"/></p>
+				<div id="order-table"></div>
+			</div>
 		</div>
 		<input type="submit" value="<fmt:message key='addOrder.addOrder'/>" id="submit-btn"/>
 	</div>

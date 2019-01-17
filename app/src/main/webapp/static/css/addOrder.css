@@ -52,10 +52,23 @@
 	grid-template-areas: "products order";
 }
 
-#product-list-table{
+#productTable{
 	grid-area: products;
 }
 
-#order-table{
+#orderTable{
 	grid-area: order;
+}
+
+#productTable,
+#orderTable{
+	padding: 1em;
+}
+
+#productTable > p,
+#orderTable > p{
+	text-align: center;
+	color: #2f3542;
+	font-weight: bold;
+	padding-bottom: 1em;
 }

@@ -41,7 +41,7 @@ const ordersProductsTable = new Tabulator("#subOrder-list-table", {
         return header;
     },
     columns: [
-        {title: "Suborder ID", field: "subOrderId", align: "center", width: 100},
+        {title: "Suborder ID", field: "subOrderId", align: "center", width: 140},
         {title: "Product ID", field: "productModelId", align: "center"},
         {title: "Name", field: "name"},
         {title: "Ready", field: "ready", formatter: "tickCross"}
