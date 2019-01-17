@@ -24,8 +24,9 @@ CREATE TABLE productModel (
 );
 
 CREATE TABLE ordersProducts (
- subOrderID         INT,
- productModelID  INT
+ subOrderID      INT,
+ productModelID  INT,
+ ready           BOOLEAN DEFAULT false
 );
 
 CREATE TABLE shelf (

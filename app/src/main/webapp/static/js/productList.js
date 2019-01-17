@@ -14,7 +14,10 @@ $(document).ready(() => {
             {title: "Name", field: "name"},
             {title: "Description", field: "description"},
             {title: "Stock", field: "stock"}
-        ]
+        ],
+        ajaxRequesting:function(url, params){
+        	setTimeout(function(){productsTable.replaceData();},5000);
+        }
     });
    
     function productClick(e,row){
