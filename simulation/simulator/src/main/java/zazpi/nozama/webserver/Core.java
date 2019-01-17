@@ -1,11 +1,7 @@
 package zazpi.nozama.webserver;
 
-import zazpi.nozama.simulation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static spark.Spark.*;
+import static spark.Spark.before;
+import static spark.Spark.options;
 
 public class Core {
 

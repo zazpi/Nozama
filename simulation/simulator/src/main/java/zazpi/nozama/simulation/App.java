@@ -6,9 +6,9 @@ package zazpi.nozama.simulation;
  */
 public class App 
 {
-    public Objects obj;
-    public Controller controller;
-    public Threads threads;
+    private Objects obj;
+    private Controller controller;
+    private Threads threads;
 
     public App(Objects obj, Controller controller, Threads threads) {
         this.obj = obj;

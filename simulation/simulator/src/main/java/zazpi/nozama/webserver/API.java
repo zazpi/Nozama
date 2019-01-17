@@ -1,7 +1,6 @@
 package zazpi.nozama.webserver;
 
 import static spark.Spark.get;
-import static spark.Spark.post;
 
 import java.util.List;
 
@@ -18,17 +17,13 @@ public class API {
     private App simulator;
     private List<Car> cars;
 
-    public API() {
-    }
-
     public void startup() {
-
-        obj = new Objects();
-         cont = new Controller(obj);
-         th = new Threads(cont);
-         simulator = new App(obj,cont,th);
-        cars = simulator.getObj().getCars();
-        simulator.createObjects();
+		obj = new Objects();
+		cont = new Controller(obj);
+		th = new Threads(cont);
+		simulator = new App(obj,cont,th);
+		cars = simulator.getObj().getCars();
+		simulator.createObjects();
     }
 
     public void registerEndpoints() {

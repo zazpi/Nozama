@@ -15,8 +15,8 @@ public class Objects {
 	 * @param parkings The list of the parkings
 	 * @param cars The list of the cars
 	 **/
-	public static int NUM_CARS = 5;
-	public static int NUM_POSITIONS = 5;
+	public final static int NUM_CARS = 5;
+	public final static int NUM_POSITIONS = 5;
 	List<Position> positions;
 	List<WorkStation> workstations;
 	List<Parking> parkings;

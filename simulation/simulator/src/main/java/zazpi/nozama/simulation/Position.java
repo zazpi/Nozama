@@ -47,6 +47,7 @@ public class Position {
 			}
 			available = false;
 		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
 			e.printStackTrace();
 		}
 	}
@@ -64,13 +65,9 @@ public class Position {
 	 **/
 	public synchronized void free() {
 		available = true;
-		notify();
+		notifyAll();
 	}
 	
-	/**
-	 * It is used to compare the different positions
-	 * @param boolean: this returns if they are the same or not
-	 **/
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -85,8 +82,9 @@ public class Position {
 		if (row == null) {
 			if (other.row != null)
 				return false;
-		} else if (!row.equals(other.row))
+		} else if (!row.equals(other.row)) {
 			return false;
+		}
 		return true;
 	}
 

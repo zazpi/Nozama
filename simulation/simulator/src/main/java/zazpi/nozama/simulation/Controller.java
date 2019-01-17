@@ -46,7 +46,7 @@ public class Controller {
 			try {
 				condNotBusy.await();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				Thread.currentThread().interrupt();
 				e.printStackTrace();
 			}
 		}
@@ -102,7 +102,8 @@ public class Controller {
 	 * @param position: workstation or parking
 	 */
 	public void goTo(Position finalPos, Car car, Position position) {
-		Position currentPos, nextPos = null;
+		Position currentPos;
+		Position nextPos = null;
 		
 		ensureItsInPath(car);
 		
@@ -113,10 +114,8 @@ public class Controller {
 				System.out.println("Car " + car.getId() +
 						" Current: " + currentPos.getRow() + currentPos.getNum() +
 						" Next: " + nextPos.getRow() + nextPos.getNum());
-				if (nextPos == finalPos) {
-					if (position instanceof WorkStation)
+				if ((nextPos == finalPos) && (position instanceof WorkStation))
 						((WorkStation) position).take(Controller.this, car);
-				}
 				Util.safeSleep(5000);
 			}else {
 				nextPos.take();
@@ -235,14 +234,13 @@ public class Controller {
 	 * @return parking
 	 */
 	public synchronized Parking chooseBestParking (Car car, String row, int num) {
-		String parkingRow = "";
 		int parkingNum = num;
 		Parking parking;
 		
 		if (row.equals("AW")) {
-			parking = carInRowA(num, parkingRow, parkingNum);
+			parking = carInRowA(num, parkingNum);
 		}else {
-			parking = carInRowB(num, parkingRow, parkingNum);
+			parking = carInRowB(num, parkingNum);
 		}
 		parking.setCar(car);
 			
@@ -252,14 +250,14 @@ public class Controller {
 	/**
 	 * After calling chooseBestParking method, it will do this if the workstation is in the
 	 * first row
-	 * @param car
-	 * @param parking's row
+	 * @param workstation's column
 	 * @param parking's column
 	 * @return parking
 	 */
-	public Parking carInRowA (int num, String parkingRow, int parkingNum) {
+	public Parking carInRowA (int num, int parkingNum) {
+		String parkingRow = "";
 		boolean available;
-		boolean bool = (num == 0)?true:false;
+		boolean bool = (num == 0);
 		
 		if (num == 0) {
 			parkingRow = "BP";
@@ -297,14 +295,14 @@ public class Controller {
 	/**
 	 * After calling chooseBestParking method, it will do this if the workstation is in the
 	 * second row
-	 * @param car
-	 * @param workstation's row
 	 * @param workstation's column
+	 * @param parking's column
 	 * @return parking
 	 */
-	public Parking carInRowB (int num, String parkingRow, int parkingNum) {
+	public Parking carInRowB (int num, int parkingNum) {
+		String parkingRow = "";
 		boolean available;
-		boolean bool = (num == 2)?true:false;
+		boolean bool = (num == 2);
 		
 		if (num == 2) {
 			parkingRow = "AP";

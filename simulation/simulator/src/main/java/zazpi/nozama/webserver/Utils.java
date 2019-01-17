@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
+	
+	private Utils () {}
 
     public static List<Object []> getCarsPositions(List<Car> cars) {
         List<Object []> objects = new ArrayList<>();
