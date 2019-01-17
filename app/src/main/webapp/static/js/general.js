@@ -47,7 +47,7 @@ function createWordCloud(data){
 		    name: 'Stock'
 		  }],
 		  title: {
-		    text: 'Wordcloud of stock'
+		    text: ''
 		  }
 		});
 }

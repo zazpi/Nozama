@@ -26,8 +26,7 @@ public class View_es_ES extends ListResourceBundle{
 			
 			//General
 			{"general.pageName", "General"},
-			{"general.warehouseLocation", "Ubicación del almacén"},
-			{"general.warehouseState", "Estado del almacén"},
+			{"general.info", "Lo más vendido"},
 			
 			//Order list
 			{"orderList.pageName", "Lista de pedidos"},
@@ -72,7 +71,7 @@ public class View_es_ES extends ListResourceBundle{
 			{"product.weight","Peso"},
 			{"product.desiredStock","Stock deseado"},
 			{"product.history","Histórico"},
-			{"product.stockPerProduct","Stock por producto"},
+			{"product.stockPerProduct","Stock por almacén"},
 			{"product.orderDestination","Destino de los pedidos"},
 			
 			//Add Stock

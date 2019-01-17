@@ -26,8 +26,7 @@ public class View extends ListResourceBundle{
 			
 			//General
 			{"general.pageName", "General"},
-			{"general.warehouseLocation", "Warehouse location"},
-			{"general.warehouseState", "Warehouse state"},
+			{"general.info", "Best seller"},
 			
 			//Order list
 			{"orderList.pageName", "Order list"},
@@ -72,7 +71,7 @@ public class View extends ListResourceBundle{
 			{"product.weight","Weight"},
 			{"product.desiredStock","Desired stock"},
 			{"product.history","History"},
-			{"product.stockPerProduct","Stock per product"},
+			{"product.stockPerProduct","Stock per warehouse"},
 			{"product.orderDestination","Order destination"},
 			
 			//Add Stock

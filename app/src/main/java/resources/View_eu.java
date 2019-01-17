@@ -25,8 +25,7 @@ public class View_eu extends ListResourceBundle{
 			
 			//General
 			{"general.pageName", "Orokorra"},
-			{"general.warehouseLocation", "Biltegien kokapena"},
-			{"general.warehouseState", "Biltegien egoera"},
+			{"general.info", "Produktu salduenak"},
 			
 			//Order list
 			{"orderList.pageName", "Eskaeren zerrenda"},
@@ -71,7 +70,7 @@ public class View_eu extends ListResourceBundle{
 			{"product.weight","Pisua"},
 			{"product.desiredStock","Esperotako stocka"},
 			{"product.history","Historikoa"},
-			{"product.stockPerProduct","Produktuko stocka"},
+			{"product.stockPerProduct","Biltegietako stocka"},
 			{"product.orderDestination","Eskaeren norakoa"},
 			
 			//Add Stock

@@ -6,20 +6,10 @@
 <section class="general">
     <div class="row">
     <div class="header-content">
-        <h2><fmt:message key="general.warehouseLocation"/></h2>
+        <h2><fmt:message key="general.info"/></h2>
         <div class="map-container">
             <div id="map"></div>
         </div>
-    </div>
-    <br />
-    <div class="dashboards-section">
-        <header>
-            <h2><fmt:message key="general.warehouseState"/></h2>
-        </header>
-        <div class="dashboards">
-            <div id="heatmap"></div>
-        </div>
-    </div>
     </div>
 </section>
 </fmt:bundle>
