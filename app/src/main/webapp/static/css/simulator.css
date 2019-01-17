@@ -122,11 +122,11 @@
 }
 
 .wp-position__workstation {
-    border-color: #badc58;
+    border-color: #130f40;
 }
 
 .wp-position__parking {
-    border-color: #130f40;
+    border-color: #badc58;
 }
 
 .legend {
@@ -182,11 +182,11 @@
 }
 
 .legend__parking {
-    background-color: #badc58;
+    background-color: #130f40;
 }
 
 .legend__workstation {
-    background-color: #130f40;
+    background-color: #badc58;
 }
 
 .legend__robot {
