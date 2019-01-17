@@ -84,9 +84,8 @@ public class ControllerTest {
 	Position position;
 	@Before
 	public void prepareCarTest () {
-		position = new Position("A", 0, true);
-		car = new Car(0, position);
-		car.setBusy(false);
+		position = new Position("A", 5, true);
+		car = new Car(5, position);
 	}
 	@Test
 	public void takeNotBusyCarTest () {
@@ -99,77 +98,114 @@ public class ControllerTest {
 		assertFalse(car.isBusy());
 	}
 	
-	@RunWith(Parameterized.class)
-	public static class chooseBestParkingTest {
-		@Parameters
-		public static Collection<Object[]> data() {
-	        return Arrays.asList(new Object[][] {
-	        	// car in BW0
-                {new Car(0, new WorkStation("BW",0,false,new Position("B",0,true))),
-                	"BW",0, new Parking("BP",0,true,new Position("B",1,true))},
-                {new Car(0, new WorkStation("BW",0,false,new Position("B",0,true))),
-                    	"BW",0, new Parking("BP",1,true,new Position("B",3,true))},
-                {new Car(0, new WorkStation("BW",0,false,new Position("B",0,true))),
-                        	"BW",0, new Parking("AP",0,true,new Position("A",1,true))},
-                {new Car(0, new WorkStation("BW",0,false,new Position("B",0,true))),
-                            	"BW",0, new Parking("AP",1,true,new Position("A",3,true))}            	
-          });
-		}
-		
-		Car car;
-		String workstatioRow;
-		int workstatioNum;
-		Parking pResult;
-		
-		public chooseBestParkingTest (Car car, String workstationRow, int workstationNum,
-				Parking pResult) {
-			this.car = car;
-			this.workstatioRow = workstationRow;
-			this.workstatioNum = workstationNum;
-			this.pResult = pResult;
-		}
-		
-		Controller controller;
-		Objects objects;
-		Parking parking1, parking2, parking3;
-		@Before
-		public void before() {
-			objects = new Objects();
-			objects.createPositions();
-			controller = new Controller(objects);
-		}
-		
-		@Test
-		public void allParkingFreeTest () {
-			assertEquals(pResult,controller.chooseBestParking(car, workstatioRow, workstatioNum));
-		}
-		
-		@Test
-		public void firstParkingOccupiedTest () {
-			parking1 = objects.getParking("BP", 0);
-			parking1.take();
-			assertEquals(pResult,controller.chooseBestParking(car, workstatioRow, workstatioNum));
-		}
-		
-		@Test
-		public void secondParkingOccupiedTest () {
-			parking1 = objects.getParking("BP", 0);
-			parking1.take();
-			parking2 = objects.getParking("BP", 1);
-			parking2.take();
-			assertEquals(pResult,controller.chooseBestParking(car, workstatioRow, workstatioNum));
-		}
-		
-		@Test
-		public void thirdParkingOccupiedTest () {
-			parking1 = objects.getParking("BP", 0);
-			parking1.take();
-			parking2 = objects.getParking("BP", 1);
-			parking2.take();
-			parking3 = objects.getParking("AP", 0);
-			parking3.take();
-			assertEquals(pResult,controller.chooseBestParking(car, workstatioRow, workstatioNum));
-		}
+	@Test
+	public void changePositionTest () {
+		Position newPos = new Position("AB", 6, true);
+		assertEquals(position, car.getCurrentPos());
+		controller.changePosition(newPos, car);
+		assertTrue(position.available());
+		assertEquals(newPos, car.getCurrentPos());
+	}
+	
+	Parking parking;
+	WorkStation workstation;
+	Position position1;
+	
+	@Before
+	public void prepareEnsureItsInPathTest () {
+		position1 = new Position("A", 6, true);
+		parking = new Parking("AP", 2, false, position1);
+		workstation = new WorkStation("AW", 3, false, position);
+	}
+	@Test
+	public void ensureItsInPathTestFromParking () {
+		car.setCurrentPos(parking);
+		parking.setCar(car);
+		controller.ensureItsInPath(car);
+		assertEquals(position1, car.getCurrentPos());
+		assertTrue(parking.available());
+	}	
+	@Test
+	public void ensureItsInPathTestFromWorkstation () {
+		car.setCurrentPos(workstation);
+		workstation.setCar(car);
+		controller.ensureItsInPath(car);
+		assertEquals(position, car.getCurrentPos());
+		assertTrue(workstation.available());
+	}
+	@Test
+	public void ensureItsInPathTestFromPath () {
+		Position pos = new Position("B", 5, true);
+		car.setCurrentPos(pos);
+		controller.ensureItsInPath(car);
+		assertEquals(pos, car.getCurrentPos());
+	}
+	
+	Parking ap0, ap1, bp0, bp1;
+	WorkStation aw0, aw1, aw2, bw0, bw1, bw2;
+	
+	@Before
+	public void prepareChooseBestParkingTest () {
+		ap0 = new Parking("AP", 0, true, new Position("A",1,true));
+		ap1 = new Parking("AP", 1, true, new Position("A",3,true));
+		bp0 = new Parking("BP", 0, true, new Position("B",1,true));
+		bp1 = new Parking("BP", 1, true, new Position("B",3,true));
+		aw0 = new WorkStation("AW",0,false,new Position("A",0,true));
+		aw1 = new WorkStation("AW",1,false,new Position("A",2,true));
+		aw2 = new WorkStation("AW",2,false,new Position("A",4,true));
+		bw0 = new WorkStation("BW",0,false,new Position("B",0,true));
+		bw1 = new WorkStation("BW",1,false,new Position("B",2,true));
+		bw2 = new WorkStation("BW",2,false,new Position("B",4,true));
+	}
+	
+	@Test
+	public void carInAW0ChooseBestParkingTest () {
+		car = new Car(0, aw0);
+		assertEquals(bp0,controller.chooseBestParking(car, "AW", 0));
+		assertEquals(bp1, controller.chooseBestParking(car, "AW", 0));
+		assertEquals(ap0, controller.chooseBestParking(car, "AW", 0));
+		assertEquals(ap1, controller.chooseBestParking(car, "AW", 0));
+	}	
+	@Test
+	public void carInAW1ChooseBestParkingTest () {
+		car = new Car(0, aw1);
+		assertEquals(ap0,controller.chooseBestParking(car, "AW", 1));
+		assertEquals(bp1, controller.chooseBestParking(car, "AW", 1));		
+		assertEquals(bp0, controller.chooseBestParking(car, "AW", 1));
+		assertEquals(ap1, controller.chooseBestParking(car, "AW", 1));
+	}
+	@Test
+	public void carInAW2ChooseBestParkingTest () {
+		car = new Car(0, aw2);
+		assertEquals(ap1,controller.chooseBestParking(car, "AW", 2));
+		assertEquals(ap0, controller.chooseBestParking(car, "AW", 2));		
+		assertEquals(bp1, controller.chooseBestParking(car, "AW", 2));
+		assertEquals(bp0, controller.chooseBestParking(car, "AW", 2));
+	}
+	
+	@Test
+	public void carInBW0ChooseBestParkingTest () {
+		car = new Car(0, bw0);
+		assertEquals(bp0,controller.chooseBestParking(car, "BW", 0));
+		assertEquals(bp1, controller.chooseBestParking(car, "BW", 0));
+		assertEquals(ap0, controller.chooseBestParking(car, "BW", 0));
+		assertEquals(ap1, controller.chooseBestParking(car, "BW", 0));
+	}	
+	@Test
+	public void carInBW1ChooseBestParkingTest () {
+		car = new Car(0, bw1);
+		assertEquals(bp1, controller.chooseBestParking(car, "BW", 1));
+		assertEquals(ap0, controller.chooseBestParking(car, "BW", 1));
+		assertEquals(ap1, controller.chooseBestParking(car, "BW", 1));
+		assertEquals(bp0, controller.chooseBestParking(car, "BW", 1));
+	}	
+	@Test
+	public void carInBW2ChooseBestParkingTest () {
+		car = new Car(0, bw2);
+		assertEquals(ap1, controller.chooseBestParking(car, "BW", 2));
+		assertEquals(ap0, controller.chooseBestParking(car, "BW", 2));
+		assertEquals(bp1, controller.chooseBestParking(car, "BW", 2));
+		assertEquals(bp0, controller.chooseBestParking(car, "BW", 2));
 	}
 
 }

@@ -38,6 +38,11 @@ public class View_es_ES extends ListResourceBundle{
 			{"orderList.edit", "Editar"},
 			{"orderList.add", "Añadir"},
 			
+			//Add order
+			{"addOrder.pageName","Añadir pedido"},
+			{"addOrder.searchProduct","Buscar producto: "},
+			{"addOrder.addOrder","Añadir producto"},
+			
 			//Product list
 			{"productList.pageName", "Lista de productos"},
 			{"productList.id", "ID"},

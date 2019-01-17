@@ -38,6 +38,11 @@ public class View extends ListResourceBundle{
 			{"orderList.edit", "Edit"},
 			{"orderList.add", "Add"},
 			
+			//Add order
+			{"addOrder.pageName","Add order"},
+			{"addOrder.searchProduct","Search product: "},
+			{"addOrder.addOrder","Add order"},
+			
 			//Product list
 			{"productList.pageName", "Product list"},
 			{"productList.id", "ID"},

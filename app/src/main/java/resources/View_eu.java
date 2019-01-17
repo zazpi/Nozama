@@ -37,6 +37,11 @@ public class View_eu extends ListResourceBundle{
 			{"orderList.edit", "Editatu"},
 			{"orderList.add", "Gehitu"},
 			
+			//Add order
+			{"addOrder.pageName","Gehitu eskaera"},
+			{"addOrder.searchProduct","Bilatu produktua: "},
+			{"addOrder.addOrder","Gehitu eskaera"},
+			
 			//Product list
 			{"productList.pageName", "Produktuen zerrenda"},
 			{"productList.id", "ID"},

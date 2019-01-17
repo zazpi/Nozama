@@ -1,6 +1,14 @@
 package zazpi.nozama.simulation;
 
+/**
+ * The car will move through different positions to reach its destination
+ **/
 public class Position {
+	/**
+	 * @param row: it indicates in which row it is
+	 * @param num: it indicates in which column it is
+	 * @param available: it indicates if the position is available or not
+	 **/
 	String row;
 	int num;
 	boolean available;
@@ -11,14 +19,25 @@ public class Position {
 		this.available = available;
 	}
 	
+	/**
+	 * Get the column of the position
+	 * @return num
+	 */
 	public int getNum() {
 		return num;
 	}
 	
+	/**
+	 * Get the row of the position
+	 * @return row
+	 **/
 	public String getRow() {
 		return row;
 	}
-
+	
+	/**
+	 * If a car uses this position, other cars can't use it until the car leaves it
+	 **/
 	public synchronized void take() {
 		try {
 			while(!available) {
@@ -32,25 +51,26 @@ public class Position {
 		}
 	}
 	
-	public synchronized boolean available() {
-		
+	/**
+	 * Get the availability of the position
+	 * @return available
+	 **/
+	public synchronized boolean available() {		
 		return available;
 	}
-	
+	 
+	/**
+	 * After leaving the position, it will be available for other cars
+	 **/
 	public synchronized void free() {
 		available = true;
 		notify();
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + num;
-		result = prime * result + ((row == null) ? 0 : row.hashCode());
-		return result;
-	}
-
+	
+	/**
+	 * It is used to compare the different positions
+	 * @param boolean: this returns if they are the same or not
+	 **/
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

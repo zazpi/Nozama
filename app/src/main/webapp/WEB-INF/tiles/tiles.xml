@@ -29,6 +29,11 @@
 			value="/WEB-INF/tiles/view/body/orderList.jsp" />
 	</definition>
 	
+	<definition name="site.addOrder" extends="layout.basic">
+		<put-attribute name="body"
+			value="/WEB-INF/tiles/view/body/addOrder.jsp" />
+	</definition>
+	
 	<definition name="site.productList" extends="layout.basic">
 		<put-attribute name="body"
 			value="/WEB-INF/tiles/view/body/productList.jsp" />
@@ -62,16 +67,6 @@
 	<definition name="site.editProduct" extends="layout.basic">
 		<put-attribute name="body"
 					   value="/WEB-INF/tiles/view/body/editProduct.jsp" />
-	</definition>
-
-	<definition name="site.crud" extends="layout.basic">
-		<put-attribute name="body"
-			value="/WEB-INF/tiles/view/body/crud.jsp" />
-	</definition>
-
-	<definition name="site.admin" extends="layout.basic">
-		<put-attribute name="body"
-			value="/WEB-INF/tiles/view/body/admin.jsp" />
 	</definition>
 
 	<definition name="site.forbidden" extends="layout.basic">
