@@ -2,35 +2,14 @@
     padding: 1rem 1rem;
 }
 
-#robot-1 {
-    background-color: #00D000;
-}
-#robot-2 {
-    background-color: #2f3542;
-}
-
-#robot-3 {
-    background-color: #000;
-}
-
-#robot-4 {
-    background-color: #602020;
-}
-
-#robot-5 {
-    background-color: #121FFE;
-}
-
 .dot {
     width: 20px;
     height: 20px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    border: 1px solid #FF0000;
     transition: margin-left .1s;
     display: inline-block;
-    background-color: #00FF00;
 }
 
 .workstation-container {
@@ -70,31 +49,48 @@
     flex-grow: 1;
 }
 
+.v-rows,
 .rows {
     display: flex;
     position: absolute;
     justify-content: center;
-    width: 100%;
-    height: 20px;
     align-items: center;
     flex-grow: 1;
-
 }
 
-#AW-1,
-#AW-2,
-#AW-3,
-#AP-1,
-#AP-2 {
+.rows {
+    width: 100%;
+    height: 20px;
+}
+
+.v-rows {
+    width: 20px;
+    height: 100%;
+}
+
+#A0,
+#A1,
+#A2,
+#A3,
+#A4 {
  top: -20px;
 }
 
-#BW-4,
-#BW-5,
-#BW-6,
-#BP-2,
-#BP-1 {
+#B0,
+#B1,
+#B2,
+#B3,
+#B4 {
     bottom: -20px;
+}
+
+#AB0,
+#AB1,
+#AB2,
+#AB3,
+#AB4,
+#AB5 {
+    left: -20px;
 }
 
 .workpark-posts {
@@ -119,6 +115,10 @@
     border: 30px solid #ccc;
     color: #2f3542;
     margin: 1rem;
+}
+
+.wp-position span {
+    margin: 0 auto;
 }
 
 .wp-position__workstation {
@@ -198,22 +198,27 @@
     border-radius: 50%;
 }
 
-.rb-1 {
+#l-rb0,
+#rb0 {
     background-color: #f6b93b;
 }
 
-.rb-2 {
+#l-rb1,
+#rb1 {
     background-color: #e55039;
 }
 
-.rb-3 {
+#l-rb2,
+#rb2 {
     background-color: #4a69bd;
 }
 
-.rb-4 {
+#l-rb3,
+#rb3 {
     background-color: #60a3bc;
 }
 
-.rb-5 {
+#l-rb4,
+#rb4 {
     background-color: #78e08f;
 }

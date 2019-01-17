@@ -30,11 +30,13 @@ function drawHeatMap(data){
 		    text: ''
 		  },
 		  xAxis: {
-		    categories: ['null','January', 'Febrary', 'March', 'April', 'May', 'June',
+		    categories: ['January', 'Febrary', 'March', 'April', 'May', 'June',
 		    	'July', 'August', 'September', 'October','November','December']
 		  },
 		  yAxis: {
-		    categories: ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
+		    categories: ['1','2', '3', '4', '5', '6', '7','8','9','10',
+		    	'11','12', '13', '14', '15', '16', '17','18','19','20',
+		    	'21','22', '23', '24', '25', '26', '27','28','29','30','31'],
 		    title: null
 		  },
 		  colorAxis: {
@@ -52,8 +54,8 @@ function drawHeatMap(data){
 		  },
 		  tooltip: {
 		    formatter: function () {
-		      return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
-		        this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+		      return '<b>' + this.series.yAxis.categories[this.point.y] + " "+ this.series.xAxis.categories[this.point.x] + '</b>' +
+		          '<br>N orders: <br><b>' + this.point.value + '</b>';
 		    }
 		  },
 		  series: [{
@@ -61,7 +63,7 @@ function drawHeatMap(data){
 		    borderWidth: 1,
 		    data:data,
 		    dataLabels: {
-		      enabled: true,
+		      enabled: false,
 		      color: '#000000'
 		    }
 		  }]
@@ -155,10 +157,7 @@ function createGauge(data,container){
 	        dataLabels: {
 	            format: '<div style="text-align:center"><span style="font-size:50px;color:' +
 	                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || '#2f3542') + '">{y:.1f}%</span><br/>' +
-	                   '<span style="font-size:12px;color:silver">Ocupation</span></div>'
-	        },
-	        tooltip: {
-	            valueSuffix: ' revolutions/min'
+	                   '<span style="font-size:12px;color:silver">Capacity</span></div>'
 	        }
 	    }]
 

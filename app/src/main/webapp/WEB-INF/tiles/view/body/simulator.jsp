@@ -11,49 +11,57 @@
             </header>
             <div class="workstation-grid">
                 <div class="workpark-posts">
-                    <div class="wp-position wp-position__workstation">
+                    <div id="AW0" class="wp-position wp-position__workstation">
                     </div>
-                    <div class="wp-position wp-position__parking">
+                    <div id="AP0" class="wp-position wp-position__parking">
                     </div>
-                    <div class="wp-position wp-position__workstation">
+                    <div id="AW1" class="wp-position wp-position__workstation">
                     </div>
-                    <div class="wp-position wp-position__parking">
+                    <div id="AP1" class="wp-position wp-position__parking">
                     </div>
-                    <div class="wp-position wp-position__workstation">
+                    <div id="AW2" class="wp-position wp-position__workstation">
                     </div>
                 </div>
                 <div class="workstations">
                     <div id="workstation-1" class="workstation">
-                        <div id="AW-3" class="rows"></div>
-                        <div id="BW-4" class="rows"></div>
+                        <div id="AB0" class="v-rows"></div>
+                        <div id="A0" class="rows"></div>
+                        <div id="B0" class="rows"></div>
+
                     </div>
                     <div id="workstation-2" class="workstation">
-                        <div id="AP-1" class="rows"></div>
-                        <div id="BP-1" class="rows"></div>
+                        <div id="AB1" class="v-rows"></div>
+                        <div id="A1" class="rows"></div>
+                        <div id="B1" class="rows"></div>
+
                     </div>
                     <div id="workstation-3" class="workstation">
-                        <div id="AW-2" class="rows"></div>
-                        <div id="BW-5" class="rows"></div>
+                        <div id="AB2" class="v-rows"></div>
+                        <div id="A2" class="rows"></div>
+                        <div id="B2" class="rows"></div>
+
                     </div>
                     <div id="workstation-4" class="workstation">
-                        <div id="AP-2" class="rows"></div>
-                        <div id="BP-2" class="rows"></div>
+                        <div id="AB3" class="v-rows"></div>
+                        <div id="A3" class="rows"></div>
+                        <div id="B3" class="rows"></div>
                     </div>
                     <div id="workstation-5" class="workstation">
-                        <div id="AW-1" class="rows"></div>
-                        <div id="BW-6" class="rows"></div>
+                        <div id="A4" class="rows"></div>
+                        <div id="B4" class="rows"></div>
+                        <div id="AB4" class="v-rows"></div>
                     </div>
                 </div>
                 <div class="workpark-posts">
-                    <div class="wp-position wp-position__workstation">
+                    <div id="BW0" class="wp-position wp-position__workstation">
                     </div>
-                    <div class="wp-position wp-position__parking">
+                    <div id="BP0" class="wp-position wp-position__parking">
                     </div>
-                    <div class="wp-position wp-position__workstation">
+                    <div id="BW1" class="wp-position wp-position__workstation">
                     </div>
-                    <div class="wp-position wp-position__parking">
+                    <div id="BP2" class="wp-position wp-position__parking">
                     </div>
-                    <div class="wp-position wp-position__workstation">
+                    <div id="BW2" class="wp-position wp-position__workstation">
                     </div>
                 </div>
             </div>
@@ -77,11 +85,11 @@
                         <h4><span>Robots: </span></h4>
                     </header>
                     <ul class="robots-grid">
-                        <li><p>Robot 1: <b class="legend__robot rb-1"></b></p></li>
-                        <li><p>Robot 2: <b class="legend__robot rb-2"></b></p></li>
-                        <li><p>Robot 3: <b class="legend__robot rb-3"></b></p></li>
-                        <li><p>Robot 4: <b class="legend__robot rb-4"></b></p></li>
-                        <li><p>Robot 5: <b class="legend__robot rb-5"></b></p></li>
+                        <li><p>Robot 1: <b id="l-rb0" class="legend__robot"></b></p></li>
+                        <li><p>Robot 2: <b id="l-rb1" class="legend__robot"></b></p></li>
+                        <li><p>Robot 3: <b id="l-rb2" class="legend__robot"></b></p></li>
+                        <li><p>Robot 4: <b id="l-rb3" class="legend__robot"></b></p></li>
+                        <li><p>Robot 5: <b id="l-rb4" class="legend__robot"></b></p></li>
                     </ul>
                 </div>
             </div>

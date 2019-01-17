@@ -21,8 +21,10 @@ public class Threads {
 	Controller controller;	
 	List<Task> tasks;
 	List<Park> tasksToPark;
-	List<Thread> threadsTasks, threadsTasksToPark;
-	int idTask, idTaskToPark;
+	List<Thread> threadsTasks;
+	List<Thread> threadsTasksToPark;
+	int idTask;
+	int idTaskToPark;
 	
 	public Threads (Controller controller) {
 		this.controller = controller;
@@ -46,6 +48,18 @@ public class Threads {
 		}
 		return null;
 	}
+	/**
+	 * Get a task thread depending of its name
+	 * @param id
+	 * @return thread
+	 */
+	public Thread getTaskThread (int id) {
+		for (Thread th : threadsTasks) {
+			if (Integer.toString(id).equals(th.getName()))
+				return th;
+		}
+		return null;
+	}
 	
 	/**
 	 * Get a task to park depending of its id
@@ -59,6 +73,18 @@ public class Threads {
 		}
 		return null;
 	}
+	/**
+	 * Get a task to park thread depending of its name
+	 * @param id
+	 * @return thread
+	 */
+	public Thread getTaskToParkThread (int id) {
+		for (Thread th : threadsTasksToPark) {
+			if (Integer.toString(id).equals(th.getName()))
+				return th;
+		}
+		return null;
+	}
 	
 	/**
 	 * It will create a thread to move a car from a workstation to another
@@ -68,7 +94,7 @@ public class Threads {
 	 */
 	public synchronized void createTasks (Car car, WorkStation origin, WorkStation destination) {
 		tasks.add(new Task(idTask, car, controller, origin, destination));
-		threadsTasks.add(new Thread(tasks.get(idTask)));
+		threadsTasks.add(new Thread(tasks.get(idTask), Integer.toString(idTask)));
 		threadsTasks.get(idTask).start();
 		idTask++;
 	}
@@ -80,10 +106,10 @@ public class Threads {
 		try {
 			threadsTasks.get(id).join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			threadsTasks.get(id).interrupt();
 			e.printStackTrace();
 		}
-		threadsTasks.remove(getTask(id));
+		threadsTasks.remove(getTaskThread(id));
 		tasks.remove(getTask(id));
 		
 		idTask--;
@@ -99,7 +125,7 @@ public class Threads {
 		Parking parking = controller.chooseBestParking(car, workstation.getRow(), workstation.getNum());
 		
 		tasksToPark.add(new Park(idTaskToPark, car, controller, parking));
-		threadsTasksToPark.add(new Thread(tasksToPark.get(idTaskToPark)));
+		threadsTasksToPark.add(new Thread(tasksToPark.get(idTaskToPark), Integer.toString(idTaskToPark)));
 		threadsTasksToPark.get(idTaskToPark).start();
 		idTaskToPark++;
 	}
@@ -111,10 +137,10 @@ public class Threads {
 		try {
 			threadsTasksToPark.get(id).join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			threadsTasksToPark.get(id).interrupt();
 			e.printStackTrace();
 		}
-		threadsTasksToPark.remove(getTaskToPark(id));
+		threadsTasksToPark.remove(getTaskToParkThread(id));
 		tasksToPark.remove(getTaskToPark(id));
 		
 		idTaskToPark--;

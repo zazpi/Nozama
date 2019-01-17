@@ -1,13 +1,3 @@
-// FIXME: use this as starting point for future backend communication work
-/*const getProductsData = async () => {
-    try {
-        const result = await fetch("/api/order/list");
-        const data = await result.json();
-        console.log(data);
-    }catch (error) {
-        return "Unable to load products.";
-    }
-};*/
 const ordersTable = new Tabulator("#order-list-table", {
     height: 460,
     ajaxURL: "/api/order/list",

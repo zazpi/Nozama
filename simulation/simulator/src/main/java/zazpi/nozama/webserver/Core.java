@@ -1,16 +1,14 @@
 package zazpi.nozama.webserver;
 
-import zazpi.nozama.simulation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static spark.Spark.*;
+import static spark.Spark.before;
+import static spark.Spark.options;
 
 public class Core {
 
     public static void main(String[] args) {
+        port(8888);
         enableCORS("http://localhost:8080","*","");
+
         API simulatorAPI = new API();
         simulatorAPI.startup();
         simulatorAPI.registerEndpoints();

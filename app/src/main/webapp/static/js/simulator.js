@@ -9,7 +9,7 @@ $(document).ready(() => {
     };
 
     moveRobots();*/
-    const spanEl1 = $("<span id='robot-1'>").addClass( "dot");
+    /*const spanEl1 = $("<span id='robot-1'>").addClass( "dot");
     const spanEl2 = $("<span id='robot-2'>").addClass( "dot");
     const spanEl3 = $("<span id='robot-3'>").addClass( "dot");
     const spanEl4 = $("<span id='robot-4'>").addClass( "dot");
@@ -36,4 +36,28 @@ $(document).ready(() => {
     setTimeout(moveRobots, 2000);
     setTimeout(moveRobots2, 3000);
 
+
+*/
+    let rb = null;
+    let selector = null;
+    const moveRobots = (robotsData) => {
+        robotsData.map((data) => {
+            console.log(data);
+            $("#rb" + data.id).remove();
+            $("#" + data.row + data.num).append("<span id='rb" + data.id + "'" + " class='dot'></span>");
+        });
+    };
+    const getProductsData = async () => {
+        try {
+            const result = await fetch("http://localhost:8888/rb-data");
+            const data = await result.json();
+            moveRobots(data);
+        }catch (error) {
+            return "Unable to load products.";
+        }
+
+        setTimeout(getProductsData, 1000);
+    };
+
+    getProductsData();
 });

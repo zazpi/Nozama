@@ -42,6 +42,7 @@ public class View extends ListResourceBundle{
 			{"addOrder.pageName","Add order"},
 			{"addOrder.searchProduct","Search product: "},
 			{"addOrder.addOrder","Add order"},
+			{"addOrder.destination","Destination (PC): "},
 			
 			//Product list
 			{"productList.pageName", "Product list"},

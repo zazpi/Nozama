@@ -15,7 +15,8 @@ public class Task implements Runnable {
 	int id;
 	Controller controller;
 	Car car;
-	WorkStation aPos, bPos;
+	WorkStation aPos;
+	WorkStation bPos;
 	
 	public Task(int id,Car car,Controller controller, WorkStation aPos, WorkStation bPos) {
 		this.id = id;

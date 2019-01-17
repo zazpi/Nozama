@@ -44,7 +44,7 @@ public class WorkStation extends Position {
 		car.setCurrentPos(path);
 		car = null;
 		available = true;
-		notify();
+		notifyAll();
 	}
 	
 	/**
@@ -69,7 +69,28 @@ public class WorkStation extends Position {
 			setCar(car);
 			available = false;
 		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WorkStation other = (WorkStation) obj;
+		if (path == null) {
+			if (other.path != null)
+				return false;
+		} else if (!path.equals(other.path)) {
+			return false;
+		}
+		return true;
+	}
+	
+	
 }
