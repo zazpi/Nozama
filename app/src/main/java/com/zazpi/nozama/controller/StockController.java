@@ -63,4 +63,12 @@ public class StockController {
 		return stackDao.getWordCloud();
 	}
 	
+	@GetMapping("getcapacity")
+	public @ResponseBody long getCapacity(@RequestParam("warehouseId") int warehouseid) {
+		if(warehouseid == 0)
+			return stackDao.getOccupedSpace() * 100 / (shelfDao.getCapacity()*100000000000L);
+		else
+			return stackDao.getOccupedSpaceByWarehouse(warehouseid) * 100 / (shelfDao.getCapacityByWarehouse(warehouseid)*100000000000L);
+	}
+	
 }

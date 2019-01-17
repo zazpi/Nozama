@@ -38,4 +38,17 @@ public interface ProductStackDao extends CrudRepository<ProductStack,Long> {
 			+ "group by pm.productmodelid"
 			,nativeQuery=true)
 	List<WordCloudRest> getWordCloud();
+	
+	@Query(value= "select sum(q.size) "
+			+ "from (select (pm.x*pm.y*pm.z)*sum(ps.stock) as size from productmodel pm join productstack ps on pm.productmodelid = ps.productmodelid "
+			+ "group by pm.productmodelid) q;",
+			nativeQuery=true)
+	long getOccupedSpace();
+	
+	@Query(value= "select sum(q.size) "
+			+ "from (select (pm.x*pm.y*pm.z)*sum(ps.stock) as size from productmodel pm join productstack ps on pm.productmodelid = ps.productmodelid "
+			+ "where ps.warehouseID=? "
+			+ "group by pm.productmodelid) q;",
+			nativeQuery=true)
+	long getOccupedSpaceByWarehouse(int wh);
 }
