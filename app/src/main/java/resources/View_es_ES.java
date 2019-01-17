@@ -52,15 +52,28 @@ public class View_es_ES extends ListResourceBundle{
 			
 			//Add product
 			{"addProduct.pageName", "Añadir producto"},
-			{"addProduct.productModelId","ID del modelo del producto:"},
-			{"addProduct.productModelName","Nombre del modelo del producto:"},
-			{"addProduct.productModelDescription","Descripcion del modelo del producto:"},
+			{"addProduct.productModelId","ID del producto:"},
+			{"addProduct.productModelName","Nombre del producto:"},
+			{"addProduct.productModelDescription","Descripcion del producto:"},
 			{"addProduct.size","Tamaño"},
 			{"addProduct.x","X:"},
 			{"addProduct.y","Y:"},
 			{"addProduct.z","Z:"},
 			{"addProduct.weight","Peso:"},
+			{"addProduct.minStock", "Stock minimo:"},
+			{"addProduct.maxStock", "Stock máximo:"},
 			{"addProduct.addProduct", "Añadir producto"},
+			
+			//Product
+			{"product.id","ID"},
+			{"product.name","Nombre"},
+			{"product.description","Descripción"},
+			{"product.size","Tamaño"},
+			{"product.weight","Peso"},
+			{"product.desiredStock","Stock deseado"},
+			{"product.history","Histórico"},
+			{"product.stockPerProduct","Stock por producto"},
+			{"product.orderDestination","Destino de los pedidos"},
 			
 			//Add Stock
 			{"addStock.pageName","Añadir stock"},
@@ -68,7 +81,7 @@ public class View_es_ES extends ListResourceBundle{
 			{"addStock.warehouse","Almacén"},
 			{"addStock.shelfPosition","Posición de la estantería:"},
 			{"addStock.entryDate","Fecha de entrada:"},
-			{"addStock.addStock","Fecha de salida:"},
+			{"addStock.addStock","Añadir stock"},
 			
 			//Footer resources
 			{"footer.authors", "Copyright &copy; desarrollado por Zazpi. Todos los derechos reservados"},
