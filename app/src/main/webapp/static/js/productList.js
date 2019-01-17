@@ -23,7 +23,15 @@ $(document).ready(() => {
     function productClick(e,row){
     	window.location = "/product?productId=" + row.getIndex(0);
     }
-
+    
+    $("#searchInput").keyup(function(){
+    	var inp = $("#searchInput");
+    	//productsTable.setFilter("name","like",inp.val());
+    	var val = inp.val();
+    	productsTable.setFilter([[{field:"name", type:"like", value:val},
+    		                      {field:"description", type:"like", value:val},
+    		                      {field:"id", type:"like", value:val}]]);
+    });
     // FIXME: The below api requests can be used once backend functionality is correctly functional.
     /*$("#delete-btn").click(async () => {
         const deleteUrl = "/api/product/delete";

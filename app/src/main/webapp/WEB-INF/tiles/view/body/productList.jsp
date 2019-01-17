@@ -14,7 +14,7 @@
 	</header><br>
 	<div class="searchSection">
 		<label id="searchLabel">Search: </label>
-		<input id="serachInput"/>
+		<input id="searchInput"/>
 	</div>
 	<div class="table-container">
 	<div id="product-list-table"></div>
