@@ -1,6 +1,17 @@
 package zazpi.nozama.simulation;
 
+/**
+ * This thread is to move a car from a workstation to another in order to carry one product
+ * to its destination
+ **/
 public class Task implements Runnable {
+	/**
+	 * @param id: thread number. it identifies the thread
+	 * @param controller: it does all the movements
+	 * @param car: the thread need the information of which car have to be moved
+	 * @param aPos: the origin workstation
+	 * @param bPos: the destination workstation
+	 */
 	int id;
 	Controller controller;
 	Car car;
@@ -13,11 +24,18 @@ public class Task implements Runnable {
 		this.aPos = aPos;
 		this.bPos = bPos;
 	}	
-
+	
+	/**
+	 * Get the id to identify the thread
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
-
+	
+	/**
+	 * This is what the thread will do
+	 **/
 	public void run() {
 		System.out.println("Task " + id + " started");	
 		controller.goToWorkstation(aPos, bPos, car);
