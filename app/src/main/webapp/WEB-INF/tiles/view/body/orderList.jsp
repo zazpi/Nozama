@@ -9,7 +9,7 @@
     <header class="list-header">
         <h2><fmt:message key="orderList.pageName"/></h2>
         <nav class="opt-btns">
-            <a href="#"><fmt:message key="orderList.add"/></a>
+            <a href="/orderList/addOrder"><fmt:message key="orderList.add"/></a>
             <a href="#"><fmt:message key="orderList.edit"/></a>
             <a href="#"><fmt:message key="orderList.remove"/></a>
         </nav>
