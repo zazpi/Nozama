@@ -34,10 +34,10 @@ public interface OrdersDao extends CrudRepository<Order,Long>{
 			,nativeQuery=true)
 	List<OrderRest> findAllRest();
 	
-	@Query(value="select g1.month, g2.day, count(o) "
-			+ "from generate_series(1,12) as g1(month) cross join generate_series(0,6) as g2(day) "
+	@Query(value="select (g1.month-1) as month, (g2.day-1) as day, count(o) "
+			+ "from generate_series(1,12) as g1(month) cross join generate_series(1,31) as g2(day) "
 			+ "left outer join orders as o "
-			+ "on extract(month from o.entrydate)=g1.month and extract(dow from o.entrydate)=g2.day "
+			+ "on extract(month from o.entrydate)=g1.month and extract(day from o.entrydate)=g2.day "
 			+ "group by g1.month, g2.day;"
 			,nativeQuery=true)
 	List<Object[]> groupedByDayMonth();
