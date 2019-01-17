@@ -4,18 +4,74 @@
 
 .product {
 	display: grid;
-	grid-template-areas: "up up" "center center" "down-l down-r";
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: "productInfo productInfo" "up up" "center center" "down-l down-r";
 	
 }
 
-#timeseries {
+#productInfo{
+	grid-area: productInfo;
+	font-family: 'Lato', 'Arial', sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+	margin: 1em;
+}
+#productInfo th {
+	background: #2f3542;
+	border-width: 1px;
+	padding: 10px;
+	border-style: solid;
+	border-color: #999999;
+	color: #e7e7e7;
+	text-align: center;
+	width: 2%;
+}
+#productInfo td {
+	background:#dcddc0 url('cell-grey.jpg');
+	border-width: 1px;
+	padding: 10px;
+	border-style: solid;
+	border-color: #999999;
+	text-align: center;
+}
+
+#timeseriesGraph {
 	grid-area: center;
 }
 
-#piechart {
+#piechartGraph {
 	grid-area: down-l;
 }
 
-#map {
+#mapGraph {
 	grid-area: down-r
 }
+
+#timeseries{
+	border: 1px solid #2f3542;
+	padding: 1em;
+	margin: 1em;
+}
+
+#piechart{
+	border: 1px solid #2f3542;
+	padding: 1em;
+	margin: 1em;
+}
+
+#map{
+	border: 1px solid #2f3542;
+	padding: 1em;
+	margin: 1em;
+}
+
+.header-content h2 {
+    margin-bottom: .5rem;
+    padding: .5rem;
+    margin: 1em;
+    color: #34495e;
+}
+

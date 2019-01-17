@@ -34,9 +34,6 @@ function createTimeSeries(data) {
         rangeSelector: {
             selected: 4
         },
-        title: {
-            text: 'History'
-        },
         yAxis: {
         	max: 1500,
         	min: 0,
@@ -78,9 +75,6 @@ function createPiechart(data){
 	        plotShadow: false,
 	        type: 'pie'
 	    },
-	    title: {
-	        text: 'Stock per warehouse'
-	    },
 	    tooltip: {
 	        pointFormat: '{series.name}: <b>{point.y:.1f} ({point.percentage:.1f}%)</b>'
 	    },
@@ -109,9 +103,6 @@ function createMap(data){
 	Highcharts.mapChart('map', {
 		 chart: {
 		     map: 'countries/es/es-all'
-		 },
-		 title: {
-		     text: 'Order destination'
 		 },
 		 mapNavigation: {
 		     enabled: true,

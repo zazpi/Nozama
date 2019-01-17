@@ -2,9 +2,44 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/static/css/product.css">
 <section class="product">
-	<div id="timeseries"></div>
-	<div id="piechart"></div>
-	<div id="map"></div>
+	<div id="productInfo">
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Size</th>
+				<th>Weight</th>
+				<th>Desired stock</th>
+			</tr>
+			<tr>
+				<td>${product.id}</td>
+				<td>${product.name}</td>
+				<td>${product.description}</td>
+				<td>${product.x}x${product.y}x${product.x}</td>
+				<td>${product.weight}</td>
+				<td>${product.minStock}-${product.maxStock}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="header-content" id="timeseriesGraph">
+		<header>
+            <h2>History</h2>
+        </header>
+        <div id="timeseries"></div>
+	</div>
+	<div class="header-content" id="piechartGraph">
+		<header>
+            <h2>Stock per warehouse</h2>
+        </header>
+        <div id="piechart"></div>
+	</div>
+	<div class="header-content" id="mapGraph">
+		<header>
+            <h2>Order destination</h2>
+        </header>
+        <div id="map"></div>
+	</div>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
