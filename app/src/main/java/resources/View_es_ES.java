@@ -41,8 +41,10 @@ public class View_es_ES extends ListResourceBundle{
 			//Add order
 			{"addOrder.pageName","Añadir pedido"},
 			{"addOrder.searchProduct","Buscar producto: "},
-			{"addOrder.addOrder","Añadir producto"},
+			{"addOrder.addOrder","Añadir pedido"},
 			{"addOrder.destination","Destino (CP): "},
+			{"addOrder.productList","Lista de productos"},
+			{"addOrder.order","Pedido"},
 			
 			//Product list
 			{"productList.pageName", "Lista de productos"},

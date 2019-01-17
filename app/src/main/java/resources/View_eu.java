@@ -42,6 +42,8 @@ public class View_eu extends ListResourceBundle{
 			{"addOrder.searchProduct","Bilatu produktua: "},
 			{"addOrder.addOrder","Gehitu eskaera"},
 			{"addOrder.destination","Helmuga (PK): "},
+			{"addOrder.productList","Produktuen zerrenda"},
+			{"addOrder.order","Eskaera"},
 			
 			//Product list
 			{"productList.pageName", "Produktuen zerrenda"},
