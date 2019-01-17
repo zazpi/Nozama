@@ -28,7 +28,10 @@ const ordersTable = new Tabulator("#order-list-table", {
     ],
     rowClick:function(e, row){
         ordersProductsTable.replaceData("/api/order/subOrderList?orderId="+row.getData().id);
-    }
+    },
+    ajaxRequesting:function(url, params){
+    	setTimeout(function(){ordersTable.replaceData();},5000);
+    },
 });
 
 const ordersProductsTable = new Tabulator("#subOrder-list-table", {
@@ -56,5 +59,8 @@ const ordersProductsTable = new Tabulator("#subOrder-list-table", {
     rowClick:function(e, row){
     	id = row.getCells()[1].getValue();
     	window.location = "/product?productId=" + id;
-    }
+    },
+    ajaxRequesting:function(url, params){
+    	setTimeout(function(){ordersProductsTable.replaceData();},5000);
+    },
 });

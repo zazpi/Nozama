@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -112,6 +113,18 @@ public class OrderController {
 	@GetMapping("subOrderList")
 	public @ResponseBody List<SubOrderProductRest> getSubOrderProductList(@RequestParam("orderId") int id){
 		return (List<SubOrderProductRest>) subOrderDao.findByOrderId(id);
+	}
+	
+	
+	@GetMapping("updateSuborder")
+	public @ResponseBody boolean updateSuborder(@RequestParam("productId") int pi,
+			                                    @RequestParam("subOrderId") int si){
+		subOrderDao.updateReady(si, pi);
+		boolean ready = subOrderDao.allReady(si);
+		if(ready) {
+			subOrderDao.updateSubOrderDepartureDate(si,new Date());
+		}
+		return ready;
 	}
 	
 	//FIXME: Function should be in a util class
