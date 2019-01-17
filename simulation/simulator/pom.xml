@@ -145,7 +145,7 @@
                             </descriptorRefs>
                             <archive>
                                 <manifest>
-                                    <mainClass>simulator.Core</mainClass>
+                                    <mainClass>zazpi.nozama.webserver.Core</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

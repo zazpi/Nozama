@@ -32,3 +32,19 @@ services:
     environment:
       - POSTGRES_DB
       - POSTGRES_PASSWORD
+  simulator:
+    image: java:8
+    ports:
+      - 8888:8888
+    volumes:
+      - type: bind
+        source: "../simulation/simulator/"
+        target: /usr/src/app
+      - type: bind
+        source: "$HOME/.m2"
+        target: "/root/.m2"
+      - type: bind
+        source: "../simulation/simulator/target"
+        target: "/usr/src/app/target"
+    working_dir: /usr/src/app
+    command: ["java", "-jar", "target/simulator-jar-with-dependencies.jar"]
