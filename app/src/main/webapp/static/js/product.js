@@ -1,4 +1,4 @@
-function loadData(id){ 
+function loadData(id,minstock,maxstock){ 
 	//Timeseries
 	$.each(names, function (i, name) {
 	    $.getJSON('/api/history/gethistory?productId='+ id + '&warehouseId=' + i,    function (data) {
@@ -8,7 +8,7 @@ function loadData(id){
 	        };
 	        seriesCounter += 1;
 	        if (seriesCounter === names.length) {
-	        	createTimeSeries(seriesOptions);
+	        	createTimeSeries(seriesOptions,minstock,maxstock);
 	        }
 	    });
 	});
@@ -28,7 +28,7 @@ var seriesOptions = [],
     seriesCounter = 0,
     names = ['Total','Warehouse 1','Warehouse 2'];
 
-function createTimeSeries(data) {
+function createTimeSeries(data,minstock,maxstock) {
 	
     Highcharts.stockChart('timeseries', {
         rangeSelector: {
@@ -91,6 +91,9 @@ function createPiechart(data){
 	            }
 	        }
 	    },
+		title: {
+			text: ''
+		},
 	    series: [{
 	        name: 'Stock',
 	        colorByPoint: true,
@@ -112,6 +115,9 @@ function createMap(data){
 		 },
 		 colorAxis: {
 		     min: 0
+	     },
+		 title: {
+			 text: ''
 		 },
 		 series: [{
 		     data: data,

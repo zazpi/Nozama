@@ -53,5 +53,5 @@
 
 <script src="/static/js/product.js"></script>
 <script>
-	loadData(${product.id});
+	loadData(${product.id},${product.minStock},${product.maxStock});
 </script>
