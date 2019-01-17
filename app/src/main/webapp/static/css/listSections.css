@@ -11,6 +11,14 @@
     padding: 1rem;
 }
 
+.searchSection{
+	padding-left: 1em;
+}
+
+#searchLabel{
+	color: #2f3542;
+}
+
 .table-container {
     padding: 1rem;
 }

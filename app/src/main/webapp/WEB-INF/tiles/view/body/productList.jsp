@@ -11,7 +11,11 @@
 				<a href="/productList/addProduct" id="add-product"><fmt:message key="productList.addNewProduct"/></a>
 				<a href="/productList/addStock" id="add-stock"><fmt:message key="productList.addStock"/></a>
 			</nav>
-	</header>
+	</header><br>
+	<div class="searchSection">
+		<label id="searchLabel">Search: </label>
+		<input id="serachInput"/>
+	</div>
 	<div class="table-container">
 	<div id="product-list-table"></div>
 	</div>

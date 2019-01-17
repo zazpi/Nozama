@@ -50,20 +50,11 @@
 	grid-area: down-r
 }
 
-#timeseries{
-	border: 1px solid #2f3542;
-	padding: 1em;
-	margin: 1em;
-}
-
-#piechart{
-	border: 1px solid #2f3542;
-	padding: 1em;
-	margin: 1em;
-}
-
+#timeseries,
+#piechart,
 #map{
-	border: 1px solid #2f3542;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 	padding: 1em;
 	margin: 1em;
 }
