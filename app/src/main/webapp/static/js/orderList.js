@@ -52,5 +52,9 @@ const ordersProductsTable = new Tabulator("#subOrder-list-table", {
         {title: "Product model ID", field: "productModelId", align: "center"},
         {title: "Name", field: "name"},
         {title: "Ready", field: "ready", formatter: "tickCross"}
-    ]
+    ],
+    rowClick:function(e, row){
+    	id = row.getCells()[1].getValue();
+    	window.location = "/product?productId=" + id;
+    }
 });
