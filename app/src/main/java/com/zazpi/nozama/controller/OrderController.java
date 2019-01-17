@@ -34,13 +34,13 @@ import com.zazpi.nozama.util.WarehouseComparator;
 public class OrderController {
 	@Autowired
 	OrdersDao ordersDao;
-	
+
 	@Autowired
 	ProductModelDAO productDao;
-	
+
 	@Autowired
 	WarehouseDao warehouseDao;
-	
+
 	@Autowired
 	SubOrderDao subOrderDao;
 
@@ -49,11 +49,11 @@ public class OrderController {
                                            @RequestParam("products")  List<Integer> products) {
 		Set<ProductModel> prs = constructProducts(products);
 		HashMap<Warehouse,Set<ProductModel>> selectedWarehouses = selectBestWarehouses(prs,destination);
-		
+
 		Order order = new Order();
 		order.setDestination(destination);
 		order.setEntryDate(new Date());
-		
+
 		Set<SubOrder> suborders = new HashSet<>();
 		for(Warehouse wh : selectedWarehouses.keySet()) {
 			SubOrder suborder = new SubOrder();
@@ -63,12 +63,11 @@ public class OrderController {
 			suborders.add(suborder);
 		}
 		order.setSuborders(suborders);
-		
+
 		ordersDao.save(order);
-		return order;		
+		return order;
 	}
 
-	
 	public HashMap<Warehouse,Set<ProductModel>> selectBestWarehouses(Set<ProductModel> products, int destination){
 		HashMap<Warehouse,Set<ProductModel>> bestWarehouses = new HashMap<>();
 		for(ProductModel p : products) {
@@ -79,7 +78,7 @@ public class OrderController {
 		}
 		return bestWarehouses;
 	}
-	
+
 	public void addToHashList(HashMap<Warehouse,Set<ProductModel>> map,Warehouse warehouse, ProductModel product) {
 		Set<ProductModel> list = map.get(warehouse);
 		if(list == null)
@@ -87,35 +86,34 @@ public class OrderController {
 		list.add(product);
 		map.put(warehouse,list);
 	}
-	
+
 	@GetMapping("list")
 	public @ResponseBody List<OrderRest> getOrderList(){
 		return (List<OrderRest>) ordersDao.findAllRest();
 	}
-	
+
 	@GetMapping("list-location")
 	public @ResponseBody List<Object[]> getOrdersByPlace(){
 		List<Object[]> list = ordersDao.getOrdersByPlace();
 		return Util.prepareCodes(list);
 	}
-	
+
 	@GetMapping("list-location-product")
 	public @ResponseBody List<Object[]> getOrdersByPlaceAndProduct(@RequestParam("productId") int id){
 		List<Object[]> list = ordersDao.getOrdersByPlaceAndProduct(id);
 		return Util.prepareCodes(list);
 	}
-	
+
 	@GetMapping("list-day-month")
 	public @ResponseBody List<Object[]> groupedByDayMonth(){
 		return ordersDao.groupedByDayMonth();
 	}
-	
+
 	@GetMapping("subOrderList")
 	public @ResponseBody List<SubOrderProductRest> getSubOrderProductList(@RequestParam("orderId") int id){
 		return (List<SubOrderProductRest>) subOrderDao.findByOrderId(id);
 	}
-	
-	
+
 	@GetMapping("updateSuborder")
 	public @ResponseBody boolean updateSuborder(@RequestParam("productId") int pi,
 			                                    @RequestParam("subOrderId") int si){
@@ -126,7 +124,7 @@ public class OrderController {
 		}
 		return ready;
 	}
-	
+
 	//FIXME: Function should be in a util class
 	public Set<ProductModel> constructProducts(List<Integer> products){
 		Set<ProductModel> set = new HashSet<>();
