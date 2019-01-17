@@ -1,5 +1,7 @@
 package zazpi.nozama.simulation;
 
+import java.util.logging.Logger;
+
 /**
  * This thread is to move a car from a workstation to another in order to carry one product
  * to its destination
@@ -12,6 +14,7 @@ public class Task implements Runnable {
 	 * @param aPos: the origin workstation
 	 * @param bPos: the destination workstation
 	 */
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	int id;
 	Controller controller;
 	Car car;
@@ -38,8 +41,8 @@ public class Task implements Runnable {
 	 * This is what the thread will do
 	 **/
 	public void run() {
-		System.out.println("Task " + id + " started");	
+		LOGGER.info("Task " + id + " started");	
 		controller.goToWorkstation(aPos, bPos, car);
-		System.out.println("Task " + id + " FINISHED");
+		LOGGER.info("Task " + id + " FINISHED");
 	}	
 }

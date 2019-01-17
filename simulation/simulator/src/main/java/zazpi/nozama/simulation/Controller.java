@@ -3,6 +3,7 @@ package zazpi.nozama.simulation;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Logger;
 
 /**
  * This is the class in which all the movements are done and positions are changed and
@@ -15,6 +16,7 @@ public class Controller {
 	 * @param monitor: This monitor is used because a car only can do a task at a time
 	 * @param condNotBusy: It references to the monitor
 	 **/
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	Threads threads;
 	Objects objects;
 	Lock monitor;
@@ -46,8 +48,7 @@ public class Controller {
 			try {
 				condNotBusy.await();
 			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				e.printStackTrace();
+				LOGGER.severe("Exception: " + e.getMessage());
 			}
 		}
 		car.setBusy(true);
@@ -77,6 +78,7 @@ public class Controller {
 		takeCar(car);		
 		Position finalPos = origin.getPath();
 		goTo(finalPos, car, origin);
+		Util.safeSleep(5000);
 		finalPos = destination.getPath();
 		goTo(finalPos, car, destination);
 		freeCar(car);
@@ -111,7 +113,7 @@ public class Controller {
 			currentPos = car.getCurrentPos();
 			if(nextPos == null) {
 				nextPos = askNextPos(currentPos,finalPos);
-				System.out.println("Car " + car.getId() +
+				LOGGER.info("Car " + car.getId() +
 						" Current: " + currentPos.getRow() + currentPos.getNum() +
 						" Next: " + nextPos.getRow() + nextPos.getNum());
 				if ((nextPos == finalPos) && (position instanceof WorkStation))
@@ -124,11 +126,11 @@ public class Controller {
 			}
 		}
 		Util.safeSleep(5000);
-		System.out.println("Car " + car.getId() +
+		LOGGER.info("Car " + car.getId() +
 				" Current: " + car.getCurrentPos().getRow() + car.getCurrentPos().getNum());
 		changePosition(position, car);
 		
-		System.out.println("Car " + car.getId() + " in " +
+		LOGGER.info("Car " + car.getId() + " in " +
 				car.getCurrentPos().getRow() + car.getCurrentPos().getNum());
 	}
 	

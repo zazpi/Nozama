@@ -1,5 +1,7 @@
 package zazpi.nozama.simulation;
 
+import java.util.logging.Logger;
+
 /**
  * The car will move through different positions to reach its destination
  **/
@@ -9,6 +11,7 @@ public class Position {
 	 * @param num: it indicates in which column it is
 	 * @param available: it indicates if the position is available or not
 	 **/
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	String row;
 	int num;
 	boolean available;
@@ -41,14 +44,13 @@ public class Position {
 	public synchronized void take() {
 		try {
 			while(!available) {
-				System.out.println("Car waiting path " +
+				LOGGER.info("Car waiting path " +
 						row+num + " to be emptied");
 				wait();
 			}
 			available = false;
 		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-			e.printStackTrace();
+			LOGGER.severe("Exception: " + e.getMessage());
 		}
 	}
 	
@@ -69,6 +71,15 @@ public class Position {
 	}
 	
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + num;
+		result = prime * result + ((row == null) ? 0 : row.hashCode());
+		return result;
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -82,9 +93,8 @@ public class Position {
 		if (row == null) {
 			if (other.row != null)
 				return false;
-		} else if (!row.equals(other.row)) {
+		} else if (!row.equals(other.row))
 			return false;
-		}
 		return true;
 	}
 

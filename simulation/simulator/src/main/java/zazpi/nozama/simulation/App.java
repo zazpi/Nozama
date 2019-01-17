@@ -1,5 +1,11 @@
 package zazpi.nozama.simulation;
 
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 /**
  * Hello world!
  *
@@ -31,6 +37,19 @@ public class App
 		threads.createTasks(obj.cars.get(4), obj.workstations.get(2), obj.workstations.get(5));
         
         System.out.println("Everything was better than expected");
+    }
+    
+    public void setUpLogger () {
+    	Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    	logger.setLevel(Level.INFO);
+    	try {
+			FileHandler fileTxt = new FileHandler("logging.txt");
+			SimpleFormatter formatterTxt = new SimpleFormatter();
+			fileTxt.setFormatter(formatterTxt);
+			logger.addHandler(fileTxt);
+		} catch (SecurityException | IOException e) {
+			e.printStackTrace();
+		}
     }
 
     public Objects getObj() {

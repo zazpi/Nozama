@@ -2,6 +2,7 @@ package zazpi.nozama.simulation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * This is the class that creates and deletes all the threads
@@ -18,6 +19,7 @@ public class Threads {
 	 * @param idTask: it indicates the number of active tasks
 	 * @param idTaskToPark: it indicates the number of active tasks to park
 	 **/
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	Controller controller;	
 	List<Task> tasks;
 	List<Park> tasksToPark;
@@ -106,8 +108,7 @@ public class Threads {
 		try {
 			threadsTasks.get(id).join();
 		} catch (InterruptedException e) {
-			threadsTasks.get(id).interrupt();
-			e.printStackTrace();
+			LOGGER.severe("Exception: " + e.getMessage());
 		}
 		threadsTasks.remove(getTaskThread(id));
 		tasks.remove(getTask(id));
@@ -137,8 +138,7 @@ public class Threads {
 		try {
 			threadsTasksToPark.get(id).join();
 		} catch (InterruptedException e) {
-			threadsTasksToPark.get(id).interrupt();
-			e.printStackTrace();
+			LOGGER.severe("Exception: " + e.getMessage());
 		}
 		threadsTasksToPark.remove(getTaskToParkThread(id));
 		tasksToPark.remove(getTaskToPark(id));
