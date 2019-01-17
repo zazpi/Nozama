@@ -35,6 +35,12 @@ public class ProductModel implements Serializable{
 	@Column(name="z")
 	int z;
 	
+	@Column(name="minstock")
+	int minStock;
+	
+	@Column(name="maxstock")
+	int maxStock;
+	
 	public ProductModel() {}
 	
 	public ProductModel(int id, String name, String description) {
@@ -106,6 +112,22 @@ public class ProductModel implements Serializable{
 
 	public void setZ(int z) {
 		this.z = z;
+	}
+
+	public int getMinStock() {
+		return minStock;
+	}
+
+	public void setMinStock(int minStock) {
+		this.minStock = minStock;
+	}
+
+	public int getMaxStock() {
+		return maxStock;
+	}
+
+	public void setMaxStock(int maxStock) {
+		this.maxStock = maxStock;
 	}
 
 	@Override

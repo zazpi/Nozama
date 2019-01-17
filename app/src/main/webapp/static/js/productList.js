@@ -1,13 +1,13 @@
 $(document).ready(() => {
     const productsTable = new Tabulator("#product-list-table", {
-        height: 400,
+        height: 486,
         ajaxURL: "/api/product/list",
         layout: "fitColumns",
         tooltips: true,
         addRowPos: "top",
         history: true,
         pagination: "local",
-        paginationSize: 15,
+        paginationSize: 18,
         rowClick:productClick,
         columns: [
             {title: "ID", field: "id", align: "center", width: 100,rowClick:productClick},

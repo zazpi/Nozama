@@ -31,6 +31,12 @@
 				<!-- <textarea placeholder="Write the description"
                 style="width:50%; height:10em;" required></textarea><br/><br/> -->
 				<form:textarea path="description" required="required"></form:textarea><br>
+				
+		<form:label path="minStock"><fmt:message key="addProduct.minStock"/></form:label>
+		<form:input path="minStock" required="required"/>
+
+		<form:label path="maxStock"><fmt:message key="addProduct.maxStock"/></form:label>
+		<form:input path="maxStock" required="required"/>
 		</div>
 		<input type="submit" value="<fmt:message key='addProduct.addProduct'/>" id="submit-btn"/>
 

@@ -16,9 +16,11 @@ CREATE TABLE productModel (
  name            VARCHAR(100),
  description     VARCHAR(250),
  weight          INT,
- x		           INT,
+ x		 INT,
  y               INT,
- z               INT
+ z               INT,
+ minStock        INT,
+ maxStock        INT
 );
 
 CREATE TABLE ordersProducts (
