@@ -1,10 +1,9 @@
 package zazpi.nozama.webserver;
 
-import zazpi.nozama.simulation.Car;
-import zazpi.nozama.simulation.Position;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import zazpi.nozama.simulation.Car;
 
 public class Utils {
 	

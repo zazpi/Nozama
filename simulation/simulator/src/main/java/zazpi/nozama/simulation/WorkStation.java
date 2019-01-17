@@ -1,5 +1,7 @@
 package zazpi.nozama.simulation;
 
+import java.util.logging.Logger;
+
 /**
  * Workstation is one of the different position types
  * It uses Position class' methods apart from a couple of new ones
@@ -9,6 +11,7 @@ public class WorkStation extends Position {
 	 * @param path: this is the path that is connected to the parking
 	 * @param car: if the parking is occupied, it will have the information of which car it is
 	 **/
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	Position path;
 	Car car;
 	
@@ -39,7 +42,7 @@ public class WorkStation extends Position {
 	 * changes the positions availability to occupied
 	 **/
 	public synchronized void leave () {
-		System.out.println("Car " + car.getId() + " living workstation " + row+num);
+		LOGGER.info("Car " + car.getId() + " living workstation " + row+num);
 		path.take();
 		car.setCurrentPos(path);
 		car = null;
@@ -62,16 +65,23 @@ public class WorkStation extends Position {
 		
 		try {
 			while(!available) {
-				System.out.println("Car " + car.getId() + " waiting workstation " +
+				LOGGER.info("Car " + car.getId() + " waiting workstation " +
 						row+num + " to be emptied");
 				wait();
 			}
 			setCar(car);
 			available = false;
 		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-			e.printStackTrace();
+			LOGGER.severe("Exception: " + e.getMessage());
 		}
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((path == null) ? 0 : path.hashCode());
+		return result;
 	}
 
 	@Override
@@ -86,9 +96,8 @@ public class WorkStation extends Position {
 		if (path == null) {
 			if (other.path != null)
 				return false;
-		} else if (!path.equals(other.path)) {
+		} else if (!path.equals(other.path))
 			return false;
-		}
 		return true;
 	}
 	
