@@ -82,6 +82,13 @@ public class View_es_ES extends ListResourceBundle{
 			{"addStock.entryDate","Fecha de entrada:"},
 			{"addStock.addStock","Añadir stock"},
 			
+			//Dashboard
+			{"dashboard.orderPeriod","Periodo de pedidos"},
+			{"dashboard.orderDestination","Destino de pedidos"},
+			{"dashboard.generalGauge","Total"},
+			{"dashboard.warehouse1Gauge","Almacén 1"},
+			{"dashboard.warehouse2Gauge","Almacén 2"},
+			
 			//Footer resources
 			{"footer.authors", "Copyright &copy; desarrollado por Zazpi. Todos los derechos reservados"},
 			

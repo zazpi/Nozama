@@ -77,9 +77,16 @@ public class View_eu extends ListResourceBundle{
 			{"addStock.pageName","Gehitu stocka"},
 			{"addStock.quantity","Kopurua:"},
 			{"addStock.warehouse","Biltegia"},
-			{"addStock.shelfPosition","Apalategiaren posizioa"},
+			{"addStock.shelfPosition","Apalategia"},
 			{"addStock.entryDate","Sarrera data:"},
-			{"addStock.addStock","Gheitu stocka"},
+			{"addStock.addStock","Gehitu stocka"},
+			
+			//Dashboard
+			{"dashboard.orderPeriod","Eskaera periodoa"},
+			{"dashboard.orderDestination","Eskaeren norakoa"},
+			{"dashboard.generalGauge","Totala"},
+			{"dashboard.warehouse1Gauge","1. biltegia"},
+			{"dashboard.warehouse2Gauge","2. biltegia"},
 			
 			//Footer resources
 			{"footer.authors", "Copyright &copy; 2019 Zazpik garatua."},

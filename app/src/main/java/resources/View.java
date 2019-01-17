@@ -82,6 +82,13 @@ public class View extends ListResourceBundle{
 			{"addStock.entryDate","Entry date:"},
 			{"addStock.addStock","Add stock"},
 			
+			//Dashboard
+			{"dashboard.orderPeriod","Order period"},
+			{"dashboard.orderDestination","Order destination"},
+			{"dashboard.generalGauge","Total"},
+			{"dashboard.warehouse1Gauge","Warehouse 1"},
+			{"dashboard.warehouse2Gauge","Warehouse 2"},
+			
 			//Footer resources
 			{"footer.authors", "Copyright &copy; 2019 by Zazpi. All rights reserved."},
 			
