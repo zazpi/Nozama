@@ -63,10 +63,10 @@ pipeline {
         }
         stage('Push & Deploy') {
             steps {
-                sh "echo 'Pushing Nozama docker image to registry...'"
-                sh 'docker push devallday/nozama:latest'
                 sh "echo 'Pushing Simulator docker image to registry...'"
                 sh 'docker push devallday/simulator:latest'
+                sh "echo 'Pushing Nozama docker image to registry...'"
+                sh 'docker push devallday/nozama:latest'
                 sh "echo 'Deployment triggering through webhook'"
             }
         }
