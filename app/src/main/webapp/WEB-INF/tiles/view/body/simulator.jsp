@@ -50,6 +50,7 @@
                         <div id="A4" class="rows"></div>
                         <div id="B4" class="rows"></div>
                         <div id="AB4" class="v-rows"></div>
+                        <div id="AB5" class="v-rows"></div>
                     </div>
                 </div>
                 <div class="workpark-posts">
@@ -76,8 +77,8 @@
                         <h4><span>Positions:</span></h4>
                     </header>
                     <ul>
-                        <li><p>Parking: <b class="legend__parking"></b></p></li>
                         <li><p>Workstation: <b class="legend__workstation"></b></p></li>
+                        <li><p>Parking: <b class="legend__parking"></b></p></li>
                     </ul>
                 </div>
                 <div>

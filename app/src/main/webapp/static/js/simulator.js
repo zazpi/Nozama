@@ -1,50 +1,18 @@
 $(document).ready(() => {
-    /*const moveRobots = () => {
-        $("#robot-1").css({marginLeft: '+=1px'});
-        $("#robot-2").css({marginLeft: '+=1px'});
-        $("#robot-3").css({marginLeft: '+=1px'});
-        $("#robot-4").css({marginLeft: '+=1px'});
-        $("#robot-5").css({marginLeft: '+=1px'});
-        setTimeout(moveRobots, 100);
-    };
-
-    moveRobots();*/
-    /*const spanEl1 = $("<span id='robot-1'>").addClass( "dot");
-    const spanEl2 = $("<span id='robot-2'>").addClass( "dot");
-    const spanEl3 = $("<span id='robot-3'>").addClass( "dot");
-    const spanEl4 = $("<span id='robot-4'>").addClass( "dot");
-    const spanEl5 = $("<span id='robot-5'>").addClass( "dot");
-
-    const moveRobots = () => {
-      $("#AW-3").append(spanEl1);
-      $("#AW-2").append(spanEl3);
-      $("#AW-1").append(spanEl2);
-      $("#BW-4").append(spanEl5);
-      $("#BW-5").append(spanEl4);
-      $("#BW-6").append(spanEl1);
-    };
-    const moveRobots2 = () => {
-        $("#AW-3").append(spanEl4);
-        $("#AW-2").append(spanEl5);
-        $("#AW-1").append(spanEl3);
-        $("#BW-4").append(spanEl2);
-        $("#BW-5").append(spanEl1);
-        $("#BW-6").append(spanEl5);
-        setTimeout(moveRobots, 2000);
-        setTimeout(moveRobots2, 3000);
-    };
-    setTimeout(moveRobots, 2000);
-    setTimeout(moveRobots2, 3000);
-
-
-*/
     let rb = null;
     let selector = null;
     const moveRobots = (robotsData) => {
         robotsData.map((data) => {
             console.log(data);
             $("#rb" + data.id).remove();
-            $("#" + data.row + data.num).append("<span id='rb" + data.id + "'" + " class='dot'></span>");
+            id = "#" + data.row + data.num;
+            if ((data.row == "B") && (data.num < 4)) 
+            	$(id).css('left', data.pos+'%');
+            else if (data.row == "B") $(id).css('padding-left', data.pos+'%');
+            else if (data.row == "A") $(id).css('right', data.pos+'%');
+            else if ((data.row == "AB") && (data.num % 2 == 0)) $(id).css('top', data.pos+'%');
+            else $(id).css('bottom', data.pos+'%');
+            $(id).append("<span id='rb" + data.id + "'" + " class='dot'></span>");
         });
     };
     const getProductsData = async () => {
@@ -56,7 +24,7 @@ $(document).ready(() => {
             return "Unable to load products.";
         }
 
-        setTimeout(getProductsData, 1000);
+        setTimeout(getProductsData, 25);
     };
 
     getProductsData();

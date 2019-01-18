@@ -51,11 +51,18 @@
 
 .v-rows,
 .rows {
-    display: flex;
+	display: flex;
     position: absolute;
-    justify-content: center;
-    align-items: center;
     flex-grow: 1;
+}
+.v-rows {
+	justify-content: center;
+    align-items: flex-start;
+}
+
+.rows {
+	justify-content: flex-start;
+	align-items: center;
 }
 
 .rows {
@@ -73,7 +80,8 @@
 #A2,
 #A3,
 #A4 {
- top: -20px;
+	flex-direction: row-reverse;
+	top: -20px;
 }
 
 #B0,
@@ -88,9 +96,19 @@
 #AB1,
 #AB2,
 #AB3,
-#AB4,
-#AB5 {
+#AB4 {
     left: -20px;
+}
+
+#AB5 {
+	right: -20px;
+}
+
+#AB1,
+#AB3,
+#AB5 {
+	flex-direction: column-reverse;
+	justify-content: flex-start;
 }
 
 .workpark-posts {
@@ -181,11 +199,11 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.legend__parking {
+.legend__workstation {
     background-color: #130f40;
 }
 
-.legend__workstation {
+.legend__parking {
     background-color: #badc58;
 }
 
