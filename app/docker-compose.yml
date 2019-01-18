@@ -35,7 +35,7 @@ services:
   simulator:
     image: java:8
     ports:
-      - 8888:8888
+      - 4567:4567
     volumes:
       - type: bind
         source: "../simulation/simulator/"
