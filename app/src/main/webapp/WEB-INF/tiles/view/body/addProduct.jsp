@@ -41,5 +41,5 @@
 		<input type="submit" value="<fmt:message key='addProduct.addProduct'/>" id="submit-btn"/>
 
 	</form:form>
-	</div>
+</div>
 </fmt:bundle>

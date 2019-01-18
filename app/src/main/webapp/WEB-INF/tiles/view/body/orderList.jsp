@@ -10,8 +10,6 @@
         <h2><fmt:message key="orderList.pageName"/></h2>
         <nav class="opt-btns">
             <a href="/orderList/addOrder"><fmt:message key="orderList.add"/></a>
-            <a href="#"><fmt:message key="orderList.edit"/></a>
-            <a href="#"><fmt:message key="orderList.remove"/></a>
         </nav>
     </header>
     <div class="table-container">

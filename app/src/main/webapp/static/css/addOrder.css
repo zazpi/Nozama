@@ -1,9 +1,10 @@
 .content {
     display: flex;
     flex-direction: column;
-    padding: 1rem 1rem;
-
+    padding: 1rem 0rem;
+	width: 100vw;
 }
+
 .form-container {
     border: 1px solid #ccc;
     -webkit-border-radius: 4px;
@@ -15,14 +16,13 @@
     grid-gap: 2rem .5rem;
     font-weight: bold;
     color: #2f3542;
-
 }
 .form-container label {
-    grid-column: 1 / 2;
+    grid-column: 1/2;
 }
 
 .form-container input {
-    grid-column: 2 / 3;
+    grid-column: 1;
 }
 
 #submit-btn {
@@ -48,8 +48,7 @@
 
 .table-container{
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-areas: "products order";
+	grid-template-areas: "products" "order";
 }
 
 #productTable{
@@ -63,6 +62,7 @@
 #productTable,
 #orderTable{
 	padding: 1em;
+	width: 100vw;
 }
 
 #productTable > p,
@@ -71,4 +71,32 @@
 	color: #2f3542;
 	font-weight: bold;
 	padding-bottom: 1em;
+}
+
+@media (min-width: 425px) {
+   .table-container{
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: "products order";
+   }
+   
+   .form-container label {
+    	grid-column: 1 / 2;
+	}
+
+	.form-container input {
+    	grid-column: 2 / 3;
+	}
+	
+	.content {
+	    display: flex;
+	    flex-direction: column;
+	    padding: 1rem 1rem;
+		width: auto;
+	}
+	
+	#productTable,
+	#orderTable{
+		padding: 1em;
+		width: auto;
+	}
 }
