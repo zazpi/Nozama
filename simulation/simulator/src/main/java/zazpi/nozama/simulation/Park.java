@@ -39,8 +39,8 @@ public class Park implements Runnable {
 	 * This is what the thread will do
 	 **/
 	public void run () {
-		LOGGER.log(Level.INFO, "Task to park %d started", id);
+		LOGGER.info("Task to park " + id + " started");
 		controller.park(parking, car);
-		LOGGER.log(Level.INFO, "Task to park %d FINISHED", id);
+		LOGGER.info("Task to park " + id + " FINISHED");
 	}
 }

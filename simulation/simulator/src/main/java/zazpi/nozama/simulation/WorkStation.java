@@ -58,11 +58,9 @@ public class WorkStation extends Position {
 	 * @param car
 	 */
 	public synchronized void take(Controller controller, Car car) {
-		if (!available) {
-			if (this.car.isPark()) {
+		if (!available && this.car.isPark()) {
 				this.car.setPark(false);
 				controller.createTaskToPark(this.car, this);
-			}
 		}
 		
 		try {

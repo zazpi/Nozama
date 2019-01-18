@@ -45,7 +45,7 @@ public class Position {
 	 * Get the exact position in the path
 	 * @return pos
 	 */
-	public int getPos () {
+	public synchronized int getPos () {
 		return pos;
 	}
 	
