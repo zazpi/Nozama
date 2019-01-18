@@ -5,12 +5,11 @@
 
 #order-list-table{
 	grid-area: orderTable;
-	margin: 1em;
+	margin-bottom: 1em;
 }
 
 #subOrder-list-table{
 	grid-area: subOrderTable;
-	margin: 1em;
 }
 
 @media (min-width: 425px) {
@@ -18,4 +17,11 @@
 		grid-template-columns: 1fr 1fr;
 		grid-template-areas: "orderTable subOrderTable";
     }
+    
+    #order-list-table,
+    #subOrder-list-table{
+    	margin: 1em;
+    	margin-bottom: 0;
+    }
+    
 }

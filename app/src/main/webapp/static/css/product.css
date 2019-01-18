@@ -2,10 +2,15 @@
 	box-sizing: border-box;
 }
 
+.list {
+    border: 1px solid #ccc;
+    padding: 1rem 1rem;
+    width: 100vw;
+}
+
 .product {
 	display: grid;
 	grid-template-areas: "productInfo" "up" "center" "down-l" "down-r";
-	
 }
 
 #productInfo{
