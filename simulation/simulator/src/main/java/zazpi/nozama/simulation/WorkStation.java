@@ -11,7 +11,7 @@ public class WorkStation extends Position {
 	 * @param path: this is the path that is connected to the parking
 	 * @param car: if the parking is occupied, it will have the information of which car it is
 	 **/
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	Position path;
 	Car car;
 	
@@ -59,8 +59,10 @@ public class WorkStation extends Position {
 	 */
 	public synchronized void take(Controller controller, Car car) {
 		if (!available) {
-			Util.safeSleep(10);
-			if (!this.car.isBusy()) controller.createTaskToPark(this.car, this);
+			if (this.car.isPark()) {
+				this.car.setPark(false);
+				controller.createTaskToPark(this.car, this);
+			}
 		}
 		
 		try {
@@ -73,6 +75,7 @@ public class WorkStation extends Position {
 			available = false;
 		} catch (InterruptedException e) {
 			LOGGER.severe("Exception: " + e.getMessage());
+			Thread.currentThread().interrupt();
 		}
 	}	
 }

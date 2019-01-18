@@ -9,16 +9,19 @@ public class Position {
 	/**
 	 * @param row: it indicates in which row it is
 	 * @param num: it indicates in which column it is
+	 * @param pos: the exact position inside a path
 	 * @param available: it indicates if the position is available or not
 	 **/
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	String row;
 	int num;
+	int pos;
 	boolean available;
 	
 	public Position(String row,int num, boolean available) {
 		this.num = num;
 		this.row = row;
+		pos = 0;
 		this.available = available;
 	}
 	
@@ -39,6 +42,34 @@ public class Position {
 	}
 	
 	/**
+	 * Get the exact position in the path
+	 * @return pos
+	 */
+	public int getPos () {
+		return pos;
+	}
+	
+	/**
+	 * Set the exact position the car will have in the path
+	 * @param pos
+	 */
+	public synchronized void setPos (int pos) {
+		this.pos = pos;
+	}
+	
+	/**
+	 * It will move through the path
+	 * @param num: If the car wants to move to a workstation or a parking this number will
+	 * be different because it won't move through all the path
+	 */
+	public synchronized void moveInsideThePath (int num) {
+		while (pos <= num) {
+			pos++;
+			Util.safeSleep(50);
+		}
+	}
+	
+	/**
 	 * If a car uses this position, other cars can't use it until the car leaves it
 	 **/
 	public synchronized void take() {
@@ -51,6 +82,7 @@ public class Position {
 			available = false;
 		} catch (InterruptedException e) {
 			LOGGER.severe("Exception: " + e.getMessage());
+			Thread.currentThread().interrupt();
 		}
 	}
 	
@@ -93,8 +125,9 @@ public class Position {
 		if (row == null) {
 			if (other.row != null)
 				return false;
-		} else if (!row.equals(other.row))
+		} else if (!row.equals(other.row)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -103,6 +136,7 @@ public class Position {
 		return "Position{" +
 				"row='" + row + '\'' +
 				", num=" + num +
+				", pos=" + pos +
 				", available=" + available +
 				'}';
 	}

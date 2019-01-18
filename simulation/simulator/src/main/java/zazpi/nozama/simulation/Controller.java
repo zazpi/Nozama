@@ -16,7 +16,7 @@ public class Controller {
 	 * @param monitor: This monitor is used because a car only can do a task at a time
 	 * @param condNotBusy: It references to the monitor
 	 **/
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	Threads threads;
 	Objects objects;
 	Lock monitor;
@@ -49,9 +49,11 @@ public class Controller {
 				condNotBusy.await();
 			} catch (InterruptedException e) {
 				LOGGER.severe("Exception: " + e.getMessage());
+				Thread.currentThread().interrupt();
 			}
 		}
 		car.setBusy(true);
+		car.setPark(false);
 		monitor.unlock();
 	}
 	
@@ -78,6 +80,7 @@ public class Controller {
 		takeCar(car);		
 		Position finalPos = origin.getPath();
 		goTo(finalPos, car, origin);
+		car.setPark(true);
 		Util.safeSleep(5000);
 		finalPos = destination.getPath();
 		goTo(finalPos, car, destination);
@@ -116,19 +119,21 @@ public class Controller {
 				LOGGER.info("Car " + car.getId() +
 						" Current: " + currentPos.getRow() + currentPos.getNum() +
 						" Next: " + nextPos.getRow() + nextPos.getNum());
+				currentPos.moveInsideThePath(100);
 				if ((nextPos == finalPos) && (position instanceof WorkStation))
 						((WorkStation) position).take(Controller.this, car);
-				Util.safeSleep(5000);
 			}else {
 				nextPos.take();
 				changePosition(nextPos, car);
 				nextPos = null;
+				currentPos.setPos(0);
 			}
 		}
-		Util.safeSleep(5000);
+		car.getCurrentPos().moveInsideThePath(50);
 		LOGGER.info("Car " + car.getId() +
 				" Current: " + car.getCurrentPos().getRow() + car.getCurrentPos().getNum());
 		changePosition(position, car);
+		setPos(position);
 		
 		LOGGER.info("Car " + car.getId() + " in " +
 				car.getCurrentPos().getRow() + car.getCurrentPos().getNum());
@@ -151,10 +156,21 @@ public class Controller {
 	 * @param car
 	 **/
 	public void ensureItsInPath (Car car) {
-		if (car.getCurrentPos() instanceof WorkStation)
+		if (car.getCurrentPos() instanceof WorkStation) {
 			((WorkStation) car.getCurrentPos()).leave();
-		else if (car.getCurrentPos() instanceof Parking)
+			car.getCurrentPos().setPos(50);
+		}else if (car.getCurrentPos() instanceof Parking) {
 			((Parking) car.getCurrentPos()).leave();
+			car.getCurrentPos().setPos(50);
+		}
+	}
+	/**
+	 * 
+	 * @param position
+	 */
+	public void setPos (Position position) {
+		if (position instanceof WorkStation) ((WorkStation) position).getPath().setPos(0);
+		else if (position instanceof Parking) ((Parking) position).getPath().setPos(0);
 	}
 	
 	/**
