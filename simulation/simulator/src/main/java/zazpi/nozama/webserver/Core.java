@@ -7,7 +7,6 @@ import static spark.Spark.port;
 public class Core {
 
     public static void main(String[] args) {
-        port(8888);
         enableCORS("http://localhost:8080","*","");
 
         API simulatorAPI = new API();
