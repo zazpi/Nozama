@@ -45,7 +45,7 @@ public class Position {
 	 * Get the exact position in the path
 	 * @return pos
 	 */
-	public synchronized int getPos () {
+	public int getPos () {
 		return pos;
 	}
 	
@@ -53,7 +53,7 @@ public class Position {
 	 * Set the exact position the car will have in the path
 	 * @param pos
 	 */
-	public synchronized void setPos (int pos) {
+	public void setPos (int pos) {
 		this.pos = pos;
 	}
 	
@@ -62,7 +62,7 @@ public class Position {
 	 * @param num: If the car wants to move to a workstation or a parking this number will
 	 * be different because it won't move through all the path
 	 */
-	public synchronized void moveInsideThePath (int num) {
+	public void moveInsideThePath (int num) {
 		while (pos <= num) {
 			pos++;
 			Util.safeSleep(50);
