@@ -37,17 +37,19 @@ pipeline {
 			def scannerHome = tool 'SonarQubeScanner3'
                 	withSonarQubeEnv('sonar_server') {
                                 sh "echo 'app static analysis...'"
-                    		sh 'cd app/ && ./mvnw sonar:sonar'
+                    		    sh 'cd app/ && ./mvnw sonar:sonar'
                                 sh "echo 'simulator static analysis...'"
                                 sh 'cd simulation/simulator/ && ./mvnw sonar:sonar'
                 	}
 		}
             }
         }
-        stage('Build image') {
+        stage('Build images') {
             steps {
-                sh "echo 'Building docker image...'"
+                sh "echo 'Building Nozama docker image...'"
                 sh 'cd app/ && docker build -t devallday/nozama:latest .'
+                sh "echo 'Building Simulator docker image...'"
+                sh 'cd simulation/simulator/ && docker build -t devallday/simulator:latest .'
             }
         }
         stage('DockerHub authentication') {
@@ -61,10 +63,13 @@ pipeline {
         }
         stage('Push & Deploy') {
             steps {
-                sh "echo 'Pushing docker image to registry...'"
+                sh "echo 'Pushing Simulator docker image to registry...'"
+                sh 'docker push devallday/simulator:latest'
+                sh "echo 'Pushing Nozama docker image to registry...'"
                 sh 'docker push devallday/nozama:latest'
                 sh "echo 'Deployment triggering through webhook'"
             }
         }
     }
 }
+
