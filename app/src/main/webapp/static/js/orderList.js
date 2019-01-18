@@ -11,10 +11,10 @@ const ordersTable = new Tabulator("#order-list-table", {
         this.selectRow(1);
     },
     columns: [
-        {title: "ID", field: "id", align: "center", width: 100},
+        {title: "ID", field: "id", align: "center", width: 50},
         {title: "Destination", field: "destination"},
         {title: "Entry Date", field: "entryDate"},
-        {title: "Sent", field: "sent", formatter: "tickCross"}
+        {title: "Sent", field: "sent", formatter: "tickCross", width: 70}
     ],
     rowClick:function(e, row){
         ordersProductsTable.replaceData("/api/order/subOrderList?orderId="+row.getData().id);
@@ -41,10 +41,10 @@ const ordersProductsTable = new Tabulator("#subOrder-list-table", {
         return header;
     },
     columns: [
-        {title: "Suborder ID", field: "subOrderId", align: "center", width: 140},
+        {title: "Suborder ID", field: "subOrderId", align: "center"},
         {title: "Product ID", field: "productModelId", align: "center"},
-        {title: "Name", field: "name"},
-        {title: "Ready", field: "ready", formatter: "tickCross"}
+        {title: "Name", field: "name", width: 160},
+        {title: "Ready", field: "ready", formatter: "tickCross", width: 50}
     ],
     rowClick:function(e, row){
     	id = row.getCells()[1].getValue();

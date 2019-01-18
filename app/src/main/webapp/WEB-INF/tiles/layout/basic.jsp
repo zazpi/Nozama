@@ -9,10 +9,7 @@
 	    <link rel="stylesheet" href="/static/css/layout.css">
 	</head>
 	<body>
-	<section class="section-layout">
-
-                <tiles:insertAttribute name="header" />
-
+            <tiles:insertAttribute name="header" />
 			<!-- Aside -->
 			<tiles:insertAttribute name="aside" />
 			<!-- Body -->
@@ -20,9 +17,7 @@
 				<tiles:insertAttribute name="body" />
 			</div>
 			<!-- Footer -->
-
 			<tiles:insertAttribute name="footer" />
-	</section>
-		<script src="https://unpkg.com/ionicons@4.5.0/dist/ionicons.js"></script>
+			<script src="https://unpkg.com/ionicons@4.5.0/dist/ionicons.js"></script>
 	</body>
 </html>

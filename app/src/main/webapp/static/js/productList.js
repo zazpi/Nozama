@@ -10,7 +10,7 @@ $(document).ready(() => {
         paginationSize: 18,
         rowClick:productClick,
         columns: [
-            {title: "ID", field: "id", align: "center", width: 100,rowClick:productClick},
+            {title: "ID", field: "id", align: "center", width: 50,rowClick:productClick},
             {title: "Name", field: "name"},
             {title: "Description", field: "description"},
             {title: "Stock", field: "stock"}
