@@ -2,15 +2,22 @@
 
 set -eu
 
-CONTAINER=${1}
+NOZAMA_IMAGE="devallday/nozama:latest"
+SIMULATOR_IMAGE="devallday/simulator:latest"
+RUNNING_CONTAINERS=$(docker ps -a -q)
 
-if [ "$(docker ps -q -f name=${CONTAINER})" ]
-then
-    docker container rm -f $CONTAINER
+if [ ! -z $RUNNING_CONTAINERS ]; then
+
+    for CONTAINER in $RUNNING_CONTAINERS
+    do
+   	docker container rm -f $CONTAINER
+    done
+
 fi
 
-docker login
-docker pull devallday/nozama:latest
-cd ~/app && ./nozama.sh
+docker pull $NOZAMA_IMAGE
+docker pull $SIMULATOR_IMAGE
 
-exit 0
+cd app/
+
+docker-compose up -d
