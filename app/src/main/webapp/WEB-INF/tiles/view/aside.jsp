@@ -5,7 +5,7 @@
         <a href="/"><fmt:message key="aside.general"/></a>
         <a href="/orderList"><fmt:message key="aside.orderList"/></a>
         <a href="/productList"><fmt:message key="aside.productList"/></a>
-        <a href="/dashboards">Dashboards</a>
+        <a href="/dashboard">Dashboard</a>
         <a href="/simulator"><fmt:message key="aside.simulator"/></a>
         <div id="languages">
 			<select class="language-content">

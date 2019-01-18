@@ -44,7 +44,7 @@
 			value="/WEB-INF/tiles/view/body/addStock.jsp" />
 	</definition>
 
-    <definition name="site.dashboards" extends="layout.basic">
+    <definition name="site.dashboard" extends="layout.basic">
         <put-attribute name="body"
                        value="/WEB-INF/tiles/view/body/dashboard.jsp" />
     </definition>
@@ -62,11 +62,6 @@
 	<definition name="site.simulator" extends="layout.basic">
 		<put-attribute name="body"
 					   value="/WEB-INF/tiles/view/body/simulator.jsp" />
-	</definition>
-	
-	<definition name="site.dashboard" extends="layout.basic">
-		<put-attribute name="body"
-			value="/WEB-INF/tiles/view/body/dashboard.jsp" />
 	</definition>
 
 	<definition name="site.editProduct" extends="layout.basic">
