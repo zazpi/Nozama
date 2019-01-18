@@ -4,8 +4,7 @@
 
 .product {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-areas: "productInfo productInfo" "up up" "center center" "down-l down-r";
+	grid-template-areas: "productInfo" "up" "center" "down-l" "down-r";
 	
 }
 
@@ -64,5 +63,13 @@
     padding: .5rem;
     margin: 1em;
     color: #34495e;
+}
+
+@media (min-width: 425px) {
+   .product {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: "productInfo productInfo" "up up" "center center" "down-l down-r";
+	}
 }
 

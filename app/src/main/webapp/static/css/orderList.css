@@ -1,7 +1,6 @@
 .table-container{
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-areas: "orderTable subOrderTable";
+	grid-template-areas: "orderTable" "subOrderTable";
 }
 
 #order-list-table{
@@ -12,4 +11,11 @@
 #subOrder-list-table{
 	grid-area: subOrderTable;
 	margin: 1em;
+}
+
+@media (min-width: 425px) {
+    .table-container{
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: "orderTable subOrderTable";
+    }
 }

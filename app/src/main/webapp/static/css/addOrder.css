@@ -48,8 +48,7 @@
 
 .table-container{
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-areas: "products order";
+	grid-template-areas: "products" "order";
 }
 
 #productTable{
@@ -71,4 +70,11 @@
 	color: #2f3542;
 	font-weight: bold;
 	padding-bottom: 1em;
+}
+
+@media (min-width: 425px) {
+   .table-container{
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: "products order";
+   }
 }

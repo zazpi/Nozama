@@ -13,11 +13,16 @@ body {
 .row {
     width: 100%;
 }
+
+#menu a {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 .section-layout {
-    display: grid;
-    grid-template-columns: 175px auto;
-    grid-template-rows: auto auto;
-    grid-template-areas: "header header" "menu main-content" "footer footer";
+	display: grid;
+    grid-template-columns: auto;
+    grid-template-areas: "header" "menu" "main-content" "footer";
 
 }
 
@@ -26,20 +31,37 @@ body {
     font-size: 120%;
     text-align: center;
     background-color: #2f3542;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.section-header h1 {
-    color: #62e85e;
-    padding: 15px 0;
+#logo{
+	margin-left: 25em;
 }
 
-h1 {
-    margin: 0;
+#nozamaLogo{
+	width: 210px;
+	height: 80px;
+	margin: 10px;
 }
+
+.language-content{
+	margin: 0.6em;
+	width: 150px;
+	height: 40;
+	border: none;
+	border-radius: 10px;
+	background-color: #2f3542;
+	color: white;
+	margin: 1.1em 1em 0em 0em;
+	text-align: center;
+	-webkit-appearance: none;
+}
+ 
 #menu {
     grid-area: menu;
     background-color: #2f3542;
-
 }
 
 #menu a:link,
@@ -79,18 +101,6 @@ footer p {
     color: #fff;
 }
 
-@media (max-width: 425px) {
-    #menu a {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
-    .section-layout {
-        grid-template-columns: auto;
-        grid-template-areas: "header" "menu" "main-content" "footer";
-    }
-}
-
 h2 {
     padding: .5rem;
     margin-bottom: 1rem;
@@ -102,6 +112,15 @@ h2 {
     font-weight: 400;
     /*width: 15%;*/
     text-align: center;
+}
+
+@media (min-width: 425px) {
+    .section-layout {
+	    display: grid;
+	    grid-template-columns: 175px auto;
+	    grid-template-rows: auto auto;
+	    grid-template-areas: "header header" "menu main-content" "footer footer";
+    }
 }
 /*.footer-nav {
     list-style: none;
