@@ -6,10 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-/**
- * Hello world!
- *
- */
+
 public class App 
 {
     private Objects obj;
@@ -24,7 +21,6 @@ public class App
 
     public void createObjects()
     {
-        System.out.println( "Hello World!" );
         controller.setThreads(threads);
         obj.createPositions();
         obj.createCars();
@@ -35,8 +31,6 @@ public class App
 		threads.createTasks(obj.cars.get(2), obj.workstations.get(4), obj.workstations.get(0));
 		threads.createTasks(obj.cars.get(3), obj.workstations.get(4), obj.workstations.get(3));
 		threads.createTasks(obj.cars.get(4), obj.workstations.get(2), obj.workstations.get(5));
-        
-        System.out.println("Everything was better than expected");
     }
     
     public void setUpLogger () {
@@ -48,7 +42,7 @@ public class App
 			fileTxt.setFormatter(formatterTxt);
 			logger.addHandler(fileTxt);
 		} catch (SecurityException | IOException e) {
-			e.printStackTrace();
+			logger.info("Exception: " + e.getMessage());
 		}
     }
 

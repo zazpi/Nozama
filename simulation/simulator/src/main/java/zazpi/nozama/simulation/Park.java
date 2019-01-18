@@ -1,5 +1,6 @@
 package zazpi.nozama.simulation;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -13,7 +14,7 @@ public class Park implements Runnable {
 	 * @param car: the thread need the information of which car have to be moved
 	 * @param parking: the destination of the car
 	 **/
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	int id;
 	Controller controller;
 	Car car;
@@ -38,8 +39,8 @@ public class Park implements Runnable {
 	 * This is what the thread will do
 	 **/
 	public void run () {
-		LOGGER.info("Task to park " + id + " started");
+		LOGGER.log(Level.INFO, "Task to park %d started", id);
 		controller.park(parking, car);
-		LOGGER.info("Task to park " + id + " FINISHED");
+		LOGGER.log(Level.INFO, "Task to park %d FINISHED", id);
 	}
 }

@@ -4,12 +4,14 @@ public class DataDelivery {
     private int id;
     private String row;
     private int num;
+    private int pos;
     private boolean available;
 
-    public DataDelivery(int id, String row, int num, boolean available) {
+    public DataDelivery(int id, String row, int num, int pos, boolean available) {
         this.id = id;
         this.row = row;
         this.num = num;
+        this.pos = pos;
         this.available = available;
     }
 
@@ -24,6 +26,10 @@ public class DataDelivery {
     public int getNum() {
         return num;
     }
+    
+    public int getPos() {
+    	return pos;
+    }
 
     public boolean isAvailable() {
         return available;
@@ -35,6 +41,7 @@ public class DataDelivery {
                 "id=" + id +
                 ", row='" + row + '\'' +
                 ", num=" + num +
+                ", pos=" + pos +
                 ", available=" + available +
                 '}';
     }

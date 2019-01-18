@@ -14,7 +14,7 @@ public class Task implements Runnable {
 	 * @param aPos: the origin workstation
 	 * @param bPos: the destination workstation
 	 */
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	int id;
 	Controller controller;
 	Car car;

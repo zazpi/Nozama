@@ -19,7 +19,7 @@ public class Threads {
 	 * @param idTask: it indicates the number of active tasks
 	 * @param idTaskToPark: it indicates the number of active tasks to park
 	 **/
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	Controller controller;	
 	List<Task> tasks;
 	List<Park> tasksToPark;
@@ -109,6 +109,7 @@ public class Threads {
 			threadsTasks.get(id).join();
 		} catch (InterruptedException e) {
 			LOGGER.severe("Exception: " + e.getMessage());
+			Thread.currentThread().interrupt();
 		}
 		threadsTasks.remove(getTaskThread(id));
 		tasks.remove(getTask(id));
@@ -139,6 +140,7 @@ public class Threads {
 			threadsTasksToPark.get(id).join();
 		} catch (InterruptedException e) {
 			LOGGER.severe("Exception: " + e.getMessage());
+			Thread.currentThread().interrupt();
 		}
 		threadsTasksToPark.remove(getTaskToParkThread(id));
 		tasksToPark.remove(getTaskToPark(id));

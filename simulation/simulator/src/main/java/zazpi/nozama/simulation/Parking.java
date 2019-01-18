@@ -11,7 +11,7 @@ public class Parking extends Position {
 	 * @param path: this is the path that is connected to the parking
 	 * @param car: if the parking is occupied, it will have the information of which car it is
 	 **/
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	Position path;
 	Car car;
 	

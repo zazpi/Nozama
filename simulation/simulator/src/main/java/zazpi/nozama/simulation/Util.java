@@ -3,7 +3,7 @@ package zazpi.nozama.simulation;
 import java.util.logging.Logger;
 
 public class Util {
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	
 	private Util () {}
 	
@@ -12,6 +12,7 @@ public class Util {
 			Thread.sleep(ms);
 		} catch (InterruptedException e) {
 			LOGGER.severe("Exception: " + e.getMessage());
+			Thread.currentThread().interrupt();
 		}
 	}
 }

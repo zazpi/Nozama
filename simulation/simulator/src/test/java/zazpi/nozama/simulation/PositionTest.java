@@ -32,6 +32,7 @@ public class PositionTest {
 	@Test
 	public void takeInWorkstationTest () {
 		car.setBusy(false);
+		car.setPark(true);
 		controller.goTo(position, car1, workstation);
 		threads.removeTasksToPark(0);
 		assertEquals(car1, workstation.car);
