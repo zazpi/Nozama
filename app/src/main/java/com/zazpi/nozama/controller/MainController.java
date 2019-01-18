@@ -81,6 +81,11 @@ public class MainController {
         return "site.forbidden";
     }
 
+    @RequestMapping(value = "/dashboards")
+    public String dashboards() {
+        return "site.dashboards";
+    }
+
     @RequestMapping(value = "/simulator")
     public String simulator() {
         return "site.simulator";

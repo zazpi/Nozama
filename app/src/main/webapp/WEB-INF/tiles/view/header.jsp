@@ -2,7 +2,7 @@
 <fmt:bundle basename="resources.View">
 <header class="section-header">
 	<div id="logo">
-		<img onclick="nozamaClick()" id="nozamaLogo" src="/static/img/nozamaLogo.png">
+		<img style="cursor: pointer;" onclick="nozamaClick()" id="nozamaLogo" src="/static/img/nozamaLogo.png">
 	</div>	
 </header>
 </fmt:bundle>
