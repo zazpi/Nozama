@@ -56,6 +56,7 @@ public class View extends ListResourceBundle{
 			{"productList.removeProduct", "Delete"},
 			{"productList.edit", "Edit"},
 			{"productList.addNewProduct", "Add"},
+			{"productList.search", "Search:"},
 			
 			//Add product
 			{"addProduct.pageName", "Add product"},

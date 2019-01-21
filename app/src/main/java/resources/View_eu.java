@@ -55,6 +55,7 @@ public class View_eu extends ListResourceBundle{
 			{"productList.removeProduct", "Ezabatu"},
 			{"productList.edit", "Editatu"},
 			{"productList.addNewProduct", "Gehitu"},
+			{"productList.search", "Bilatu:"},
 			
 			//Add product
 			{"addProduct.pageName", "Gehitu produktua"},

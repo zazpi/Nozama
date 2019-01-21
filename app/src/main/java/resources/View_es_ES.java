@@ -56,6 +56,7 @@ public class View_es_ES extends ListResourceBundle{
 			{"productList.removeProduct", "Eliminar"},
 			{"productList.edit", "Editar"},
 			{"productList.addNewProduct", "Añadir"},
+			{"productList.search", "Buscar:"},
 			
 			//Add product
 			{"addProduct.pageName", "Añadir producto"},
