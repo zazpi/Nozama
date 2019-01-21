@@ -36,6 +36,8 @@ services:
     image: java:8
     ports:
       - 4567:4567
+    environment: 
+      - NOZAMA_URL
     volumes:
       - type: bind
         source: "../simulation/simulator/"

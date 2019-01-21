@@ -4,9 +4,10 @@ import static spark.Spark.before;
 import static spark.Spark.options;
 
 public class Core {
-
+	private static final String APP_URL = System.getenv("NOZAMA_URL");
+	
     public static void main(String[] args) {
-        enableCORS("http://localhost:8080","*","");
+        enableCORS(APP_URL,"*","");
 
         API simulatorAPI = new API();
         simulatorAPI.startup();
