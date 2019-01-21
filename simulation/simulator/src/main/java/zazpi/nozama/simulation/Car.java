@@ -48,7 +48,9 @@ public class Car {
 	}
 	
 	/**
-	 * 
+	 * When a task is created, a car is selected to do it, but it only is able to do one
+	 * task at a time, so if a car it isn't available it waits until the car is available
+	 * again
 	 */
 	public synchronized void takeCar () {
 		while (busy) {
@@ -63,7 +65,7 @@ public class Car {
 	}
 	
 	/**
-	 * 
+	 * After ending the task, the car is able to do another task
 	 */
 	public synchronized void freeCar () {
 		busy = false;

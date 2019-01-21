@@ -94,8 +94,8 @@ public class Threads {
 	 * @param origin workstation
 	 * @param destination workstation
 	 */
-	public synchronized void createTasks (Car car, WorkStation origin, WorkStation destination) {
-		tasks.add(new Task(idTask, car, controller, origin, destination));
+	public synchronized void createTasks (int suborder, int productId, WorkStation origin, WorkStation destination) {
+		tasks.add(new Task(idTask, controller, suborder, productId, origin, destination));
 		threadsTasks.add(new Thread(tasks.get(idTask), Integer.toString(idTask)));
 		threadsTasks.get(idTask).start();
 		idTask++;

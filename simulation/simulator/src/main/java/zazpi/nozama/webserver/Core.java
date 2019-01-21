@@ -4,7 +4,8 @@ import static spark.Spark.before;
 import static spark.Spark.options;
 
 public class Core {
-	private static final String APP_URL = System.getenv("NOZAMA_URL");
+	public static final String APP_URL = System.getenv("NOZAMA_URL");
+	public static final String APP_URL_DOCKER = System.getenv("NOZAMA_URL_DOCKER");
 	
     public static void main(String[] args) {
         enableCORS(APP_URL,"*","");

@@ -80,7 +80,8 @@ public class OrderController {
 		
 		for (SubOrder s : suborders) {
 			int id = s.getId();
-			String list = "";
+			String shelfsList = "";
+			String productsList = "";
 			Set<ProductModel> set = s.getProducts();
 			List<ProductModel> products = new ArrayList<>();
 			products.addAll(set);
@@ -88,11 +89,17 @@ public class OrderController {
 				ProductModel pm = products.get(i);
 				int shelfId = stackDao.getId(pm.getId(),s.getOrigin().getId());
 				stackDao.updateStock(pm.getId(),s.getOrigin().getId());
-				if(i != 0)
-					list +=  ",";
-				list += shelfId;
+				if(i != 0) {
+					shelfsList +=  ",";
+					productsList += ",";
+				}				
+				shelfsList += shelfId;
+				System.out.println(pm.getId());
+				productsList += pm.getId();
 			}
-			String parameters = "suborder=" + id + "&origin-data=" + list;
+			String parameters = "suborder=" + id +
+					"&shelfs=" + shelfsList +
+					"&products=" + productsList;
 			URL url;
 			try {
 				url = new URL("http://simulator:4567/neworder?" + parameters);
