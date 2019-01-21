@@ -20,7 +20,20 @@ body {
     grid-area: header;
     text-align: center;
     background-color: #2f3542;
+}
 
+.locales {
+    border: none;
+    border-radius: 0;
+    background-color: #2f3542;
+    color: #e7e7e7;
+    padding-left: 1.2rem;
+}
+
+.locales {
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    cursor: pointer;
 }
 
 #logo{
@@ -36,20 +49,6 @@ body {
 #menu {
     grid-area: menu;
     background-color: #2f3542;
-}
-
-.menu-content{
-}
-
-.language-content{
-	margin: 0.6em;
-	width: 130px;
-	height: 30px;
-	border: none;
-	background-color: #2f3542;
-	color: white;
-	padding-left:0.5em;
-	-webkit-appearance: none;
 }
 
 #menu a:link,
