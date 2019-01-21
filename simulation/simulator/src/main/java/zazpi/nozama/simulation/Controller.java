@@ -1,8 +1,6 @@
 package zazpi.nozama.simulation;
 
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Logger;
 
 /**
@@ -13,19 +11,19 @@ public class Controller {
 	/**
 	 * @param threads: Reference to class Threads to create or/and remove different threads
 	 * @param objects: Reference to class Objects to use different objects and methods
-	 * @param monitor: This monitor is used because a car only can do a task at a time
-	 * @param condNotBusy: It references to the monitor
+	 * @param sem: This semaphore will only allow to do five tasks, the same as the
+	 * number of cars
+	 * @param mutEx: The tasks will access individually to choose the available car
 	 **/
 	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	Threads threads;
 	Objects objects;
-	Lock monitor;
-	Condition condNotBusy;
+	Semaphore sem, mutEx;
 	
 	public Controller (Objects objects) {
 		this.objects = objects;
-		monitor = new ReentrantLock();
-		condNotBusy = monitor.newCondition();
+		sem = new Semaphore(objects.NUM_CARS);
+		mutEx = new Semaphore(1);
 	}
 	
 	/**
@@ -42,20 +40,29 @@ public class Controller {
 	 * again
 	 * @param car
 	 **/
-	public void takeCar (Car car) {
-		/*monitor.lock();		
-		while (car.isBusy()) {
-			try {
-				condNotBusy.await();
-			} catch (InterruptedException e) {
-				LOGGER.severe("Exception: " + e.getMessage());
-				Thread.currentThread().interrupt();
-			}
+	public Car takeCar () {
+		Car car = null;
+		try {
+			LOGGER.info("Wait for token");
+			sem.acquire();
+			LOGGER.info("Take token");
+			mutEx.acquire();
+		} catch (InterruptedException e) {
+			LOGGER.severe("Exception: " + e.getMessage());
+			Thread.currentThread().interrupt();
 		}
-		car.setBusy(true);
-		car.setPark(false);
-		monitor.unlock();*/
-		car.takeCar();
+		
+		for (Car c : objects.getCars()) {
+    		if (!c.isBusy()) {
+    			car = c;
+    			car.takeCar();
+    			break;
+    		}
+    	}
+		if (car == null) LOGGER.severe("TOKEN FREE WITH NO CAR");
+		mutEx.release();
+		
+		return car;
 	}
 	
 	/**
@@ -63,11 +70,9 @@ public class Controller {
 	 * @param car
 	 **/
 	public void freeCar (Car car) {
-		/*monitor.lock();
-		car.setBusy(false);
-		condNotBusy.signalAll();
-		monitor.unlock();*/
 		car.freeCar();
+		sem.release();
+		LOGGER.info("Leave token");
 	}
 	
 	/**
@@ -78,8 +83,7 @@ public class Controller {
 	 * @param destination workstation
 	 * @param car
 	 */
-	public void goToWorkstation (WorkStation origin, WorkStation destination, Car car) {
-		takeCar(car);		
+	public void goToWorkstation (WorkStation origin, WorkStation destination, Car car) {	
 		Position finalPos = origin.getPath();
 		goTo(finalPos, car, origin);
 		car.setPark(true);
@@ -87,7 +91,6 @@ public class Controller {
 		finalPos = destination.getPath();
 		goTo(finalPos, car, destination);
 		freeCar(car);
-		destination.setOrder(false);
 	}
 	
 	/**
@@ -97,7 +100,13 @@ public class Controller {
 	 * @param car
 	 */
 	public void park (Parking parking, Car car) {
-		takeCar(car);
+		try {
+			sem.acquire();
+		} catch (InterruptedException e) {
+			LOGGER.severe("Exception: " + e.getMessage());
+			Thread.currentThread().interrupt();
+		}
+		car.takeCar();
 		Position finalPos = parking.getPath();
 		goTo(finalPos, car, parking);
 		freeCar(car);
@@ -113,12 +122,14 @@ public class Controller {
 		Position currentPos;
 		Position nextPos = null;
 		
+		if (car.getCurrentPos() == position) return;
 		ensureItsInPath(car);
 		
 		while(car.getCurrentPos() != finalPos){
 			currentPos = car.getCurrentPos();
 			if(nextPos == null) {
 				nextPos = askNextPos(currentPos,finalPos);
+				if (nextPos == null) LOGGER.severe("NEXTPOS IS NULL " + currentPos + " " + finalPos);
 				LOGGER.info("Car " + car.getId() +
 						" Current: " + currentPos.getRow() + currentPos.getNum() +
 						" Next: " + nextPos.getRow() + nextPos.getNum());

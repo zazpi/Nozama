@@ -19,25 +19,16 @@ public class App
         this.threads = threads;
     }
 
-    public void createObjects()
-    {
+    public void createObjects() {
         controller.setThreads(threads);
         obj.createPositions();
         obj.createCars();
-        /*
-        //tareak eskaera bat dagoenean sortuko dira
-        threads.createTasks(obj.cars.get(0), obj.workstations.get(3), obj.workstations.get(2));
-		threads.createTasks(obj.cars.get(1), obj.workstations.get(0), obj.workstations.get(5));
-		threads.createTasks(obj.cars.get(2), obj.workstations.get(4), obj.workstations.get(0));
-		threads.createTasks(obj.cars.get(3), obj.workstations.get(4), obj.workstations.get(3));
-		threads.createTasks(obj.cars.get(4), obj.workstations.get(2), obj.workstations.get(5));
-   */
     }
     
-    public void newOrder (String suborder, String shelfs) {
-    	//int suborderId = Integer.parseInt(suborder);
+    public void newOrder (String suborder, String shelfs, String products) {
+    	int suborderId = Integer.parseInt(suborder);
     	String [] shelf = shelfs.split(",");
-    	Car car = null;
+    	String [] product = products.split(",");
     	WorkStation workstation = null;
     	
 		for (WorkStation w : obj.getWorkstations()) {
@@ -51,22 +42,8 @@ public class App
 		for (int i=0; i<shelf.length;i++) {
 			Util.safeSleep(100);
 			int shelfId = Integer.parseInt(shelf[i]);
-			for (Car c : obj.getCars()) {
-	    		if (!c.isBusy()) {
-	    			car = c;
-	    			break;
-	    		}
-	    	}
-			threads.createTasks(car, obj.getWorkstations().get(shelfId), workstation);
-		}
-    }
-    
-    public void removeOrder () {
-    	for (int j=0;j<threads.getIdTask();j++) {
-    		threads.removeTasks(j);
-    	}
-		for (int k=0;k<threads.getIdTaskToPark();k++) {
-			threads.removeTasksToPark(k);
+			int productId = Integer.parseInt(product[i]);
+			threads.createTasks(suborderId, productId, obj.getWorkstations().get(shelfId), workstation);
 		}
     }
     

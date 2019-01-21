@@ -38,6 +38,7 @@ services:
       - 4567:4567
     environment: 
       - NOZAMA_URL
+      - NOZAMA_URL_DOCKER
     volumes:
       - type: bind
         source: "../simulation/simulator/"

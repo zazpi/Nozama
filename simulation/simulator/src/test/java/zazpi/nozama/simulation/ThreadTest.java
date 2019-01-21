@@ -17,16 +17,17 @@ public class ThreadTest {
 	public void createParkThread () {
 		objects = new Objects();
 		objects.createPositions();
+		objects.createCars();
 		controller = new Controller(objects);
 		threads = new Threads(controller);
 		controller.setThreads(threads);
 		position = new Position("A", 0, true);
-		car = new Car(0, position);
+		car = objects.getCars().get(0);
 		origin = new WorkStation("BW", 0, true, objects.getPosition("B", 0));
 		destination = new WorkStation("AW", 2, true, objects.getPosition("A", 4));
 	}
 	@Test
-	public void checkTaskCreationTest () {
+	public void checkTaskToParkCreationTest () {
 		threads.createTaskToPark(car, origin);
 		assertEquals(1, threads.idTaskToPark);
 		threads.removeTasksToPark(0);
@@ -35,8 +36,8 @@ public class ThreadTest {
 	}
 	
 	@Test
-	public void checkTaskToParkCreationTest () {
-		threads.createTasks(car, origin, destination);
+	public void checkTaskCreationTest () {
+		threads.createTasks(0, 0, origin, destination);
 		assertEquals(1, threads.idTask);
 		threads.removeTasks(0);
 		assertEquals(0, threads.idTask);

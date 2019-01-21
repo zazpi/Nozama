@@ -86,10 +86,11 @@ public class ControllerTest {
 	public void prepareCarTest () {
 		position = new Position("A", 5, true);
 		car = new Car(5, position);
+		objects.createCars();
 	}
 	@Test
 	public void takeNotBusyCarTest () {
-		controller.takeCar(car);
+		car = controller.takeCar();
 		assertTrue(car.isBusy());
 	}
 	@Test
