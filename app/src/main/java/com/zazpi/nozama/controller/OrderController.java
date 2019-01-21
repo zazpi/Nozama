@@ -1,5 +1,9 @@
 package com.zazpi.nozama.controller;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zazpi.nozama.dao.OrdersDao;
 import com.zazpi.nozama.dao.ProductModelDAO;
+import com.zazpi.nozama.dao.ProductStackDao;
 import com.zazpi.nozama.dao.SubOrderDao;
 import com.zazpi.nozama.dao.WarehouseDao;
 import com.zazpi.nozama.model.Order;
@@ -42,6 +47,9 @@ public class OrderController {
 
 	@Autowired
 	SubOrderDao subOrderDao;
+	
+	@Autowired
+	ProductStackDao stackDao;
 
 	@GetMapping("new")
 	public @ResponseBody Order newOrder (@RequestParam("destination") int destination,
@@ -64,7 +72,38 @@ public class OrderController {
 		order.setSuborders(suborders);
 
 		ordersDao.save(order);
+		getRequest(suborders);
 		return order;
+	}
+	
+	public void getRequest (Set<SubOrder> suborders) {
+		
+		for (SubOrder s : suborders) {
+			int id = s.getId();
+			String list = "";
+			Set<ProductModel> set = s.getProducts();
+			List<ProductModel> products = new ArrayList<>();
+			products.addAll(set);
+			for(int i = 0 ; i < products.size();i++ ) {
+				ProductModel pm = products.get(i);
+				int shelfId = stackDao.getId(pm.getId(),s.getOrigin().getId());
+				stackDao.updateStock(pm.getId(),s.getOrigin().getId());
+				if(i != 0)
+					list +=  ",";
+				list += shelfId;
+			}
+			String parameters = "suborder=" + id + "&origin-data=" + list;
+			URL url;
+			try {
+				url = new URL("http://simulator:4567/neworder?" + parameters);
+				HttpURLConnection con = (HttpURLConnection) url.openConnection();
+				con.setRequestMethod("GET");
+				con.getResponseCode();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public HashMap<Warehouse,Set<ProductModel>> selectBestWarehouses(Set<ProductModel> products, int destination){

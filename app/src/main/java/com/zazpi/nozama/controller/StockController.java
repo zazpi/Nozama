@@ -70,5 +70,4 @@ public class StockController {
 		else
 			return stackDao.getOccupedSpaceByWarehouse(warehouseid) * 100 / (shelfDao.getCapacityByWarehouse(warehouseid)*100000000000L);
 	}
-	
 }

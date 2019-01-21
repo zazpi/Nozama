@@ -43,7 +43,7 @@ public class Controller {
 	 * @param car
 	 **/
 	public void takeCar (Car car) {
-		monitor.lock();		
+		/*monitor.lock();		
 		while (car.isBusy()) {
 			try {
 				condNotBusy.await();
@@ -54,7 +54,8 @@ public class Controller {
 		}
 		car.setBusy(true);
 		car.setPark(false);
-		monitor.unlock();
+		monitor.unlock();*/
+		car.takeCar();
 	}
 	
 	/**
@@ -62,10 +63,11 @@ public class Controller {
 	 * @param car
 	 **/
 	public void freeCar (Car car) {
-		monitor.lock();
+		/*monitor.lock();
 		car.setBusy(false);
 		condNotBusy.signalAll();
-		monitor.unlock();
+		monitor.unlock();*/
+		car.freeCar();
 	}
 	
 	/**
@@ -85,6 +87,7 @@ public class Controller {
 		finalPos = destination.getPath();
 		goTo(finalPos, car, destination);
 		freeCar(car);
+		destination.setOrder(false);
 	}
 	
 	/**

@@ -35,4 +35,5 @@ public interface SubOrderDao extends CrudRepository<SubOrder,Long>{
 	@Query(value="update suborders set departuredate=?2 where suborderid=?1",
 			nativeQuery=true)
 	void updateSubOrderDepartureDate(int suborderid, Date date);
+	
 }

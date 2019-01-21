@@ -1,8 +1,10 @@
 package com.zazpi.nozama.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,4 +53,15 @@ public interface ProductStackDao extends CrudRepository<ProductStack,Long> {
 			+ "group by pm.productmodelid) q;",
 			nativeQuery=true)
 	long getOccupedSpaceByWarehouse(int wh);
+	
+	@Query(value="select s.position "
+			+ "from productstack ps join shelf s on s.shelfid= ps.shelfid and s.warehouseid= ps.warehouseid"
+			+ " where s.warehouseid=?2 and ps.productmodelid=?1",
+			nativeQuery=true)
+	int getId(int id, int warehouseid);
+	
+	@Modifying
+	@Query(value="update productstack set stock=stock-1 where warehouseid=?2 and productmodelid=?1",
+			nativeQuery=true)
+	void updateStock(int producid, int warehouseid);
 }

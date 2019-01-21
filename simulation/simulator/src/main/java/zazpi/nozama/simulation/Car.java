@@ -19,7 +19,8 @@ public class Car {
 	public Car(int id,Position currentPos) {
 		this.currentPos = currentPos;
 		this.id = id;
-		this.busy = false;
+		busy = false;
+		park = true;
 	}
 	
 	/**
@@ -44,6 +45,29 @@ public class Car {
 	 */
 	public synchronized void setBusy(boolean busy) {
 		this.busy = busy;
+	}
+	
+	/**
+	 * 
+	 */
+	public synchronized void takeCar () {
+		while (busy) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		}
+		busy = true;
+		park = false;
+	}
+	
+	/**
+	 * 
+	 */
+	public synchronized void freeCar () {
+		busy = false;
+		notifyAll();
 	}
 	
 	/**

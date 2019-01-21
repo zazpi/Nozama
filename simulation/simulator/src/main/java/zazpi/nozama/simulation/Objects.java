@@ -114,4 +114,12 @@ public class Objects {
 	public List<Car> getCars() {
 		return cars;
 	}
+	
+	/**
+	 * Get the list of the workstations
+	 * @return workstations
+	 */
+	public List<WorkStation> getWorkstations() {
+		return workstations;
+	}
 }

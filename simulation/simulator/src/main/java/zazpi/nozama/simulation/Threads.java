@@ -147,4 +147,20 @@ public class Threads {
 		
 		idTaskToPark--;
 	}
+	
+	/**
+	 * Get the number of active threads of task
+	 * @return idTask
+	 */
+	public int getIdTask() {
+		return idTask;
+	}
+	
+	/**
+	 * Get the number of active threads of task to park
+	 * @return idTaskToPark
+	 */
+	public int getIdTaskToPark() {
+		return idTaskToPark;
+	}
 }

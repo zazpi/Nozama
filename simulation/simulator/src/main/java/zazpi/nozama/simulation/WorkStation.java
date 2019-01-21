@@ -10,14 +10,17 @@ public class WorkStation extends Position {
 	/**
 	 * @param path: this is the path that is connected to the parking
 	 * @param car: if the parking is occupied, it will have the information of which car it is
+	 * @param order: it indicates if the workstation has an order or not
 	 **/
 	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	Position path;
 	Car car;
+	boolean order;
 	
 	public WorkStation(String row, int num, boolean available, Position path) {
 		super(row, num, available);
 		this.path = path;
+		order = false;
 	}
 	
 	/**
@@ -36,6 +39,22 @@ public class WorkStation extends Position {
 		this.car = car;
 	}
 	
+	/**
+	 * It returns if the workstation can be used to set an order or not
+	 * @return order
+	 */
+	public synchronized boolean isOrder() {
+		return order;
+	}
+	
+	/**
+	 * It sets true when an order arrives and false when it ends
+	 * @param order
+	 */
+	public synchronized void setOrder(boolean order) {
+		this.order = order;
+	}
+
 	/**
 	 * The car leaves the parking, putting it available and without the car. The method
 	 * also sets the car's position to the one that is connected to the parking and

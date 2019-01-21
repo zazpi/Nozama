@@ -10,13 +10,14 @@ import zazpi.nozama.simulation.Objects;
 import zazpi.nozama.simulation.Threads;
 
 public class API {
+	App simulator;
     private List<Car> cars;
 	
     public void startup() {
 		Objects obj = new Objects();
 		Controller cont = new Controller(obj);
 		Threads th = new Threads(cont);
-		App simulator = new App(obj,cont,th);
+		simulator = new App(obj,cont,th);
 		cars = simulator.getObj().getCars();
 		simulator.setUpLogger();
 		simulator.createObjects();
@@ -25,6 +26,11 @@ public class API {
     public void registerEndpoints() {
         get("/rb-data", (req,resp) -> {
             return Utils.getCarsPositions(cars);
+        }, new JsonTransformer());
+        get("/neworder", (req, resp) -> {
+        	simulator.newOrder(req.queryParams("suborder"), req.queryParams("origin-data"));
+        	System.out.println(req.queryParams("suborder") + " - " + req.queryParams("origin-data"));
+        	return "ok" + req.queryParams("suborder") + req.queryParams("origin-data");
         }, new JsonTransformer());
     }
 }

@@ -2,7 +2,6 @@ package zazpi.nozama.webserver;
 
 import static spark.Spark.before;
 import static spark.Spark.options;
-import static spark.Spark.port;
 
 public class Core {
 
