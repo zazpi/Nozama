@@ -17,7 +17,7 @@ function loadData(id,minstock,maxstock){
 		createPiechart(data);
 	});
 	//Map
-	$.getJSON('/api/order/list-location',    function (data) {
+	$.getJSON('/api/order/list-location-product?productId=' + id,    function (data) {
 		createMap(data);
 	});
 }

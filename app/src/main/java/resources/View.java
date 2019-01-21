@@ -56,6 +56,7 @@ public class View extends ListResourceBundle{
 			{"productList.removeProduct", "Delete"},
 			{"productList.edit", "Edit"},
 			{"productList.addNewProduct", "Add"},
+			{"productList.search", "Search:"},
 			
 			//Add product
 			{"addProduct.pageName", "Add product"},
@@ -96,6 +97,7 @@ public class View extends ListResourceBundle{
 			{"dashboard.generalGauge","Total"},
 			{"dashboard.warehouse1Gauge","Warehouse 1"},
 			{"dashboard.warehouse2Gauge","Warehouse 2"},
+			{"dashboard.timeseries","Stock history"},
 			
 			//Footer resources
 			{"footer.authors", "Copyright &copy; 2019 by Zazpi. All rights reserved."},

@@ -7,15 +7,26 @@ $(document).ready(function(){
 	$.getJSON('/api/order/list-location',    function (data) {
 		createMap(data);
 	});
-	
+	//Gauge
 	const warehouseIds = [0,1,2];
 	$.each(warehouseIds, (index, id) => {
 		$.getJSON('/api/stock/getcapacity?warehouseId=' + id, (data) => {
 			createGauge([data],'gauge' + id);
 		});
 	});
-	//Gauge
-
+	//Timeseries
+	$.each(names, function (i, name) {
+	    $.getJSON('/api/history/getwarehouse?warehouseId=' + i,    function (data) {
+	        seriesOptions[i] = {
+	            name: name,
+	            data: data
+	        };
+	        seriesCounter += 1;
+	        if (seriesCounter === names.length) {
+	        	createTimeSeries(seriesOptions);
+	        }
+	    });
+	});
 });
 
 function drawHeatMap(data){
@@ -162,4 +173,30 @@ function createGauge(data,container){
 	    }]
 
 	});
+}
+
+//Product stock history (Timeseries)
+var seriesOptions = [],
+    seriesCounter = 0,
+    names = ['Total','Warehouse 1','Warehouse 2'];
+
+function createTimeSeries(data) {
+	
+    Highcharts.stockChart('timeseries', {
+        rangeSelector: {
+            selected: 4
+        },
+        yAxis: {
+            plotLines: [{
+                value: 0,
+                width: 2,
+                color: 'silver'
+            }]
+        },
+        tooltip: {
+            valueDecimals: 2,
+            split: true
+        },
+        series: data
+    });
 }

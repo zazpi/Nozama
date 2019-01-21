@@ -55,6 +55,7 @@ public class View_eu extends ListResourceBundle{
 			{"productList.removeProduct", "Ezabatu"},
 			{"productList.edit", "Editatu"},
 			{"productList.addNewProduct", "Gehitu"},
+			{"productList.search", "Bilatu:"},
 			
 			//Add product
 			{"addProduct.pageName", "Gehitu produktua"},
@@ -95,6 +96,7 @@ public class View_eu extends ListResourceBundle{
 			{"dashboard.generalGauge","Totala"},
 			{"dashboard.warehouse1Gauge","1. biltegia"},
 			{"dashboard.warehouse2Gauge","2. biltegia"},
+			{"dashboard.timeseries","Stockaren bilakaera"},
 			
 			//Footer resources
 			{"footer.authors", "Copyright &copy; 2019 Zazpik garatua."},

@@ -56,6 +56,7 @@ public class View_es_ES extends ListResourceBundle{
 			{"productList.removeProduct", "Eliminar"},
 			{"productList.edit", "Editar"},
 			{"productList.addNewProduct", "Añadir"},
+			{"productList.search", "Buscar:"},
 			
 			//Add product
 			{"addProduct.pageName", "Añadir producto"},
@@ -96,6 +97,7 @@ public class View_es_ES extends ListResourceBundle{
 			{"dashboard.generalGauge","Total"},
 			{"dashboard.warehouse1Gauge","Almacén 1"},
 			{"dashboard.warehouse2Gauge","Almacén 2"},
+			{"dashboard.timeseries","Histórico del stock"},
 			
 			//Footer resources
 			{"footer.authors", "Copyright &copy; desarrollado por Zazpi. Todos los derechos reservados"},

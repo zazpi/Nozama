@@ -1,8 +1,9 @@
 .dashboard{
 	display: grid;
-	grid-template-rows: 70% 30%;
+	grid-template-rows: 40% 30% 30%;
 	grid-template-areas: "map-heatmap"
-						 "gauges";
+						 "gauges"
+						 "timeseries";
 	width: 100vw;
 }
 
@@ -21,8 +22,13 @@
 	grid-area: map;
 }
 
+#timeseriesGraph{
+	grid-area: timeseries;
+}
+
 #heatmap,
-#map {
+#map,
+#timeseries {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	padding: 1em;
@@ -60,7 +66,8 @@
 		display: grid;
 		grid-template-rows: 50% 50%;
 		grid-template-areas: "map-heatmap"
-							 "gauges";
+							 "gauges"
+							 "timeseries";
 		width: auto;
 	}
 	

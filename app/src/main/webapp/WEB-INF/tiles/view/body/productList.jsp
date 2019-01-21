@@ -13,7 +13,7 @@
 			</nav>
 	</header><br>
 	<div class="searchSection">
-		<label id="searchLabel">Search: </label>
+		<label id="searchLabel"><fmt:message key="productList.search"/></label>
 		<input id="searchInput"/>
 	</div>
 	<div class="table-container">
