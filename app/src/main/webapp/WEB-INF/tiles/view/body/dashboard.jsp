@@ -38,16 +38,23 @@
 	        <div id="gauge2" ></div>
 		</div>
 	</div>
+	<div id="timeseriesGraph">
+		<header>
+	       <h2><fmt:message key="dashboard.timeseries"/></h2>
+	    </header>
+	    <div id="timeseries" ></div>
+	</div>
 </section>
 </fmt:bundle>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="http://code.highcharts.com/maps/modules/map.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/mapdata/countries/es/es-all.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/heatmap.js"></script>
 <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+
 
 <script src="/static/js/dashboard.js"></script>

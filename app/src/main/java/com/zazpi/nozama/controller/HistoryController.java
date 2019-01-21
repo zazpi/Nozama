@@ -47,4 +47,12 @@ public class HistoryController {
 		else
 			return historyDao.findByModelIdRaw(product,wId);
 	}
+	
+	@GetMapping("getwarehouse")
+	public @ResponseBody List<Object[]> getWarehouseHistory(@RequestParam(value="warehouseId")int wId){	
+		if(wId == 0)
+			return historyDao.findTotal();
+		else
+			return historyDao.findByWarehouseRaw(wId);
+	}
 }
