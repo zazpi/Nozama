@@ -27,15 +27,18 @@ services:
     command: ["mvn", "spring-boot:run"]
   postgres:
     image: postgres:9.6
-    ports:
-      - 5432
     environment:
       - POSTGRES_DB
       - POSTGRES_PASSWORD
+    ports:
+      - 5432
   simulator:
-    image: java:8
+    image: devallday/simulator:latest
+    environment:
+      - NOZAMA_URL
     ports:
       - 4567:4567
+<<<<<<< Updated upstream
     environment: 
       - NOZAMA_URL
       - NOZAMA_URL_DOCKER
@@ -51,3 +54,5 @@ services:
         target: "/usr/src/app/target"
     working_dir: /usr/src/app
     command: ["java", "-jar", "target/simulator-jar-with-dependencies.jar"]
+=======
+>>>>>>> Stashed changes

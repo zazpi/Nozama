@@ -1,11 +1,15 @@
-FROM java:openjdk-8-alpine
-COPY . /usr/src/app
-VOLUME /root/.m2
-WORKDIR /usr/src/app
-EXPOSE 4567
+FROM openjdk:8-jre-slim
+
+WORKDIR /opt
+
+COPY target/simulator-jar-with-dependencies.jar simulator-jar-with-dependencies.jar
+
 CMD ["java", \
      "-XshowSettings:vm", \
      "-XX:+UnlockExperimentalVMOptions", \
+     "-XX:+UseCGroupMemoryLimitForHeap", \
      "-XX:MaxRAMFraction=2", \
      "-server", \
-     "-jar", "target/simulator-jar-with-dependencies.jar"]
+     "-jar", "simulator-jar-with-dependencies.jar"]
+
+EXPOSE 4567
