@@ -10,19 +10,17 @@ body {
     text-rendering: optimizeLegibility;
     display: grid;
     grid-template-columns: auto;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: "header" "menu" "main-content" "footer";
-}
-
-.row {
     width: 100%;
+    height: 100%;
 }
 
 .section-header {
     grid-area: header;
-    font-size: 120%;
     text-align: center;
     background-color: #2f3542;
-    width: 100vw;
+
 }
 
 #logo{
@@ -41,19 +39,16 @@ body {
 }
 
 .menu-content{
-	display: grid;
-	grid-template-columns: 1fr 1fr;
 }
 
 .language-content{
 	margin: 0.6em;
 	width: 130px;
-	height: 30;
+	height: 30px;
 	border: none;
 	background-color: #2f3542;
 	color: white;
 	padding-left:0.5em;
-	margin-top: 1.5em;
 	-webkit-appearance: none;
 }
 
@@ -108,15 +103,60 @@ h2 {
     text-align: center;
 }
 
-@media (min-width: 425px) {
+.dropbtn {
+    display: none;
+    background-color: #00ff58;
+    color: #2f3542;
+    font-size: 16px;
+    padding: 15px;
+    width: auto;
+    transition: background-color .2s;
+}
+
+@media (min-width: 768px) {
     body {
 	    display: grid;
 	    grid-template-columns: 175px auto;
-	    grid-template-rows: auto auto auto;
 	    grid-template-areas: "header header" "menu main-content" "footer footer";
     }
-    
+}
+
+@media (max-width: 767px) {
+    #menu {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 1rem;
+        width: 25%;
+        background-color: #fff;
+    }
+
+    .dropbtn {
+        display: inline-block;
+        cursor: pointer;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+
+    }
+
     .menu-content{
-		grid-template-columns: 1fr;
-	}
+        grid-template-columns: 1fr;
+        display: none;
+        position: absolute;
+        z-index: 1;
+        background-color: #2f3542;
+
+    }
+
+    #menu:hover .dropbtn {
+        background-color: #00cc46;
+        color: #2f3542;
+    }
+
+    .menu-content a {
+        display: block;
+    }
+
+    #menu:hover .menu-content {
+        display: block;}
 }
