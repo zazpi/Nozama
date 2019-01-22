@@ -11,7 +11,6 @@ $(document).ready(() => {
             }else {
                 page = page + "?lang=";
             }
-            console.log(page + selectedOption);
             window.location.replace(page + selectedOption);
         }
     });
