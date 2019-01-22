@@ -3,7 +3,6 @@ $(document).ready(() => {
     let selector = null;
     const moveRobots = (robotsData) => {
         robotsData.map((data) => {
-            console.log(data);
             $("#rb" + data.id).remove();
             id = "#" + data.row + data.num;
             if ((data.row == "B") && (data.num < 4)) 
