@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="/static/css/general.css">
 <section class="general">
     <div class="header-content">
+    <h4>Hello</h4>
         <h2><fmt:message key="general.info"/></h2>
         <div class="map-container">
             <div id="map"></div>
