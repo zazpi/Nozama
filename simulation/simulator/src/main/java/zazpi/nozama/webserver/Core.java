@@ -8,7 +8,7 @@ public class Core {
 	public static final String APP_URL_DOCKER = System.getenv("NOZAMA_URL_DOCKER");
 	
     public static void main(String[] args) {
-        enableCORS(APP_URL,"*","");
+        enableCORS("*","*","");
 
         API simulatorAPI = new API();
         simulatorAPI.startup();
