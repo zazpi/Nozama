@@ -1,5 +1,4 @@
 $(document).ready(() => {
-
     $("#locales").change(() => {
         const selectedOption = $('#locales').val();
         if (selectedOption !== ''){
@@ -10,9 +9,9 @@ $(document).ready(() => {
                 const rParam = params.split("&")[0];
                 page = page + "?" + rParam + "&lang=";
             }else {
-                page += + "?lang=";
+                page = page + "?lang=";
             }
-
+            console.log(page + selectedOption);
             window.location.replace(page + selectedOption);
         }
     });
