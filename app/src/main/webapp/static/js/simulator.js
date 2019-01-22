@@ -17,8 +17,7 @@ $(document).ready(() => {
     };
     const getProductsData = async () => {
         try {
-            // FIXME: change this to localhost:4567 on dev
-            const result = await fetch("http://simulator:4567/rb-data");
+            const result = await fetch("http://localhost:4567/rb-data");
             const data = await result.json();
             moveRobots(data);
         }catch (error) {
