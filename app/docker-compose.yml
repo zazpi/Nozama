@@ -34,25 +34,8 @@ services:
       - 5432
   simulator:
     image: devallday/simulator:latest
-    environment:
-      - NOZAMA_URL
     ports:
       - 4567:4567
-<<<<<<< Updated upstream
     environment: 
       - NOZAMA_URL
       - NOZAMA_URL_DOCKER
-    volumes:
-      - type: bind
-        source: "../simulation/simulator/"
-        target: /usr/src/app
-      - type: bind
-        source: "$HOME/.m2"
-        target: "/root/.m2"
-      - type: bind
-        source: "../simulation/simulator/target"
-        target: "/usr/src/app/target"
-    working_dir: /usr/src/app
-    command: ["java", "-jar", "target/simulator-jar-with-dependencies.jar"]
-=======
->>>>>>> Stashed changes
