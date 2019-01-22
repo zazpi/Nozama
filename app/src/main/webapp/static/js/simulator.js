@@ -17,7 +17,7 @@ $(document).ready(() => {
     };
     const getProductsData = async () => {
         try {
-            const result = await fetch("http://localhost:4567/rb-data");
+            const result = await fetch("http://app-nozama.duckdns.org:4567/rb-data");
             const data = await result.json();
             moveRobots(data);
         }catch (error) {
